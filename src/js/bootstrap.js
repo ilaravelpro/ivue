@@ -14,8 +14,8 @@ Vue.prototype.$eventHub = new Vue();
 
 import { abilitiesPlugin } from '@casl/vue'
 import ability from './handel/config/ability'
-Vue.use(abilitiesPlugin, ability)
-window.ability = ability;
+/*Vue.use(abilitiesPlugin, ability)
+window.ability = ability;*/
 
 moment.updateLocale(window.app_locale, {
     week: {
