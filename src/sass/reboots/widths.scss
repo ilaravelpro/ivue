@@ -1,0 +1,42 @@
+@each $width in $widths {
+    $name : str-replace(($width),'%','');
+    .w-#{$name} {
+        width: $width !important;
+    }
+}
+
+@include media-breakpoint-down(sm)  {
+    @each $width in $widths {
+        $name : str-replace(($width),'%','');
+        .w-sm-#{$name} {
+            width: $width !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @each $width in $widths {
+        $name : str-replace(($width),'%','');
+        .w-md-#{$name} {
+            width: $width !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $width in $widths {
+        $name : str-replace(($width),'%','');
+        .w-lg-#{$name} {
+            width: $width !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $width in $widths {
+        $name : str-replace(($width),'%','');
+        .w-xl-#{$name} {
+            width: $width !important;
+        }
+    }
+}

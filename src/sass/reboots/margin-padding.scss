@@ -1,0 +1,23 @@
+//==========================================
+//margin and padding
+//==========================================
+.m-top {
+    margin-top: $margin-and-padding-size;
+}
+
+.m-bottom {
+    margin-bottom: $margin-and-padding-size;
+}
+
+.p-top {
+    padding-top: $margin-and-padding-size;
+}
+
+.p-bottom {
+    padding-bottom: $margin-and-padding-size;
+}
+
+.ml-250px{
+    transition: 0.5s;
+    margin-left: 250px;
+}

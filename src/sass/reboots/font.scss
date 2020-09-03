@@ -1,0 +1,14 @@
+@import "../views/fonts/iranyekan";
+
+[class*="font-weight-"] {
+    font-family: iranyekan, $DefaultFonts;
+}
+
+.font-weight-normal {
+    font-weight: 500 !important;
+}
+
+body {
+    font-family: iranyekan, $DefaultFonts;
+}
+

@@ -1,0 +1,27 @@
+//==========================================
+//btn
+//==========================================
+.btn {
+    &.btn-xs {
+        padding: 0.05rem 0.4rem;
+        font-size: 0.775rem;
+        line-height: 1.4;
+        border-radius: 0.2rem;
+    }
+
+    &.btn-hover {
+        &:hover {
+            opacity: .8;
+        }
+    }
+}
+.btn-primary {
+    color: $color-white !important;
+    background-color: $color-primary !important;
+    border-color: $color-primary !important;
+    :hover{
+        color: $color-white !important;
+        background-color: $color-primary !important;
+        border-color: $color-primary !important;
+    }
+}

@@ -1,0 +1,46 @@
+.i-autocomplete {
+    width: 100%;
+    .select-title {
+        .unselect {
+            background-color: #f4030e;
+            color: #ffffff;
+            padding: 2px 5px 0;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    }
+    ul {
+        width: calc(100% - 30px);
+        display: none;
+        list-style-type: none;
+        background-color: #fff;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #add8e6;
+        border-top: none;
+        max-height: 180px;
+        margin: 7px 0 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        z-index: 1;
+        li {
+            padding: 7px 9px;
+            border-bottom: 1px solid #e1e1e1;
+            cursor: pointer;
+            color: #6e6e6e;
+            &:hover {
+                &:not(.select-search):not(.select-actions) {
+                    background-color: #e8e8e8;
+                    color: #333;
+                }
+            }
+        }
+        li.selected {
+            &:not(.select-search):not(.select-actions) {
+                background-color: #e8e8e8;
+                color: #333;
+            }
+        }
+    }
+}

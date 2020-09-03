@@ -1,0 +1,42 @@
+@for $i from 0 through 50 {
+    $name : str-replace(($i/10),'.','-');
+    .font-size-#{$name} {
+        font-size: #{$i/10}rem !important;
+    }
+}
+
+@include media-breakpoint-down(sm)  {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .font-size-sm-#{$name} {
+            font-size: #{$i/10}rem !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .font-size-md-#{$name} {
+            font-size: #{$i/10}rem !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .font-size-lg-#{$name} {
+            font-size: #{$i/10}rem !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .font-size-xl-#{$name} {
+            font-size: #{$i/10}rem !important;
+        }
+    }
+}

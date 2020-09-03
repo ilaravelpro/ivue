@@ -1,0 +1,45 @@
+//==========================================
+//line height
+//==========================================
+@for $i from 0 through 50 {
+    $name : str-replace(($i/10),'.','-');
+    .line-height-#{$name} {
+        line-height: #{$i/10} !important;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .line-height-sm-#{$name} {
+            line-height: #{$i/10} !important;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .line-height-md-#{$name} {
+            line-height: #{$i/10} !important;
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .line-height-lg-#{$name} {
+            line-height: #{$i/10} !important;
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    @for $i from 0 through 50 {
+        $name : str-replace(($i/10),'.','-');
+        .line-height-xl-#{$name} {
+            line-height: #{$i/10} !important;
+        }
+    }
+}

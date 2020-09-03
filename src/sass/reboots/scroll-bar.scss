@@ -1,0 +1,93 @@
+//==========================================
+//scroll bar
+//==========================================
+.nicescroll-rails {
+    direction: ltr;
+    border-radius: 50px;
+
+    div {
+        border: none !important;
+    }
+}
+
+.scrollbar-inner {
+    > {
+        .scroll-element {
+            &,
+            div {
+                z-index: 0 !important;
+            }
+
+            &.scroll-y {
+                height: auto;
+                right: auto;
+                left: 2px;
+                top: 10px;
+                bottom: 10px;
+                z-index: 1;
+                border-radius: 50px;
+                width: 7px;
+            }
+
+            &.scroll-x {
+                z-index: 1;
+            }
+
+            .scroll-element_track {
+                background-color: $color-gallery;
+            }
+
+            .scroll-bar {
+                background-color: $color-coral-red;
+                opacity: 1;
+
+            }
+        }
+    }
+}
+
+// custom scroll-bar
+@mixin custom-scroll-bar() {
+    &::-webkit-scrollbar {
+        border-radius: 10px;
+        height: 8px;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: $color-primary;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $color-primary;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        background-clip: content-box;
+    }
+}
+
+// no scroll bar
+@mixin no-scroll-bar() {
+    &::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        height: 0;
+        width: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+        height: 0;
+        width: 0;
+    }
+}
+
+.i-scroll {
+    height: 20rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include custom-scroll-bar();
+}

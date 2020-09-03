@@ -1,0 +1,59 @@
+<template>
+    <textarea ref="input" :placeholder="placeholder" v-model="model" :class="styleForTextArea" @focusin="focusin"
+              @focusout="focusout"></textarea>
+</template>
+
+
+<script>
+    import GlobalField from "../../../../handel/functions/field/global.func";
+
+    var storeNamespace = 'DataSingle';
+
+    export default {
+        name: 'i-base-input',
+        model: {
+            event: 'change'
+        },
+        props: {
+            placeholder: String,
+            value: [String, Number, Object, Array],
+            desc: [String, Number, Object, Array],
+            storeNamespace: [String, Object],
+            fieldIndex: [String, Object],
+            icon: Object,
+            focusin: Function,
+            focusout: Function,
+            resize: Boolean,
+            type: {
+                type: String,
+                default: 'text'
+            },
+            options: {
+                type: [Object, Array],
+                default: () => []
+            },
+            css: {
+                type: [Object, Array],
+                default: () => []
+            },
+        },
+        data() {
+            return {
+                model: null,
+            }
+        },
+        computed: {
+            ...GlobalField.computed(storeNamespace),
+            styleForTextArea() {
+                return this.styleForField + (this.resize ? 'resize-none' : '');
+            }
+        },
+        methods: {
+            ...GlobalField.methods(storeNamespace)
+        },
+        watch: {
+            ...GlobalField.watch(storeNamespace),
+        }
+    }
+
+</script>

@@ -1,0 +1,42 @@
+@each $height in $heights {
+    $name : str-replace(($height),'%','');
+    .h-#{$name} {
+        height: $height !important;
+    }
+}
+
+@include media-breakpoint-down(sm)  {
+    @each $height in $heights {
+        $name : str-replace(($height),'%','');
+        .h-sm-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @each $height in $heights {
+        $name : str-replace(($height),'%','');
+        .h-md-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $height in $heights {
+        $name : str-replace(($height),'%','');
+        .h-lg-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $height in $heights {
+        $name : str-replace(($height),'%','');
+        .h-xl-#{$name} {
+            height: $height !important;
+        }
+    }
+}

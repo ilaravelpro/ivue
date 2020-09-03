@@ -1,0 +1,30 @@
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+{
+    border-width: 1px !important;
+    border-color: $color-primary !important;
+}
+
+.input-group .input-group-text i.cursor-pointer:hover {
+    color: $color-primary;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0 !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}

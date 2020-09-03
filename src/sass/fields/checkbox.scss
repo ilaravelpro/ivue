@@ -1,0 +1,59 @@
+.i-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        &:checked {
+            ~ {
+                .checkmark {
+                    border: 1px solid $color-primary;
+                    &:after {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        input {
+            ~ {
+                .checkmark {
+                    border: 1px solid $color-primary;
+                }
+            }
+        }
+    }
+    .checkmark {
+        &:after {
+            right: 9px;
+            top: 1px;
+            width: 5px;
+            text-align: center;
+            height: 10px;
+        }
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border: 1px solid $color-dark;
+        border-radius: 3px;
+        &:after {
+            content: "\e824";
+            position: absolute;
+            display: none;
+        }
+    }
+}
