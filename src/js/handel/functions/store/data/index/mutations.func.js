@@ -10,6 +10,9 @@ const StoreDataIndexMutations ={
     setQuery(state, query) {
         state.query = query
     },
+    setState(state, [name, value]) {
+        iPath.set(state, name, value)
+    },
     resetState(state) {
         state = Object.assign(state, StoreDataIndexState())
     }

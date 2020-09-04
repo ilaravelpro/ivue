@@ -1,7 +1,7 @@
 const StoreDataIndexActions = {
     fetchData({commit, state}) {
         commit('setLoading', true)
-        ApiService.get('sections', {params: state.query})
+        ApiService.get(state.resource, {params: state.query})
             .then(response => {
                 commit('setAll', response.handel.data)
             })
@@ -17,6 +17,9 @@ const StoreDataIndexActions = {
     },
     setQuery({commit}, value) {
         commit('setQuery', purify(value))
+    },
+    setState({commit}, [name, value]) {
+        commit('setState', [name, value])
     },
     resetState({commit}) {
         commit('resetState')

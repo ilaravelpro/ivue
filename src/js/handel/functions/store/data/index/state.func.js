@@ -1,8 +1,11 @@
 const StoreDataIndexState = () => {
     return {
+        resource: '',
+        url: '',
         all: [],
+        meta: {},
         query: {},
-        loading: false
+        loading: false,
     }
 };
 

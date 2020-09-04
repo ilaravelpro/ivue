@@ -3,7 +3,11 @@ function initialState() {
         options: {
             show: {
                 black_page: false,
-                menu: false,
+                menu: {
+                    right: false,
+                    left: false,
+                    current: null
+                },
                 filter: false
             },
             sections: {},
@@ -81,8 +85,8 @@ const actions = {
     setSectionOptions({ commit }, value) {
         commit('setSectionOptions',  value);
     },
-    setMainMenu({ commit }) {
-        commit('setMainMenu');
+    toggleMenu({ commit }, pos) {
+        commit('toggleMenu', pos);
     },
     setShowFilter({ commit }) {
         commit('setShowFilter');
@@ -111,9 +115,22 @@ const mutations = {
     setSectionOptions(state, value) {
         state.options.sections[value[0]] = value[1];
     },
-    setMainMenu(state) {
-        state.options.show.menu = !state.options.show.menu
-        state.options.show.black_page = !state.options.show.black_page
+    toggleMenu(state, pos) {
+        if (pos === 'off') {
+            $.each(state.options.show.menu, function (i,v) {
+                state.options.show.menu[i] = false
+            })
+            state.options.show.black_page = false
+        }else if (!state.options.show.menu.current || pos === state.options.show.menu.current) {
+            state.options.show.menu[pos] = !state.options.show.menu[pos]
+            state.options.show.black_page = !state.options.show.black_page
+        }else{
+            var diff = state.options.show.menu.current;
+            state.options.show.menu[pos] = !state.options.show.menu[pos]
+            state.options.show.menu[diff] = false
+            state.options.show.black_page = !state.options.show.black_page
+        }
+        state.options.show.menu.current = pos
     },
     setShowFilter(state) {
         state.options.show.filter = !state.options.show.filter

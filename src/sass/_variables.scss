@@ -5,6 +5,21 @@ $body-bg: #f8fafc;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+$root-font-size:                                    13px; // custom parameter
+$root-font-size-lg:                             	12px; // custom parameter
+$root-font-size-md:                             	12px; // custom parameter
+// Page Background Color
+$page-bg:	 										#EEF0F8 !default;
+
+// Page Main Background Image Height
+$page-bg-height:                                    350px !default;
+
+// Page Paddings
+$page-padding: (
+    desktop: 25px, 			// Padding for desktop mode
+    tablet-and-mobile: 15px // Padding for tablet and mobile modes
+) !default;
+
 //===============================================
 //font default
 //===============================================
@@ -93,7 +108,8 @@ $color-science-blue : #046ADF;
 $color-lochmara : #0088cc;
 $color-instagram : radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);;
 $color-reef : #D2FF9F;
-$color-blue: #03A9F4;
+$color-blue: #262A87;
+$color-blue2: #1d2174;
 $color-indigo: #6574cd;
 $color-purple: #9561e2;
 $color-pink: #f66d9b;
