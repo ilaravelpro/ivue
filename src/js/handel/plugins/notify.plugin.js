@@ -52,4 +52,4 @@ const Notify = (content, options) => {
     });
 }
 
-export default NotifyPlugin;
+export default Notify;

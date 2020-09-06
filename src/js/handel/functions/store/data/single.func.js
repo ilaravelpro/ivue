@@ -1,24 +1,34 @@
 import StoreDataSingleState from "./single/state.func";
+import iData from "../../../libs/iData.lib";
+import Notify from "../../../plugins/notify.plugin";
 
 const StoreDataSingle = {
+    handelErrors(errors = null, status = true) {
+        var render = [];
+        $.each(errors, function (i, v) {
+            if (typeof (v.status) !== 'undefined' && v.status === 'invalid') {
+                status = false;
+                render.push(v.text);
+            } else {
+                var $child = this.handelErrors(v, status)
+                render.push(...$child.errors)
+                status = $child.status
+            }
+        });
+        return {errors: render, status: status};
+    },
     initialState() {
         return {
             resource: null,
+            url: null,
+            status: true,
             item: {},
             parent: {},
             data: {},
             masks: {},
             options: {
-                search: {
-                    icon: {
-                        prepend: {
-                            class: 'trh-icon-sliders cursor-pointer',
-                        },
-                        append: {
-                            class: 'trh-icon-search'
-                        }
-                    }
-                },
+                excepts: [],
+                typeForm: null
             },
             desc: {},
             errors: {
@@ -36,7 +46,8 @@ const StoreDataSingle = {
         iErrorAll: state => {
             return {...state.errors.user, ...state.errors.system};
         },
-        iErrors: state => state.errors,
+        iErrors: state => state.errors.user,
+        iErrorsHandel: (state) => StoreDataSingle.handelErrors(state.errors.user),
         iMaskAll: state => state.masks,
         iDescAll: state => state.desc,
         iOptionAll: state => state.options,
@@ -47,11 +58,29 @@ const StoreDataSingle = {
         updateByKey({commit, state, dispatch}, [key, value]) {
             return commit('setState', {key: "item." + key, value: value})
         },
-        storeData({commit, state, dispatch}) {
-
+        storeData({commit, state, dispatch, getters}, url = null) {
+            commit('setLoading', true)
+            return new Promise((resolve, reject) => {
+                if (getters.iErrorsHandel.status) {
+                    url = url || state.url || state.resource;
+                    let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
+                    if (state.item.id) url += '/' + state.item.id;
+                    ApiService.post(url, params, true).then(response => {
+                        resolve(response)
+                    }).catch(response => {
+                        reject(response)
+                    }).finally(() => {
+                        commit('setLoading', false)
+                    });
+                } else {
+                    Notify({message: 'Please fix the errors!!!'}, {type: 'd'})
+                    reject()
+                    commit('setLoading', false)
+                }
+            })
         },
-        fetchData({commit, dispatch}, url) {
-            return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true})
+        fetchData({state, commit, dispatch}, url) {
+            return dispatch('fetchDataBy', {url: (url ? state.url : resource), resource: 'item', parent: true})
         },
         fetchDataBy({commit, dispatch}, {url, resource, params, parent}) {
             commit('setLoading', true)

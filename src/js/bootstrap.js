@@ -8,11 +8,10 @@ try {
 
     require('bootstrap');
 } catch (e) {}
-
 window.purify = o => JSON.parse(JSON.stringify(o))
-
 Vue.prototype.$eventHub = new Vue();
 
+import 'bootstrap-notify';
 import { abilitiesPlugin } from '@casl/vue'
 import ability from './handel/config/ability'
 /*Vue.use(abilitiesPlugin, ability)
