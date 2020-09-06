@@ -1,12 +1,4 @@
 .data-table {
-
-
-
-    .limiter {
-        width: 100%;
-        margin: 0 auto;
-    }
-
     .container-table {
         input {
             border: none !important;
@@ -32,7 +24,6 @@
         }
 
         width: 100%;
-        min-height: 100vh;
         display: -webkit-box;
         display: -webkit-flex;
         display: -moz-box;
@@ -53,7 +44,7 @@
         border-spacing: 1rem;
         border-collapse: collapse;
         background: white;
-        border-radius: 10px;
+        border-radius: 3px;
         overflow: hidden;
         width: 100%;
         margin: 0 auto;

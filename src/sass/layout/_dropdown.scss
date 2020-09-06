@@ -36,6 +36,13 @@
         }
     }
 }
+.dropdown {
+    a {
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+    }
+}
 @media (max-width: 767px) {
     .dropdown-menu {
         padding-left: 15px;

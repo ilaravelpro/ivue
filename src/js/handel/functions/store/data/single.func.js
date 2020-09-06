@@ -26,6 +26,7 @@ const StoreDataSingle = {
                 system: {},
             },
             loading: false,
+            fields: [],
         }
     },
     getters: {
@@ -40,6 +41,7 @@ const StoreDataSingle = {
         iDescAll: state => state.desc,
         iOptionAll: state => state.options,
         iLoading: state => state.loading,
+        iFields: state => state.fields,
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {

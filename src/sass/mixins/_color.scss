@@ -1,8 +1,8 @@
 @mixin i-color($colors, $prefix: null, $except: null) {
     @each $label, $color in $colors {
-        $baselabel: $label;
+        $check: index($except, $label) == null;
         @if ($prefix) {
-            $label: $prefix + '-' + $label;
+            $label: $prefix + "-" + $label;
         }
         .color-#{$label} {
             color: $color !important;
@@ -11,7 +11,7 @@
                 color: $color !important;
             }
 
-            @if (index($except, $baselabel) == null) {
+            @if ($check) {
                 a:hover, a:active {
                     color: mix(black, $color, 15%) !important;
                 }
@@ -22,7 +22,7 @@
             }
         }
         a.color-#{$label} {
-            @if (index($except, $baselabel) == null) {
+            @if ($check) {
                 &:hover, &:active {
                     color: mix(black, $color, 15%) !important;
                 }

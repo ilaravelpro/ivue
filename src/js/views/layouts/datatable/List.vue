@@ -23,37 +23,34 @@
 
         <div class="container-table">
             <div class="wrap-table">
-                <div class="">
-                    <table>
-                        <thead>
-                        <tr class="table-head">
-                            <th v-for="column in columns" :key="column.name" @click="sortBy(column.name)"
-                                :class="sortKey === column.name ? (sortOrders[column.name] > 0 ? 'sorting_asc' : 'sorting_desc') : 'sorting'"
-                                :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">
-                                {{column.label}}
-                            </th>
-                            <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="item in paginatedItems" :key="item.id">
-                            <td v-for="column in columns">
-                                <slot v-if="$scopedSlots['item.'+column.name]" :name="'item.'+column.name" v-bind:column="column" v-bind:item="item"></slot>
-                                <template v-else>
-                                    {{item[column.name]}}
-                                </template>
-                            </td>
-                            <td v-if="action">
-                                <button v-for="(action, index) in getActions" @click="actionItem(item, action)"
-                                        class="btn btn-icon btn-light btn-sm" :class="index !== Object.keys(getActions)[Object.keys(getActions).length - 1] ? 'mr-1' : ''" :title="action.title">
-                                    <span :class="action.icon"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                <table>
+                    <thead>
+                    <tr class="table-head">
+                        <th v-for="column in columns" :key="column.name" @click="sortBy(column.name)"
+                            :class="sortKey === column.name ? (sortOrders[column.name] > 0 ? 'sorting_asc' : 'sorting_desc') : 'sorting'"
+                            :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">
+                            {{column.label}}
+                        </th>
+                        <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="item in paginatedItems" :key="item.id">
+                        <td v-for="column in columns">
+                            <slot v-if="$scopedSlots['item.'+column.name]" :name="'item.'+column.name" v-bind:column="column" v-bind:item="item"></slot>
+                            <template v-else>
+                                {{item[column.name]}}
+                            </template>
+                        </td>
+                        <td v-if="action">
+                            <button v-for="(action, index) in getActions" @click="actionItem(item, action)"
+                                    class="btn btn-icon btn-light btn-sm" :class="index !== Object.keys(getActions)[Object.keys(getActions).length - 1] ? 'mr-1' : ''" :title="action.title">
+                                <span :class="action.icon"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="w-100 d-md-flex mt-2">
                 <div class="col-md-9 col-12 d-md-flex px-0">
