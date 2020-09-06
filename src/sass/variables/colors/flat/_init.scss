@@ -1,0 +1,36 @@
+@import
+"green",
+"blue",
+"purple",
+"yellow",
+"orange",
+"red",
+"gray";
+
+
+$i-flat-colors: () !default;
+$i-flat-colors: map-merge(
+        (
+            green-turquoise:       $i-flat-color-turquoise,
+            green-green-sea:       $i-flat-color-green-sea,
+            green-emerald:         $i-flat-color-emerald,
+            green-nephritis:       $i-flat-color-nephritis,
+            blue-peter-river:      $i-flat-color-peter-river,
+            blue-belize-hole:      $i-flat-color-belize-hole,
+            blue-wet-asphalt:      $i-flat-color-wet-asphalt,
+            blue-midnight:         $i-flat-color-midnight-blue,
+            purple-amethyst:       $i-flat-color-amethyst,
+            purple-wisteria:       $i-flat-color-wisteria,
+            yellow-sunflower:      $i-flat-color-sunflower,
+            orange-base:           $i-flat-color-orange,
+            orange-carrot:         $i-flat-color-carrot,
+            orange-pumpkin:        $i-flat-color-pumpkin,
+            red-alizarin:          $i-flat-color-alizarin,
+            red-pomegranate:       $i-flat-color-pomegranate,
+            gray-clouds:           $i-flat-color-clouds,
+            gray-silver:           $i-flat-color-silver,
+            gray-concrete:         $i-flat-color-concrete,
+            gray-asbestos:         $i-flat-color-asbestos,
+        ),
+        $i-flat-colors
+);

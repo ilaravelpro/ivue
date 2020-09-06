@@ -1,0 +1,35 @@
+$i-material-color-light-green-050:  #f1f8e9 !default;
+$i-material-color-light-green-100:  #dcedc8 !default;
+$i-material-color-light-green-200:  #c5e1a5 !default;
+$i-material-color-light-green-300:  #aed581 !default;
+$i-material-color-light-green-400:  #9ccc65 !default;
+$i-material-color-light-green-500:  #8bc34a !default;
+$i-material-color-light-green-600:  #7cb342 !default;
+$i-material-color-light-green-700:  #689f38 !default;
+$i-material-color-light-green-800:  #558b2f !default;
+$i-material-color-light-green-900:  #33691e !default;
+$i-material-color-light-green-a100: #ccff90 !default;
+$i-material-color-light-green-a200: #b2ff59 !default;
+$i-material-color-light-green-a400: #76ff03 !default;
+$i-material-color-light-green-a700: #64dd17 !default;
+
+$i-material-color-light-green: () !default;
+$i-material-color-light-green: map-merge(
+        (
+            50:   $i-material-color-light-green-050,
+            100:  $i-material-color-light-green-100,
+            200:  $i-material-color-light-green-200,
+            300:  $i-material-color-light-green-300,
+            400:  $i-material-color-light-green-400,
+            500:  $i-material-color-light-green-500,
+            600:  $i-material-color-light-green-600,
+            700:  $i-material-color-light-green-700,
+            800:  $i-material-color-light-green-800,
+            900:  $i-material-color-light-green-900,
+            a100: $i-material-color-light-green-a100,
+            a200: $i-material-color-light-green-a200,
+            a400: $i-material-color-light-green-a400,
+            a700: $i-material-color-light-green-a700
+        ),
+        $i-material-color-light-green
+);

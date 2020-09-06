@@ -1,0 +1,40 @@
+$i-bootflat-color-green-siskin-sprout-yellow: #7A942E !default;
+$i-bootflat-color-green-young-green-onion: #8DB255 !default;
+$i-bootflat-color-green-fresh-onion: #5B8930 !default;
+$i-bootflat-color-green-young-bamboo-color: #6B9362 !default;
+$i-bootflat-color-green-patina: #407A52 !default;
+$i-bootflat-color-green-bamboo: #006442 !default;
+$i-bootflat-color-green-gossip: #87D37C !default;
+$i-bootflat-color-green-eucalyptus: #26A65B !default;
+$i-bootflat-color-green-EUCALYPTUS: #26A65B !default;
+$i-bootflat-color-green-jungle: #26C281 !default;
+$i-bootflat-color-green-jungle2: #2ABB9B !default;
+$i-bootflat-color-green-observatory: #049372 !default;
+$i-bootflat-color-green-mountain-meadow: #16A085 !default;
+$i-bootflat-color-green-turquoise: #36D7B7 !default;
+$i-bootflat-color-green-free-speech-aquamarine: #03A678 !default;
+$i-bootflat-color-green-ocean: #4DAF7C !default;
+
+
+$i-bootflat-color-green: () !default;
+$i-bootflat-color-green: map-merge(
+        (
+            siskin-sprout-yellow: $i-bootflat-color-green-siskin-sprout-yellow,
+            young-green-onion: $i-bootflat-color-green-young-green-onion,
+            fresh-onion: $i-bootflat-color-green-fresh-onion,
+            young-bamboo-color: $i-bootflat-color-green-young-bamboo-color,
+            patina: $i-bootflat-color-green-patina,
+            bamboo: $i-bootflat-color-green-bamboo,
+            gossip: $i-bootflat-color-green-gossip,
+            eucalyptus: $i-bootflat-color-green-eucalyptus,
+            EUCALYPTUS: $i-bootflat-color-green-EUCALYPTUS,
+            jungle: $i-bootflat-color-green-jungle,
+            jungle2: $i-bootflat-color-green-jungle2,
+            observatory: $i-bootflat-color-green-observatory,
+            mountain-meadow: $i-bootflat-color-green-mountain-meadow,
+            turquoise: $i-bootflat-color-green-turquoise,
+            free-speech-aquamarine: $i-bootflat-color-green-free-speech-aquamarine,
+            ocean: $i-bootflat-color-green-ocean,
+        ),
+        $i-bootflat-color-green
+);

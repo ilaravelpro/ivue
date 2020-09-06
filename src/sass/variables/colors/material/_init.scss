@@ -1,0 +1,83 @@
+@import
+"amber",
+"red",
+"blue",
+"blue_grey",
+"brown",
+"cyan",
+"deep_orange",
+"deep_purple",
+"green",
+"grey",
+"indigo",
+"light_blue",
+"light_green",
+"lime",
+"orange",
+"pink",
+"purple",
+"teal",
+"yellow",
+"black",
+"white",
+"theme";
+
+$i-material-colors: () !default;
+$i-material-colors: map-merge(
+        (
+            'black':       $i-material-color-black,
+            'white':       $i-material-color-white,
+            'amber':       $i-material-color-amber-500,
+            'blue':        $i-material-color-blue-500,
+            'blue-grey':   $i-material-color-blue-grey-500,
+            'brown':       $i-material-color-brown-500,
+            'cyan':        $i-material-color-cyan-500,
+            'deep-orange': $i-material-color-deep-orange-500,
+            'deep-purple': $i-material-color-deep-purple-500,
+            'green':       $i-material-color-green-500,
+            'grey':        $i-material-color-grey-500,
+            'indigo':      $i-material-color-indigo-500,
+            'light-blue':  $i-material-color-light-blue-500,
+            'light-green': $i-material-color-light-green-500,
+            'lime':        $i-material-color-lime-500,
+            'orange':      $i-material-color-orange-500,
+            'pink':        $i-material-color-pink-500,
+            'purple':      $i-material-color-purple-500,
+            'red':         $i-material-color-red-500,
+            'teal':        $i-material-color-teal-500,
+            'yellow':      $i-material-color-yellow-500
+        ),
+        $i-material-colors
+);
+
+$i-material-color-list: () !default;
+$i-material-color-list: map-merge(
+        (
+            'black':       $i-material-color-blacks,
+            'white':       $i-material-color-whites,
+            'amber':       $i-material-color-amber,
+            'blue':        $i-material-color-blue,
+            'blue-grey':   $i-material-color-blue-grey,
+            'brown':       $i-material-color-brown,
+            'cyan':        $i-material-color-cyan,
+            'deep-orange': $i-material-color-deep-orange,
+            'deep-purple': $i-material-color-deep-purple,
+            'green':       $i-material-color-green,
+            'grey':        $i-material-color-grey,
+            'indigo':      $i-material-color-indigo,
+            'light-blue':  $i-material-color-light-blue,
+            'light-green': $i-material-color-light-green,
+            'lime':        $i-material-color-lime,
+            'orange':      $i-material-color-orange,
+            'pink':        $i-material-color-pink,
+            'purple':      $i-material-color-purple,
+            'red':         $i-material-color-red,
+            'teal':        $i-material-color-teal,
+            'yellow':      $i-material-color-yellow,
+            'dark-theme':  $i-material-color-dark-theme,
+            'light-theme': $i-material-color-light-theme,
+        ),
+        $i-material-color-list
+);
+
+

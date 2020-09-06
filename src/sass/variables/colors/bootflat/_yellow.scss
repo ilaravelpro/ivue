@@ -1,0 +1,43 @@
+$i-bootflat-color-yellow-patrinia-flowers: #D9B611 !default;
+$i-bootflat-color-yellow-amur-cork-tree: #F3C13A !default;
+$i-bootflat-color-yellow-ripe-lemon: #F7CA18 !default;
+$i-bootflat-color-yellow-japanese-triandra-grass: #E2B13C !default;
+$i-bootflat-color-yellow-rapeseed-oil: #A17917 !default;
+$i-bootflat-color-yellow-cream-can: #F5D76E !default;
+$i-bootflat-color-yellow-saffron: #F4D03F !default;
+$i-bootflat-color-yellow-bright-golden: #FFA400 !default;
+$i-bootflat-color-yellow-sumac-dyed: #E08A1E !default;
+$i-bootflat-color-yellow-gamboge: #FFB61E !default;
+$i-bootflat-color-yellow-corn: #FAA945 !default;
+$i-bootflat-color-yellow-egg: #FFA631 !default;
+$i-bootflat-color-yellow-floral-leaf: #FFB94E !default;
+$i-bootflat-color-yellow-golden-fallen-leaves: #E29C45 !default;
+$i-bootflat-color-yellow-ecstasy: #F9690E !default;
+$i-bootflat-color-yellow-amber: #CA6924 !default;
+$i-bootflat-color-yellow-lightning: #F5AB35 !default;
+
+$i-bootflat-color-yellow: () !default;
+$i-bootflat-color-yellow: map-merge(
+        (
+            patrinia-flowers: $i-bootflat-color-yellow-patrinia-flowers,
+            amur-cork-tree: $i-bootflat-color-yellow-amur-cork-tree,
+            ripe-lemon: $i-bootflat-color-yellow-ripe-lemon,
+            japanese-triandra-grass: $i-bootflat-color-yellow-japanese-triandra-grass,
+            rapeseed-oil: $i-bootflat-color-yellow-rapeseed-oil,
+            cream-can: $i-bootflat-color-yellow-cream-can,
+            saffron: $i-bootflat-color-yellow-saffron,
+            bright-golden: $i-bootflat-color-yellow-bright-golden,
+            sumac-dyed: $i-bootflat-color-yellow-sumac-dyed,
+            gamboge: $i-bootflat-color-yellow-gamboge,
+            corn: $i-bootflat-color-yellow-corn,
+            egg: $i-bootflat-color-yellow-egg,
+            floral-leaf: $i-bootflat-color-yellow-floral-leaf,
+            golden-fallen-leaves: $i-bootflat-color-yellow-golden-fallen-leaves,
+            ecstasy: $i-bootflat-color-yellow-ecstasy,
+            amber: $i-bootflat-color-yellow-amber,
+            lightning: $i-bootflat-color-yellow-lightning,
+        ),
+        $i-bootflat-color-yellow
+);
+
+

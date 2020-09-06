@@ -1,0 +1,27 @@
+$i-bootflat-color-red-foreign-crimson: #C91F37 !default;
+$i-bootflat-color-red-orange: #DC3023 !default;
+$i-bootflat-color-red-cochineal: #9D2933 !default;
+$i-bootflat-color-red-monza: #CF000F !default;
+$i-bootflat-color-red-brewed-mustard-brown: #E68364 !default;
+$i-bootflat-color-red-pomegranate: #F22613 !default;
+$i-bootflat-color-red-scarlet: #CF3A24 !default;
+$i-bootflat-color-red-pure-crimson: #C3272B !default;
+$i-bootflat-color-red-true: #8F1D21 !default;
+$i-bootflat-color-red-chestnut-rose: #D24D57 !default;
+
+$i-bootflat-color-red: () !default;
+$i-bootflat-color-red: map-merge(
+        (
+            foreign-crimson: $i-bootflat-color-red-foreign-crimson,
+            orange: $i-bootflat-color-red-orange,
+            cochineal: $i-bootflat-color-red-cochineal,
+            monza: $i-bootflat-color-red-monza,
+            brewed-mustard-brown: $i-bootflat-color-red-brewed-mustard-brown,
+            pomegranate: $i-bootflat-color-red-pomegranate,
+            scarlet: $i-bootflat-color-red-scarlet,
+            pure-crimson: $i-bootflat-color-red-pure-crimson,
+            true: $i-bootflat-color-red-true,
+            chestnut-rose: $i-bootflat-color-red-chestnut-rose,
+        ),
+        $i-bootflat-color-red
+);

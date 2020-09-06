@@ -1,0 +1,192 @@
+$body-bg: #f8fafc !default;
+
+$color-primary: #03A9F4 !default;
+$color-primary-two: #03A9F4 !default;
+$color-primary-three: #03A9F4 !default;
+$color-primary-four: #03A9F4 !default;
+
+$color-dark: #333 !default;
+$color-black: $i-material-color-black !default;
+
+$color-black-30: rgba(0, 0, 0, 0.30) !default;
+$color-black-50: rgba(0, 0, 0, 0.50) !default;
+$color-black-60: rgba(0, 0, 0, 0.60) !default;
+$color-black-80: rgba(0, 0, 0, 0.80) !default;
+
+$color-dove-gray: #737373 !default;
+$color-dove-gray-2: #707070 !default;
+$color-dove-gray-3: #727272 !default;
+$color-dove-gray-4: #7E7E7E !default;
+$color-dove-gray-5: #6B6B6B !default;
+$color-dove-gray-6: #8E8E8E !default;
+$color-dove-gray-7: #828282 !default;
+
+$color-white: $i-material-color-white !default;
+
+$color-silver: #bebebe !default;
+$color-silver-2: #C0C0C0 !default;
+$color-silver-3: #CBCBCB !default;
+$color-silver-4: #C8C8C8 !default;
+$color-silver-5: #C4C4C4 !default;
+$color-silver-6: #C6C6C6 !default;
+
+$color-wild-sand: #F7F7F7 !default;
+$color-wild-sand-2: #F6F6F6 !default;
+
+$color-alto: #DCDCDC !default;
+$color-alto-2: #DBDBDB !default;
+$color-alto-3: #CFCFCF !default;
+$color-alto-4: #D2D2D2 !default;
+$color-alto-5: #D6D6D6 !default;
+$color-alto-6: #E0E0E0 !default;
+
+$color-mercury: #E1E1E1 !default;
+$color-mercury-2: #E8E8E8 !default;
+
+$color-masala: #403434 !default;
+
+$color-nobel: #B5B5B5 !default;
+
+$color-seashell: #F1F1F1 !default;
+
+$color-silver-chalice: #A8A8A8 !default;
+$color-silver-chalice-2: #AAAAAA !default;
+
+$color-concrete: #F3F3F3 !default;
+
+$color-gallery: #eee !default;
+$color-gallery-2: #EBEBEB !default;
+$color-gallery-3: #ECECEC !default;
+
+$color-dusty-gray: #9C9C9C !default;
+
+$color-tundora: #474747 !default;
+$color-tundora-50: rgba(71, 71, 71, 0.50) !default;
+$color-tundora-2: #4D4B4B !default;
+
+$color-coral-red: #FA4252 !default;
+
+$color-froly: #F76D79 !default;
+$color-roman: #da5d68 !default;
+$color-brink-pink: #fa6774 !default;
+$color-atomic-tangerine: #FFA259 !default;
+$color-picasso: #FFF29f !default;
+$color-persimmon: #FE6845 !default;
+$color-tuscany: #bf4c2f !default;
+$color-malachite: #0DB413 !default;
+$color-malachite-25: rgba(13, 180, 19, 0.25) !default;
+$color-malachite-30: rgba(13, 180, 19, 0.30) !default;
+$color-malachite-10: rgba(13, 180, 19, 0.1) !default;
+$color-japanese-laurel: #0e8a12 !default;
+$color-mountain-meadow: #25d366 !default;
+$color-mint-green: #86F88A !default;
+$color-cornflower-lilac: #FFA4AC !default;
+$color-alabaster: #f8f8f8 !default;
+$color-alabaster-2: #fcfcfc !default;
+$color-alabaster-3: #FBFBFB !default;
+$color-alabaster-4: #f4f4f4 !default;
+$color-mine-shaft: #373737 !default;
+$color-heliotrope: #E145FE !default;
+$color-science-blue: #046ADF !default;
+$color-lochmara: #0088cc !default;
+
+$color-reef: #D2FF9F !default;
+$color-blue: $i-material-color-blue-500 !default;
+$color-indigo: $i-material-color-indigo-500 !default;
+$color-purple: $i-material-color-purple-500 !default;
+$color-pink: $i-material-color-pink-500 !default;
+$color-red: $i-material-color-red-500 !default;
+$color-orange: $i-material-color-orange-500 !default;
+$color-yellow: $i-material-color-yellow-500 !default;
+$color-green: $i-material-color-green-500 !default;
+$color-teal: $i-material-color-teal-500 !default;
+$color-cyan: $i-material-color-cyan-500 !default;
+
+$i-colors: () !default;
+$i-colors: map-merge(
+        (
+            reef: $color-reef,
+            blue: $color-blue,
+            indigo: $color-indigo,
+            purple: $color-purple,
+            pink: $color-pink,
+            red: $color-red,
+            orange: $color-orange,
+            yellow: $color-yellow,
+            green: $color-green,
+            teal: $color-teal,
+            cyan: $color-cyan,
+            primary: $color-primary,
+            primary-two: $color-primary-two,
+            primary-three: $color-primary-three,
+            primary-four: $color-primary-four,
+            dark: $color-dark,
+            black: $color-black,
+            black-30: $color-black-30,
+            black-50: $color-black-50,
+            black-60: $color-black-60,
+            black-80: $color-black-80,
+            dove-gray: $color-dove-gray,
+            dove-gray-2: $color-dove-gray-2,
+            dove-gray-3: $color-dove-gray-3,
+            dove-gray-4: $color-dove-gray-4,
+            dove-gray-5: $color-dove-gray-5,
+            dove-gray-6: $color-dove-gray-6,
+            dove-gray-7: $color-dove-gray-7,
+            white: $color-white,
+            silver: $color-silver,
+            silver-2: $color-silver-2,
+            silver-3: $color-silver-3,
+            silver-4: $color-silver-4,
+            silver-5: $color-silver-5,
+            silver-6: $color-silver-6,
+            wild-sand: $color-wild-sand,
+            wild-sand-2: $color-wild-sand-2,
+            alto: $color-alto,
+            alto-2: $color-alto-2,
+            alto-3: $color-alto-3,
+            alto-4: $color-alto-4,
+            alto-5: $color-alto-5,
+            alto-6: $color-alto-6,
+            mercury: $color-mercury,
+            mercury-2: $color-mercury-2,
+            masala: $color-masala,
+            nobel: $color-nobel,
+            seashell: $color-seashell,
+            silver-chalice: $color-silver-chalice,
+            silver-chalice-2: $color-silver-chalice-2,
+            concrete: $color-concrete,
+            gallery:  $color-gallery,
+            gallery-2: $color-gallery-2,
+            gallery-3: $color-gallery-3,
+            dusty-gray: $color-dusty-gray,
+            tundora: $color-tundora,
+            tundora-50: $color-tundora-50,
+            tundora-2: $color-tundora-2,
+            coral-red: $color-coral-red,
+            froly: $color-froly,
+            roman: $color-roman,
+            brink-pink: $color-brink-pink,
+            atomic-tangerine: $color-atomic-tangerine,
+            picasso: $color-picasso,
+            persimmon: $color-persimmon,
+            tuscany: $color-tuscany,
+            malachite: $color-malachite,
+            malachite-25: $color-malachite-25,
+            malachite-30: $color-malachite-30,
+            malachite-10: $color-malachite-10,
+            japanese-laurel: $color-japanese-laurel,
+            mountain-meadow: $color-mountain-meadow,
+            mint-green: $color-mint-green,
+            cornflower-lilac: $color-cornflower-lilac,
+            alabaster: $color-alabaster,
+            alabaster-2: $color-alabaster-2,
+            alabaster-3: $color-alabaster-3,
+            alabaster-4: $color-alabaster-4,
+            mine-shaft: $color-mine-shaft,
+            heliotrope: $color-heliotrope,
+            science-blue: $color-science-blue,
+            lochmara: $color-lochmara,
+        ),
+        $i-colors
+);

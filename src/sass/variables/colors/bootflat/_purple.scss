@@ -1,0 +1,29 @@
+$i-bootflat-color-purple-wisteria: #875F9A !default;
+$i-bootflat-color-purple-wisteria2: #89729E !default;
+$i-bootflat-color-purple-wisteria3: #9B59B6 !default;
+$i-bootflat-color-purple-bellflower: #5D3F6A !default;
+$i-bootflat-color-purple-iris: #763568 !default;
+$i-bootflat-color-purple-tatarian-aster: #8D608C !default;
+$i-bootflat-color-purple-thin: #A87CA0 !default;
+$i-bootflat-color-purple-violet: #5B3256 !default;
+$i-bootflat-color-purple-medium: #BF55EC !default;
+$i-bootflat-color-purple-studio: #8E44AD !default;
+$i-bootflat-color-purple-light-wisteria: #BE90D4 !default;
+
+$i-bootflat-color-purple: () !default;
+$i-bootflat-color-purple: map-merge(
+        (
+            wisteria: $i-bootflat-color-purple-wisteria,
+            wisteria2: $i-bootflat-color-purple-wisteria2,
+            wisteria3: $i-bootflat-color-purple-wisteria3,
+            bellflower: $i-bootflat-color-purple-bellflower,
+            iris: $i-bootflat-color-purple-iris,
+            tatarian-aster: $i-bootflat-color-purple-tatarian-aster,
+            thin: $i-bootflat-color-purple-thin,
+            violet: $i-bootflat-color-purple-violet,
+            medium: $i-bootflat-color-purple-medium,
+            studio: $i-bootflat-color-purple-studio,
+            light-wisteria: $i-bootflat-color-purple-light-wisteria,
+        ),
+        $i-bootflat-color-purple
+);

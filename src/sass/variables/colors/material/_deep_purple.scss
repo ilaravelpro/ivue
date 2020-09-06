@@ -1,0 +1,35 @@
+$i-material-color-deep-purple-050:  #ede7f6 !default;
+$i-material-color-deep-purple-100:  #d1c4e9 !default;
+$i-material-color-deep-purple-200:  #b39ddb !default;
+$i-material-color-deep-purple-300:  #9575cd !default;
+$i-material-color-deep-purple-400:  #7e57c2 !default;
+$i-material-color-deep-purple-500:  #673ab7 !default;
+$i-material-color-deep-purple-600:  #5e35b1 !default;
+$i-material-color-deep-purple-700:  #512da8 !default;
+$i-material-color-deep-purple-800:  #4527a0 !default;
+$i-material-color-deep-purple-900:  #311b92 !default;
+$i-material-color-deep-purple-a100: #b388ff !default;
+$i-material-color-deep-purple-a200: #7c4dff !default;
+$i-material-color-deep-purple-a400: #651fff !default;
+$i-material-color-deep-purple-a700: #6200ea !default;
+
+$i-material-color-deep-purple: () !default;
+$i-material-color-deep-purple: map-merge(
+        (
+            50:   $i-material-color-deep-purple-050,
+            100:  $i-material-color-deep-purple-100,
+            200:  $i-material-color-deep-purple-200,
+            300:  $i-material-color-deep-purple-300,
+            400:  $i-material-color-deep-purple-400,
+            500:  $i-material-color-deep-purple-500,
+            600:  $i-material-color-deep-purple-600,
+            700:  $i-material-color-deep-purple-700,
+            800:  $i-material-color-deep-purple-800,
+            900:  $i-material-color-deep-purple-900,
+            a100: $i-material-color-deep-purple-a100,
+            a200: $i-material-color-deep-purple-a200,
+            a400: $i-material-color-deep-purple-a400,
+            a700: $i-material-color-deep-purple-a700
+        ),
+        $i-material-color-deep-purple
+);

@@ -1,8 +1,10 @@
 import StoreDataIndexState from "./state.func";
 
 const StoreDataIndexMutations ={
-    setAll(state, items) {
-        state.all = items
+    setAll(state, handel) {
+        state.all = handel.data
+        state.total = handel.meta.total;
+        state.meta = handel.meta;
     },
     setLoading(state, loading) {
         state.loading = loading

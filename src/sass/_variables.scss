@@ -1,146 +1,36 @@
+@import "variables/init";
+
+
+
 // Body
-$body-bg: #f8fafc;
+
 
 // Typography
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-size-base: 0.9rem !default;
+$line-height-base: 1.6 !default;
 
-$root-font-size:                                    13px; // custom parameter
-$root-font-size-lg:                             	12px; // custom parameter
-$root-font-size-md:                             	12px; // custom parameter
-// Page Background Color
-$page-bg:	 										#EEF0F8 !default;
-
-// Page Main Background Image Height
-$page-bg-height:                                    350px !default;
-
-// Page Paddings
-$page-padding: (
-    desktop: 25px, 			// Padding for desktop mode
-    tablet-and-mobile: 15px // Padding for tablet and mobile modes
-) !default;
+$root-font-size: 13px !default; // custom parameter
+$root-font-size-lg: 12px !default; // custom parameter
+$root-font-size-md: 12px !default; // custom parameter
 
 //===============================================
 //font default
 //===============================================
-$DefaultFonts: serif, sans-serif, cursive, fantasy, monospace;
+$DefaultFonts: serif, sans-serif, cursive, fantasy, monospace !default;
 
 //===============================================
 //widths
 //===============================================
-$widths: 20%,72px, 100px, 150px, 250px, 275px, 300px;
-$heights: 35%,72px, 100px, 150px, 250px, 275px, 300px;
+$widths: 20%, 72px, 100px, 150px, 250px, 275px, 300px !default;
+$heights: 35%, 72px, 100px, 150px, 250px, 275px, 300px, 400px, 500px !default;
 
-
-//===============================================
-//colors
-//===============================================
-$color-primary: #03A9F4;
-$color-primary-two: #03A9F4;
-$color-primary-three: #03A9F4;
-$color-primary-four: #03A9F4;
-$color-dark : #333333;
-$color-black : #000;
-$color-black-30 : rgba(0, 0, 0, 0.30);
-$color-black-50 : rgba(0, 0, 0, 0.50);
-$color-black-60 : rgba(0, 0, 0, 0.60);
-$color-black-80 : rgba(0, 0, 0, 0.80);
-$color-dove-gray : #737373;
-$color-dove-gray-2 : #707070;
-$color-dove-gray-3 : #727272;
-$color-dove-gray-4 : #7E7E7E;
-$color-dove-gray-5 : #6B6B6B;
-$color-dove-gray-6 : #8E8E8E;
-$color-dove-gray-7 : #828282;
-$color-white: #fff;
-$color-silver : #bebebe;
-$color-silver-2 : #C0C0C0;
-$color-silver-3 : #CBCBCB;
-$color-silver-4 : #C8C8C8;
-$color-silver-5 : #C4C4C4;
-$color-silver-6 : #C6C6C6;
-$color-wild-sand : #F7F7F7;
-$color-wild-sand-2 : #F6F6F6;
-$color-alto : #DCDCDC;
-$color-alto-2 : #DBDBDB;
-$color-alto-3 : #CFCFCF;
-$color-alto-4 : #D2D2D2;
-$color-alto-5 : #D6D6D6;
-$color-alto-6 : #E0E0E0;
-$color-mercury : #E1E1E1;
-$color-mercury-2 : #E8E8E8;
-$color-masala : #403434;
-$color-nobel : #B5B5B5;
-$color-seashell : #F1F1F1;
-$color-silver-chalice : #A8A8A8;
-$color-silver-chalice-2: #AAAAAA;
-$color-concrete: #F3F3F3;
-$color-gallery : #eee;
-$color-gallery-2 : #EBEBEB;
-$color-gallery-3 : #ECECEC;
-$color-dusty-gray : #9C9C9C;
-$color-tundora : #474747;
-$color-tundora-50 : rgba(71, 71, 71, 0.50);
-$color-tundora-2 : #4D4B4B;
-$color-coral-red : #FA4252;
-$color-froly : #F76D79;
-$color-roman : #da5d68;
-$color-brink-pink : #fa6774;
-$color-atomic-tangerine : #FFA259;
-$color-picasso : #FFF29f;
-$color-persimmon : #FE6845;
-$color-tuscany : #bf4c2f;
-$color-malachite : #0DB413;
-$color-malachite-25 : rgba(13, 180, 19, 0.25);
-$color-malachite-30 : rgba(13, 180, 19, 0.30);
-$color-malachite-10 : rgba(13, 180, 19, 0.1);
-$color-japanese-laurel : #0e8a12;
-$color-mountain-meadow : #25d366;
-$color-mint-green : #86F88A;
-$color-cornflower-lilac : #FFA4AC;
-$color-alabaster : #f8f8f8;
-$color-alabaster-2 : #fcfcfc;
-$color-alabaster-3 : #FBFBFB;
-$color-alabaster-4 : #f4f4f4;
-$color-mine-shaft : #373737;
-$color-heliotrope : #E145FE;
-$color-science-blue : #046ADF;
-$color-lochmara : #0088cc;
-$color-instagram : radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);;
-$color-reef : #D2FF9F;
-$color-blue: #262A87;
-$color-blue2: #1d2174;
-$color-indigo: #6574cd;
-$color-purple: #9561e2;
-$color-pink: #f66d9b;
-$color-red: #e3342f;
-$color-orange: #f6993f;
-$color-yellow: #ffed4a;
-$color-green: #38c172;
-$color-teal: #4dc0b5;
-$color-cyan: #6cb2eb;
 
 //===============================================
 //numbers
 //===============================================
-$L: 1200px;
-$M: 992px;
-$S: 768px;
-$xs: 576px;
+$L: 1200px !default;
+$M: 992px !default;
+$S: 768px !default;
+$xs: 576px !default;
+
 $margin-and-padding-size: 2.5rem;
-$f-6: 6px;
-$f-8: 8px;
-$f-10: 10px;
-$f-16: 16px;
-$f-14: 14px;
-$f-12: 12px;
-$f-10: 10px;
-$f-18: 18px;
-$f-20: 20px;
-$f-22: 22px;
-$f-24: 24px;
-$f-26: 26px;
-$f-30: 30px;
-$f-36: 36px;
-$f-40: 40px;
-$f-48: 48px;

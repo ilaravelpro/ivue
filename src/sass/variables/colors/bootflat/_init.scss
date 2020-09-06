@@ -1,0 +1,22 @@
+@import
+"red",
+"blue",
+"yellow",
+"green",
+"pink",
+"purple",
+"gray";
+
+$i-bootflat-colors: () !default;
+$i-bootflat-colors: map-merge(
+        (
+            red     : $i-bootflat-color-red,
+            blue    : $i-bootflat-color-blue,
+            yellow  : $i-bootflat-color-yellow,
+            green   : $i-bootflat-color-green,
+            pink    : $i-bootflat-color-pink,
+            purple  : $i-bootflat-color-purple,
+            gray    : $i-bootflat-color-gray
+        ),
+        $i-bootflat-colors
+);

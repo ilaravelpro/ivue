@@ -1,0 +1,27 @@
+$i-material-color-blue-grey-050:    #eceff1 !default;
+$i-material-color-blue-grey-100:    #cfd8dc !default;
+$i-material-color-blue-grey-200:    #b0bec5 !default;
+$i-material-color-blue-grey-300:    #90a4ae !default;
+$i-material-color-blue-grey-400:    #78909c !default;
+$i-material-color-blue-grey-500:    #607d8b !default;
+$i-material-color-blue-grey-600:    #546e7a !default;
+$i-material-color-blue-grey-700:    #455a64 !default;
+$i-material-color-blue-grey-800:    #37474f !default;
+$i-material-color-blue-grey-900:    #263238 !default;
+
+$i-material-color-blue-grey: () !default;
+$i-material-color-blue-grey: map-merge(
+        (
+            50:   $i-material-color-blue-grey-050,
+            100:  $i-material-color-blue-grey-100,
+            200:  $i-material-color-blue-grey-200,
+            300:  $i-material-color-blue-grey-300,
+            400:  $i-material-color-blue-grey-400,
+            500:  $i-material-color-blue-grey-500,
+            600:  $i-material-color-blue-grey-600,
+            700:  $i-material-color-blue-grey-700,
+            800:  $i-material-color-blue-grey-800,
+            900:  $i-material-color-blue-grey-900
+        ),
+        $i-material-color-blue-grey
+);

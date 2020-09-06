@@ -1,13 +1,19 @@
+import iRequest from "../../../../libs/iRequest.lib";
+
 const StoreDataIndexActions = {
     fetchData({commit, state}) {
         commit('setLoading', true)
-        ApiService.get(state.resource, {params: state.query})
-            .then(response => {
-                commit('setAll', response.handel.data)
-            })
-            .finally(() => {
-                commit('setLoading', false)
-            })
+        return new Promise((resolve, reject) => {
+            ApiService.get(state.resource, state.query)
+                .then(response => {
+                    commit('setAll', response.handel)
+                    resolve(response.handel)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        })
+
     },
     destroyData({commit, state, dispatch}, id) {
         ApiService.delete('sections/' + id)

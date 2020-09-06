@@ -2,8 +2,8 @@ import vueDeepSet from "vue-set-value";
 import objectPath from "object-path";
 
 const iPath = {
-    get(target, path) {
-        return objectPath.get(target, path);
+    get(target, path, none = null) {
+        return objectPath.get(target, path) || none;
     },
     set(target, path, value, options) {
         return vueDeepSet(target, path, value, options);

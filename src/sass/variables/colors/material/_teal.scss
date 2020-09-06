@@ -1,0 +1,35 @@
+$i-material-color-teal-050:         #e0f2f1 !default;
+$i-material-color-teal-100:         #b2dfdb !default;
+$i-material-color-teal-200:         #80cbc4 !default;
+$i-material-color-teal-300:         #4db6ac !default;
+$i-material-color-teal-400:         #26a69a !default;
+$i-material-color-teal-500:         #009688 !default;
+$i-material-color-teal-600:         #00897b !default;
+$i-material-color-teal-700:         #00796b !default;
+$i-material-color-teal-800:         #00695c !default;
+$i-material-color-teal-900:         #004d40 !default;
+$i-material-color-teal-a100:        #a7ffeb !default;
+$i-material-color-teal-a200:        #64ffda !default;
+$i-material-color-teal-a400:        #1de9b6 !default;
+$i-material-color-teal-a700:        #00bfa5 !default;
+
+$i-material-color-teal: () !default;
+$i-material-color-teal: map-merge(
+        (
+            50:   $i-material-color-teal-050,
+            100:  $i-material-color-teal-100,
+            200:  $i-material-color-teal-200,
+            300:  $i-material-color-teal-300,
+            400:  $i-material-color-teal-400,
+            500:  $i-material-color-teal-500,
+            600:  $i-material-color-teal-600,
+            700:  $i-material-color-teal-700,
+            800:  $i-material-color-teal-800,
+            900:  $i-material-color-teal-900,
+            a100: $i-material-color-teal-a100,
+            a200: $i-material-color-teal-a200,
+            a400: $i-material-color-teal-a400,
+            a700: $i-material-color-teal-a700
+        ),
+        $i-material-color-teal
+);

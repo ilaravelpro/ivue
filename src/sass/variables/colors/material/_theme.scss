@@ -1,0 +1,31 @@
+$i-material-color-dark-theme-1:  #000000 !default;
+$i-material-color-dark-theme-2:  $i-material-color-grey-900 !default;
+$i-material-color-dark-theme-3:  #303030 !default;
+$i-material-color-dark-theme-4:  $i-material-color-grey-800 !default;
+
+$i-material-color-light-theme-1: $i-material-color-grey-300 !default;
+$i-material-color-light-theme-2: $i-material-color-grey-100 !default;
+$i-material-color-light-theme-3: $i-material-color-grey-050 !default;
+$i-material-color-light-theme-4: #ffffff !default;
+
+$i-material-color-dark-theme: () !default;
+$i-material-color-dark-theme: map-merge(
+        (
+            1: $i-material-color-dark-theme-1,
+            2: $i-material-color-dark-theme-2,
+            3: $i-material-color-dark-theme-3,
+            4: $i-material-color-dark-theme-4,
+        ),
+        $i-material-color-dark-theme
+);
+
+$i-material-color-light-theme: () !default;
+$i-material-color-light-theme: map-merge(
+        (
+            1: $i-material-color-light-theme-1,
+            2: $i-material-color-light-theme-2,
+            3: $i-material-color-light-theme-3,
+            4: $i-material-color-light-theme-4,
+        ),
+        $i-material-color-light-theme
+);

@@ -1,0 +1,35 @@
+$i-material-color-cyan-050:         #e0f7fa !default;
+$i-material-color-cyan-100:         #b2ebf2 !default;
+$i-material-color-cyan-200:         #80deea !default;
+$i-material-color-cyan-300:         #4dd0e1 !default;
+$i-material-color-cyan-400:         #26c6da !default;
+$i-material-color-cyan-500:         #00bcd4 !default;
+$i-material-color-cyan-600:         #00acc1 !default;
+$i-material-color-cyan-700:         #0097a7 !default;
+$i-material-color-cyan-800:         #00838f !default;
+$i-material-color-cyan-900:         #006064 !default;
+$i-material-color-cyan-a100:        #84ffff !default;
+$i-material-color-cyan-a200:        #18ffff !default;
+$i-material-color-cyan-a400:        #00e5ff !default;
+$i-material-color-cyan-a700:        #00b8d4 !default;
+
+$i-material-color-cyan: () !default;
+$i-material-color-cyan: map-merge(
+        (
+            50:   $i-material-color-cyan-050,
+            100:  $i-material-color-cyan-100,
+            200:  $i-material-color-cyan-200,
+            300:  $i-material-color-cyan-300,
+            400:  $i-material-color-cyan-400,
+            500:  $i-material-color-cyan-500,
+            600:  $i-material-color-cyan-600,
+            700:  $i-material-color-cyan-700,
+            800:  $i-material-color-cyan-800,
+            900:  $i-material-color-cyan-900,
+            a100: $i-material-color-cyan-a100,
+            a200: $i-material-color-cyan-a200,
+            a400: $i-material-color-cyan-a400,
+            a700: $i-material-color-cyan-a700
+        ),
+        $i-material-color-cyan
+);

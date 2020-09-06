@@ -1,0 +1,11 @@
+@include i-color($i-social-colors, 'social', instagram);
+@include i-color($i-flat-colors, 'flat');
+@include i-color($i-material-colors, 'material');
+@each $prefix, $list in $i-material-color-list {
+    @include i-color($list, 'material-' + $prefix);
+}
+@each $prefix, $list in $i-bootflat-colors {
+    @include i-color($list, 'bootflat-' + $prefix);
+}
+
+@include i-color($i-colors);

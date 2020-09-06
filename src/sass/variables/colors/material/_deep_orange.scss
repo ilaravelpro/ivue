@@ -1,0 +1,36 @@
+$i-material-color-deep-orange-050:  #fbe9e7 !default;
+$i-material-color-deep-orange-100:  #ffccbc !default;
+$i-material-color-deep-orange-200:  #ffab91 !default;
+$i-material-color-deep-orange-300:  #ff8a65 !default;
+$i-material-color-deep-orange-400:  #ff7043 !default;
+$i-material-color-deep-orange-500:  #ff5722 !default;
+$i-material-color-deep-orange-600:  #f4511e !default;
+$i-material-color-deep-orange-700:  #e64a19 !default;
+$i-material-color-deep-orange-800:  #d84315 !default;
+$i-material-color-deep-orange-900:  #bf360c !default;
+$i-material-color-deep-orange-a100: #ff9e80 !default;
+$i-material-color-deep-orange-a200: #ff6e40 !default;
+$i-material-color-deep-orange-a400: #ff3d00 !default;
+$i-material-color-deep-orange-a700: #dd2c00 !default;
+
+$i-material-color-deep-orange: () !default;
+$i-material-color-deep-orange: map-merge(
+        (
+            50:   $i-material-color-deep-orange-050,
+            100:  $i-material-color-deep-orange-100,
+            200:  $i-material-color-deep-orange-200,
+            300:  $i-material-color-deep-orange-300,
+            400:  $i-material-color-deep-orange-400,
+            500:  $i-material-color-deep-orange-500,
+            600:  $i-material-color-deep-orange-600,
+            700:  $i-material-color-deep-orange-700,
+            800:  $i-material-color-deep-orange-800,
+            900:  $i-material-color-deep-orange-900,
+            a100: $i-material-color-deep-orange-a100,
+            a200: $i-material-color-deep-orange-a200,
+            a400: $i-material-color-deep-orange-a400,
+            a700: $i-material-color-deep-orange-a700
+        ),
+        $i-material-color-deep-orange
+);
+

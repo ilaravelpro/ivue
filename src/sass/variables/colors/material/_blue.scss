@@ -1,0 +1,35 @@
+$i-material-color-blue-050:         #e3f2fd !default;
+$i-material-color-blue-100:         #bbdefb !default;
+$i-material-color-blue-200:         #90caf9 !default;
+$i-material-color-blue-300:         #64b5f6 !default;
+$i-material-color-blue-400:         #42a5f5 !default;
+$i-material-color-blue-500:         #2196f3 !default;
+$i-material-color-blue-600:         #1e88e5 !default;
+$i-material-color-blue-700:         #1976d2 !default;
+$i-material-color-blue-800:         #1565c0 !default;
+$i-material-color-blue-900:         #0d47a1 !default;
+$i-material-color-blue-a100:        #82b1ff !default;
+$i-material-color-blue-a200:        #448aff !default;
+$i-material-color-blue-a400:        #2979ff !default;
+$i-material-color-blue-a700:        #2962ff !default;
+
+$i-material-color-blue: () !default;
+$i-material-color-blue: map-merge(
+        (
+            50:   $i-material-color-blue-050,
+            100:  $i-material-color-blue-100,
+            200:  $i-material-color-blue-200,
+            300:  $i-material-color-blue-300,
+            400:  $i-material-color-blue-400,
+            500:  $i-material-color-blue-500,
+            600:  $i-material-color-blue-600,
+            700:  $i-material-color-blue-700,
+            800:  $i-material-color-blue-800,
+            900:  $i-material-color-blue-900,
+            a100: $i-material-color-blue-a100,
+            a200: $i-material-color-blue-a200,
+            a400: $i-material-color-blue-a400,
+            a700: $i-material-color-blue-a700
+        ),
+        $i-material-color-blue
+);

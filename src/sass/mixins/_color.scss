@@ -1,0 +1,47 @@
+@mixin i-color($colors, $prefix: null, $except: null) {
+    @each $label, $color in $colors {
+        $baselabel: $label;
+        @if ($prefix) {
+            $label: $prefix + '-' + $label;
+        }
+        .color-#{$label} {
+            color: $color !important;
+
+            a:link, a:visited {
+                color: $color !important;
+            }
+
+            @if (index($except, $baselabel) == null) {
+                a:hover, a:active {
+                    color: mix(black, $color, 15%) !important;
+                }
+            } @else {
+                a:hover, a:active {
+                    opacity: 15% !important;
+                }
+            }
+        }
+        a.color-#{$label} {
+            @if (index($except, $baselabel) == null) {
+                &:hover, &:active {
+                    color: mix(black, $color, 15%) !important;
+                }
+            } @else {
+                a:hover, a:active {
+                    opacity: 15% !important;
+                }
+            }
+        }
+        .bg-#{$label} {
+            background-color: $color !important;
+        }
+        .border-color-#{$label} {
+            border-color: $color !important;
+        }
+        @each $pos in left, right, top, bottom {
+            .border-#{$pos}-color-#{$label} {
+                border-#{$pos}-color: $color !important;
+            }
+        }
+    }
+}

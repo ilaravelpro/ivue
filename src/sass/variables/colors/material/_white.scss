@@ -1,0 +1,22 @@
+$i-material-color-white:                   #ffffff !default;
+
+$i-material-color-white-primary-opacity:   1 !default;
+$i-material-color-white-secondary-opacity: 0.7 !default;
+$i-material-color-white-hint-opacity:      0.5 !default;
+$i-material-color-white-divider-opacity:   0.12 !default;
+
+$i-material-color-white-primary:           rgba(red($i-material-color-white), green($i-material-color-white), blue($i-material-color-white), $i-material-color-white-primary-opacity) !default;
+$i-material-color-white-secondary:         rgba(red($i-material-color-white), green($i-material-color-white), blue($i-material-color-white), $i-material-color-white-secondary-opacity) !default;
+$i-material-color-white-hint:              rgba(red($i-material-color-white), green($i-material-color-white), blue($i-material-color-white), $i-material-color-white-hint-opacity) !default;
+$i-material-color-white-divider:           rgba(red($i-material-color-white), green($i-material-color-white), blue($i-material-color-white), $i-material-color-white-divider-opacity) !default;
+
+$i-material-color-whites: () !default;
+$i-material-color-whites: map-merge(
+        (
+            primary:      $i-material-color-white-primary,
+            secondary:    $i-material-color-white-secondary,
+            hint:         $i-material-color-white-hint,
+            divider:      $i-material-color-white-divider,
+        ),
+        $i-material-color-whites
+);

@@ -1,0 +1,33 @@
+$i-bootflat-color-blue-sky: #4D8FAC !default;
+$i-bootflat-color-blue-ultramarine: #5D8CAE !default;
+$i-bootflat-color-blue-picton: #22A7F0 !default;
+$i-bootflat-color-blue-picton2: #59ABE3 !default;
+$i-bootflat-color-blue-dodger: #19B5FE !default;
+$i-bootflat-color-blue-light: #48929B !default;
+$i-bootflat-color-blue-thousand-herb: #317589 !default;
+$i-bootflat-color-blue-jordy: #89C4F4 !default;
+$i-bootflat-color-blue-steel: #4B77BE !default;
+$i-bootflat-color-blue-lapis-lazuli: #1F4788 !default;
+$i-bootflat-color-blue-navy: #003171 !default;
+$i-bootflat-color-blue-hanada: #044F67 !default;
+$i-bootflat-color-blue-indigo: #264348 !default;
+
+$i-bootflat-color-blue: () !default;
+$i-bootflat-color-blue: map-merge(
+        (
+            sky:   $i-bootflat-color-blue-sky,
+            ultramarine:  $i-bootflat-color-blue-ultramarine,
+            picton:  $i-bootflat-color-blue-picton,
+            picton2:  $i-bootflat-color-blue-picton2,
+            dodger:  $i-bootflat-color-blue-dodger,
+            light:  $i-bootflat-color-blue-light,
+            thousand-herb:  $i-bootflat-color-blue-thousand-herb,
+            jordy:  $i-bootflat-color-blue-jordy,
+            steel:  $i-bootflat-color-blue-steel,
+            lapis-lazuli:  $i-bootflat-color-blue-lapis-lazuli,
+            navy: $i-bootflat-color-blue-navy,
+            hanada: $i-bootflat-color-blue-hanada,
+            indigo: $i-bootflat-color-blue-indigo,
+        ),
+        $i-bootflat-color-blue
+);

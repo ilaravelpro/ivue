@@ -1,0 +1,23 @@
+$i-bootflat-color-pink-one-kin-dye: #F08F90 !default;
+$i-bootflat-color-pink-peach: #F47983 !default;
+$i-bootflat-color-pink-red-plum: #DB5A6B !default;
+$i-bootflat-color-pink-medium-crimson: #C93756 !default;
+$i-bootflat-color-pink-cherry-blossom: #FCC9B9 !default;
+$i-bootflat-color-pink-washed-out-crimson: #FFB3A7 !default;
+$i-bootflat-color-pink-radical-red: #F62459 !default;
+$i-bootflat-color-pink-ibis-wing: #F58F84 !default;
+
+$i-bootflat-color-pink: () !default;
+$i-bootflat-color-pink: map-merge(
+        (
+            one-kin-dye: $i-bootflat-color-pink-one-kin-dye,
+            peach: $i-bootflat-color-pink-peach,
+            red-plum: $i-bootflat-color-pink-red-plum,
+            medium-crimson: $i-bootflat-color-pink-medium-crimson,
+            cherry-blossom: $i-bootflat-color-pink-cherry-blossom,
+            washed-out-crimson: $i-bootflat-color-pink-washed-out-crimson,
+            radical-red: $i-bootflat-color-pink-radical-red,
+            ibis-wing: $i-bootflat-color-pink-ibis-wing,
+        ),
+        $i-bootflat-color-pink
+);

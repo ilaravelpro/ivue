@@ -1,0 +1,35 @@
+$i-material-color-red-050:          #ffebee !default;
+$i-material-color-red-100:          #ffcdd2 !default;
+$i-material-color-red-200:          #ef9a9a !default;
+$i-material-color-red-300:          #e57373 !default;
+$i-material-color-red-400:          #ef5350 !default;
+$i-material-color-red-500:          #f44336 !default;
+$i-material-color-red-600:          #e53935 !default;
+$i-material-color-red-700:          #d32f2f !default;
+$i-material-color-red-800:          #c62828 !default;
+$i-material-color-red-900:          #b71c1c !default;
+$i-material-color-red-a100:         #ff8a80 !default;
+$i-material-color-red-a200:         #ff5252 !default;
+$i-material-color-red-a400:         #ff1744 !default;
+$i-material-color-red-a700:         #d50000 !default;
+
+$i-material-color-red: () !default;
+$i-material-color-red: map-merge(
+        (
+            50:   $i-material-color-red-050,
+            100:  $i-material-color-red-100,
+            200:  $i-material-color-red-200,
+            300:  $i-material-color-red-300,
+            400:  $i-material-color-red-400,
+            500:  $i-material-color-red-500,
+            600:  $i-material-color-red-600,
+            700:  $i-material-color-red-700,
+            800:  $i-material-color-red-800,
+            900:  $i-material-color-red-900,
+            a100: $i-material-color-red-a100,
+            a200: $i-material-color-red-a200,
+            a400: $i-material-color-red-a400,
+            a700: $i-material-color-red-a700
+        ),
+        $i-material-color-red
+);

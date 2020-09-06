@@ -1,0 +1,35 @@
+$i-material-color-lime-050:         #f9fbe7 !default;
+$i-material-color-lime-100:         #f0f4c3 !default;
+$i-material-color-lime-200:         #e6ee9c !default;
+$i-material-color-lime-300:         #dce775 !default;
+$i-material-color-lime-400:         #d4e157 !default;
+$i-material-color-lime-500:         #cddc39 !default;
+$i-material-color-lime-600:         #c0ca33 !default;
+$i-material-color-lime-700:         #afb42b !default;
+$i-material-color-lime-800:         #9e9d24 !default;
+$i-material-color-lime-900:         #827717 !default;
+$i-material-color-lime-a100:        #f4ff81 !default;
+$i-material-color-lime-a200:        #eeff41 !default;
+$i-material-color-lime-a400:        #c6ff00 !default;
+$i-material-color-lime-a700:        #aeea00 !default;
+
+$i-material-color-lime: () !default;
+$i-material-color-lime: map-merge(
+        (
+            50:   $i-material-color-lime-050,
+            100:  $i-material-color-lime-100,
+            200:  $i-material-color-lime-200,
+            300:  $i-material-color-lime-300,
+            400:  $i-material-color-lime-400,
+            500:  $i-material-color-lime-500,
+            600:  $i-material-color-lime-600,
+            700:  $i-material-color-lime-700,
+            800:  $i-material-color-lime-800,
+            900:  $i-material-color-lime-900,
+            a100: $i-material-color-lime-a100,
+            a200: $i-material-color-lime-a200,
+            a400: $i-material-color-lime-a400,
+            a700: $i-material-color-lime-a700
+        ),
+        $i-material-color-lime
+);
