@@ -2,8 +2,8 @@
     <div class="i-file w-100">
         <label class="m-0 d-block w-100">
             <div v-if="btn" class="btn-upload text-center cursor-pointer align-items-center justify-content-center " v-bind:class="{ multiple: multiple}">
-                <template v-if="url && !multiple">
-                    <div v-bind:style="{backgroundImage: 'url(' + url + ')'}"
+                <template v-if="getUrls && !multiple">
+                    <div v-bind:style="{backgroundImage: 'url(' + getUrls + ')'}"
                          class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
                 </template>
                 <div class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px pt-2" v-else>
@@ -14,7 +14,7 @@
             <slot v-else name="action" v-bind:value="model" v-bind:url="url" v-bind:multiple="multiple"></slot>
             <input type="file" hidden @change="handleFileChange" :multiple="multiple"/>
         </label>
-        <hr v-if="Object.keys(getUrls).length && multiple" class="border-primary m-0">
+        <hr v-if="multiple && Object.keys(getUrls).length" class="border-primary m-0">
         <div v-if="getUrls && multiple" class="items flex flex-warp">
             <div v-for="(ur,  index) in getUrls" class="item m-2">
                 <div v-bind:style="{backgroundImage: 'url(' + ur + ')'}"
@@ -75,7 +75,17 @@
         computed: {
             ...GlobalField.computed(storeNamespace),
             getUrls() {
-                return this.url || [];
+                var files = this.multiple ? [] : null;
+                if (this.getIndex('get') && this.getOption('store.get', true)) {
+                    var list = this.getValue(this.getIndex('get'));
+                    if (this.multiple && list)
+                        list.forEach(function (value, index, array) {
+                            files.push(value['150x'].slug);
+                        })
+                    else if (list && list['150x'])
+                        files = list ? list['150x'].slug : null;
+                }
+                return this.url || files;
             }
         },
         methods: {
@@ -93,8 +103,10 @@
                 $.each($files, function (i, file) {
                     if ($this.multiple)
                         $this.model.push(file)
-                    else
-                        this.model = file
+                    else{
+                        $this.model = file
+                    }
+
                 })
             },
             readURL(files = []) {

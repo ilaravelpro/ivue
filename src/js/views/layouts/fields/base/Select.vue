@@ -66,8 +66,8 @@
                 default: () => []
             },
             query: {
-                type: Object,
-                default: {}
+                type: [Object, Array],
+                default: () =>  {}
             },
             css: {
                 type: [Object, Array],
@@ -76,6 +76,7 @@
         },
         data() {
             return {
+                model: null,
                 searchText: '',
                 selected: null,
                 loading: false,

@@ -1,5 +1,5 @@
 <template>
-    <vue-phone-number-input ref="input" v-model="model.number" :default-country-code="countryCode"
+    <vue-phone-number-input ref="input" :value="String(model.number)" :default-country-code="countryCode"
                             @update="updateMobile" class="w-100" @focusin="focusin" @focusout="focusout"/>
 </template>
 
@@ -46,7 +46,6 @@
                     country: 98,
                     number: null
                 },
-                phone: null,
                 setNumber: false
             }
         },
@@ -72,12 +71,6 @@
         },
         watch: {
             ...GlobalField.watch(),
-            phone: {
-                handler: function (newValue, oldValue) {
-
-                },
-                deep: true
-            }
         },
         components: {
             VuePhoneNumberInput

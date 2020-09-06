@@ -14,7 +14,7 @@ const iRequest = {
         }
         let message = response.data.message || response.message;
         let message_text = response.data.message_text || response.message_text;
-        if (notify) BitNotify(content, {type: 's'})
+        if (notify) Notify(content, {type: 's'})
         return {status: true ,message: message, message_text: message_text, data: data, parent: parent, additional: additional, meta: meta, links: links};
     },
     catch(error) {

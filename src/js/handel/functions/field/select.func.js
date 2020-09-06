@@ -1,7 +1,7 @@
 const SelectField = {
     computed: {
         _value() {
-            return this.selected || this.value || null;
+            return this.model || this.value || null;
         },
         getSelects() {
             if (this.multiple) {
@@ -35,15 +35,15 @@ const SelectField = {
     },
     methods: {
         deSelect() {
-            this.selected = null;
+            this.model = null;
             $(this.$refs.select).find("ul li").removeClass("selected");
         },
         selectAll() {
             var $this = this;
-            this.selected = [];
+            this.model = [];
             $(this.$refs.select).find("ul li").removeClass("selected");
             $.each(this.itemsByFiltered, function (i, v) {
-                $this.selected.push(v);
+                $this.model.push(v);
                 $($this.$refs.select).find("ul li[data-value='" + v.value + "']").addClass("selected");
             })
         },
@@ -65,29 +65,29 @@ const SelectField = {
             if (this.multiple) {
                 if ($elm.hasClass("selected")) {
                     $elm.removeClass("selected");
-                    this.selected = this.selected.filter(function (v, i) {
+                    this.model = this.model.filter(function (v, i) {
                         return v.value !== item.value;
                     })
                 } else {
                     $elm.addClass("selected");
-                    if (!this.selected) this.selected = [];
-                    this.selected.push(item);
+                    if (!this.model) this.model = [];
+                    this.model.push(item);
                 }
             } else {
                 if ($elm.hasClass("selected")) {
                     $elm.removeClass("selected");
-                    this.selected = null;
+                    this.model = null;
                 } else {
                     container.find("ul li").removeClass("selected");
                     $elm.addClass("selected");
-                    this.selected = this.type === 'single' ? item.value : item;
+                    this.model = this.type === 'single' ? item.value : item;
                 }
             }
             return item
         },
         setSelect(item, index) {
             if (!item) item = this.itemsByFiltered[index];
-            this.selected = this.type === 'single' ? item.value : item;
+            this.model = this.type === 'single' ? item.value : item;
         },
         filtering(event) {
             if (!$(this.$refs.select).find('ul').hasClass('d-block')) $(this.$refs.select).find('ul').addClass('d-block');
@@ -163,12 +163,6 @@ const SelectField = {
         },
     },
     watch: {
-        selected: {
-            handler: function (newValue) {
-                this.$emit('change', newValue);
-            },
-            deep: true
-        },
         itemsByFiltered: {
             handler: function (newValue) {
                 var $this = this;

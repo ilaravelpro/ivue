@@ -84,9 +84,9 @@ const GlobalField = {
     },
     watch(storeNamespace = 'DataSingle') {
         return {
-            ['iRecord.'+this.storeIndex]: {
+            ['iRecord']: {
                 handler: function (newValue) {
-                    if (this.getIndex('store') && this.getOption('store.get') && typeof(newValue) !== "undefined") {
+                    if (this.getIndex('store') && this.getOption('store.get', true) && typeof(newValue) !== "undefined") {
                         this.model = this.getValue(this.getIndex('store'));
                     }
                 },

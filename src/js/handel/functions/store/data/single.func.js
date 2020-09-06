@@ -79,8 +79,10 @@ const StoreDataSingle = {
                 }
             })
         },
-        fetchData({state, commit, dispatch}, url) {
-            return dispatch('fetchDataBy', {url: (url ? state.url : resource), resource: 'item', parent: true})
+        fetchData({state, commit, dispatch}, [id, url]) {
+            url = url || state.url || state.resource;
+            if (id) url += '/' +id;
+            return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true})
         },
         fetchDataBy({commit, dispatch}, {url, resource, params, parent}) {
             commit('setLoading', true)
@@ -157,7 +159,7 @@ const StoreDataSingle = {
             return iPath.set(state, 'loading', loading)
         },
         resetState(state) {
-            state = Object.assign(state, StoreDataSingleState)
+            state = Object.assign(state, StoreDataSingleState())
         }
     }
 };

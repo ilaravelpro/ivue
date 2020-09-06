@@ -1,17 +1,23 @@
 const StoreDataSingleState = () => {
     return {
         resource: null,
+        url: null,
+        status: true,
         item: {},
         parent: {},
         data: {},
         masks: {},
-        options: {},
-        descs: {},
+        options: {
+            excepts: [],
+            typeForm: null
+        },
+        desc: {},
         errors: {
             user: {},
             system: {},
         },
         loading: false,
+        fields: [],
     }
 };
 

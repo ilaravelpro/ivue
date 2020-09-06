@@ -1,5 +1,5 @@
 <template>
-    <i-form-fields :items="fields" />
+    <i-form-fields :items="fields" :storeNamespace="storeNamespace" />
 </template>
 
 <script>
