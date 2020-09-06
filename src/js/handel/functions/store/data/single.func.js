@@ -3,7 +3,7 @@ import iData from "../../../libs/iData.lib";
 import Notify from "../../../plugins/notify.plugin";
 
 const StoreDataSingle = {
-    handelErrors(errors = null, status = true) {
+    handelErrors(errors = null, status = true, system = null) {
         var render = [];
         $.each(errors, function (i, v) {
             if (typeof (v.status) !== 'undefined' && v.status === 'invalid') {
@@ -15,6 +15,10 @@ const StoreDataSingle = {
                 status = $child.status
             }
         });
+        if (system)
+            render.push(...Object.values(system.errors).map((value, index) => {
+                return Object.values(system.errors).join(', ')
+            }))
         return {errors: render, status: status};
     },
     initialState() {
@@ -33,7 +37,7 @@ const StoreDataSingle = {
             desc: {},
             errors: {
                 user: {},
-                system: {},
+                system: {errors: {}},
             },
             loading: false,
             fields: [],
@@ -47,7 +51,7 @@ const StoreDataSingle = {
             return {...state.errors.user, ...state.errors.system};
         },
         iErrors: state => state.errors.user,
-        iErrorsHandel: (state) => StoreDataSingle.handelErrors(state.errors.user),
+        iErrorsHandel: (state) => StoreDataSingle.handelErrors(state.errors.user, true, state.errors.system),
         iMaskAll: state => state.masks,
         iDescAll: state => state.desc,
         iOptionAll: state => state.options,
@@ -66,9 +70,11 @@ const StoreDataSingle = {
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
                     ApiService.post(url, params, true).then(response => {
+                        commit('setState', {key: 'errors.system', value: {errors: {}}})
                         resolve(response)
-                    }).catch(response => {
-                        reject(response)
+                    }).catch(error => {
+                        commit('setState', {key: 'errors.system', value: error.handel})
+                        reject(error)
                     }).finally(() => {
                         commit('setLoading', false)
                     });
@@ -81,7 +87,7 @@ const StoreDataSingle = {
         },
         fetchData({state, commit, dispatch}, [id, url]) {
             url = url || state.url || state.resource;
-            if (id) url += '/' +id;
+            if (id) url += '/' + id;
             return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true})
         },
         fetchDataBy({commit, dispatch}, {url, resource, params, parent}) {
@@ -97,7 +103,6 @@ const StoreDataSingle = {
                         resolve(response.handel.data)
                     })
                     .catch(error => {
-                        commit('setState', {key: 'errors.system', value: error})
                         reject(error)
                     })
                     .finally(() => {
