@@ -18,12 +18,7 @@ const SelectField = {
         },
         itemsByFiltered() {
             var $this = this;
-            if (this.url)
-                ApiService.get(this.url, {q: this.searchText})
-                    .then(response => {
-                        this.items = response.handel.data
-                    });
-            var $items = this.releaseItems(this.items);
+            var $items = this.releaseItems([...this.firstItems, ...(this.url ? this.serverItems: this.items)]);
             $items = $items.filter(item => {
                 var $diff = true;
                 if ($this.diff && typeof ($this.diff) === 'object') {
@@ -32,7 +27,7 @@ const SelectField = {
                     })
                 } else
                     $diff = $this.diff !== item.value;
-                var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
+                var $search = this.url ? String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1 : true;
                 return $diff ? $search : false;
             });
             return $items;
@@ -142,7 +137,11 @@ const SelectField = {
                 return this.release(value, index)
             else {
                 if (typeof (value) === "object")
-                    if (typeof (value.title) !== "undefined") {
+                    if (typeof (this.release) === 'object') {
+                        value['text'] = value[this.release.text];
+                        value['value'] = value[this.release.value];
+                        return value
+                    } else if (typeof (value.title) !== "undefined") {
                         value['text'] = value.title || value.name;
                         value['value'] = value.name || value.id;
                         return value
@@ -187,6 +186,17 @@ const SelectField = {
                         container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
                     }, 500)
                 }
+            },
+            deep: true
+        },
+        searchText: {
+            handler: function (newValue, oldValue) {
+               if (newValue !== oldValue){
+                   this.serverQuery.q = newValue;
+                   this.serverQuery.page = 0;
+                   this.serverQuery.pages = 1;
+                   this.moreLoad()
+               }
             },
             deep: true
         }

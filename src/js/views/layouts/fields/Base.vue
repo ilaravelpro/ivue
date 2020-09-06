@@ -39,7 +39,10 @@
             label: String,
             value: [String, Number, Object, Array],
             desc: [String, Number, Object, Array],
-            storeNamespace: [String, Object],
+            storeNamespace: {
+                type: [String, Object],
+                default: 'DataSingle'
+            },
             fieldIndex: [String, Object],
             icon: Object,
             options: {

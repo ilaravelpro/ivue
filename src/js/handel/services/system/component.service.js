@@ -14,6 +14,7 @@ Vue.component('i-base-text-area', require('../../../views/layouts/fields/base/Te
 Vue.component('i-base-file', require('../../../views/layouts/fields/base/File').default);
 Vue.component('i-base-select', require('../../../views/layouts/fields/base/Select').default);
 Vue.component('i-base-autocomplete', require('../../../views/layouts/fields/base/AutoComplete').default);
+Vue.component('i-base-phone', require('../../../views/layouts/fields/base/Phone').default);
 Vue.component('i-input', require('../../../views/layouts/fields/Input').default);
 Vue.component('i-text-area', require('../../../views/layouts/fields/TextArea').default);
 Vue.component('i-file', require('../../../views/layouts/fields/File').default);
@@ -21,3 +22,4 @@ Vue.component('i-checkbox', require('../../../views/layouts/fields/Checkbox').de
 Vue.component('i-radio', require('../../../views/layouts/fields/Radio').default);
 Vue.component('i-select', require('../../../views/layouts/fields/Select').default);
 Vue.component('i-autocomplete', require('../../../views/layouts/fields/AutoComplete').default);
+Vue.component('i-phone', require('../../../views/layouts/fields/Phone').default);

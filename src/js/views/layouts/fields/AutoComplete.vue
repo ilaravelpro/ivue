@@ -34,7 +34,10 @@
                 default: 'Please Type...'
             },
             desc: [String, Number, Object, Array],
-            storeNamespace: [String, Object],
+            storeNamespace: {
+                type: [String, Object],
+                default: 'DataSingle'
+            },
             fieldIndex: [String, Object],
             diff: [String, Number, Object, Array],
             release: Function,

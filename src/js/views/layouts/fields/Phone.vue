@@ -16,7 +16,7 @@
         <slot slot="prepend" name="prepend"/>
         <slot slot="append" name="append"/>
         <template slot="body">
-            <i-base-input v-bind="$props" @change="$emit('update:value', $event )" :focusin="focusin" :focusout="focusout"></i-base-input>
+            <i-base-phone v-bind="$props" @change="$emit('update:value', $event )" :focusin="focusin" :focusout="focusout"></i-base-phone>
         </template>
     </i-base>
 </template>
@@ -39,7 +39,6 @@
             },
             fieldIndex: [String, Object],
             icon: Object,
-            resize: Boolean,
             type: {
                 type: String,
                 default: 'text'

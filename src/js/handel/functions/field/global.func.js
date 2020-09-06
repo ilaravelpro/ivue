@@ -1,9 +1,21 @@
-import {mapActions, mapGetters} from "vuex";
-
 const GlobalField = {
-    computed(storeNamespace = 'DataSingle') {
+    computed() {
         return {
-            ...mapGetters(storeNamespace, ['iRecord', 'iMaskAll', 'iDescAll', 'iErrorAll', 'iOptionAll']),
+            iRecord() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iRecord']
+            },
+            iMaskAll() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iMaskAll']
+            },
+            iDescAll() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iDescAll']
+            },
+            iErrorAll() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iErrorAll']
+            },
+            iOptionAll() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iOptionAll']
+            },
             _value() {
                 return this.model || this.value || null;
             },
@@ -20,9 +32,8 @@ const GlobalField = {
             },
         }
     },
-    methods(storeNamespace = 'DataSingle') {
+    methods() {
         return {
-            ...mapActions(storeNamespace, ['updateByKey']),
             getIndex(key = 'store') {
                 if (typeof (this.fieldIndex) === 'object')
                     return iPath.get(this.fieldIndex, key) || iPath.get(this.fieldIndex, 'store');
@@ -41,7 +52,7 @@ const GlobalField = {
                 return iPath.get(this.iRecord, key)
             },
             updateValue(key, value) {
-                this.updateByKey([key, value])
+                this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
             },
             getError(key) {
                 return iPath.get(this.iErrorAll, key)

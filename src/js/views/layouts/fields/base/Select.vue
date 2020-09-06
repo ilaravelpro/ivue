@@ -3,7 +3,7 @@
         <div class="select-title cursor-pointer" @click="onShow">
             {{ getSelects }}
         </div>
-        <ul class="select-items">
+        <ul class="select-items" ref="items">
             <li v-if="search" class="select-search px-3">
                 <input ref="search" type="text" placeholder="Search..." class="form-control" @keyup="filtering($event)" v-model="searchText">
             </li>
@@ -24,9 +24,6 @@
 <script>
     import GlobalField from "../../../../handel/functions/field/global.func";
     import SelectField from "../../../../handel/functions/field/select.func";
-
-    var storeNamespace = 'DataSingle';
-
     export default {
         name: 'i-base-select',
         model: {
@@ -39,15 +36,19 @@
                 default: 'Please Select...'
             },
             desc: [String, Number, Object, Array],
-            storeNamespace: [String, Object],
+            storeNamespace: {
+                type: [String, Object],
+                default: 'DataSingle'
+            },
             fieldIndex: [String, Object],
             search: Boolean,
             multiple: Boolean,
             actions: Boolean,
             diff: [String, Number, Object, Array],
-            release: Function,
+            release: [Function, Object],
             view: Function,
             icon: Object,
+            url: String,
             type: {
                 type: String,
                 default: 'single'
@@ -56,9 +57,17 @@
                 type: [Object, Array],
                 default: () => []
             },
+            firstItems: {
+                type: [Object, Array],
+                default: () => []
+            },
             options: {
                 type: [Object, Array],
                 default: () => []
+            },
+            query: {
+                type: Object,
+                default: {}
             },
             css: {
                 type: [Object, Array],
@@ -69,24 +78,59 @@
             return {
                 searchText: '',
                 selected: null,
+                loading: false,
+                height: 0,
+                serverItems: [],
+                serverQuery: {
+                    page: 0,
+                    pages: 1,
+                }
             }
         },
         mounted() {
+            var $this = this;
             window.onclick = function(event) {
                 if (!event.target.matches('.select-title, .select-item, .select-search input, .select-actions div button'))
                     $('.select-items').removeClass('d-block')
             }
+            $(document).ready(function(){
+                if ($this.url)
+                    $($this.$refs.items).scroll(function() {
+                        var $el = $(this);
+                        if (!$this.loading && $el.scrollTop() + $($this.$refs.select).outerHeight(true) > $el.children().length  * $($el.children()[0]).height()){
+                            $this.moreLoad();
+                        }
+
+                    });
+            });
+        },
+        created() {
+            if (this.url)this.moreLoad()
         },
         computed: {
-            ...GlobalField.computed(storeNamespace),
-            ...SelectField.computed
+            ...GlobalField.computed(),
+            ...SelectField.computed,
         },
         methods: {
-            ...GlobalField.methods(storeNamespace),
-            ...SelectField.methods
+            ...GlobalField.methods(),
+            ...SelectField.methods,
+            moreLoad() {
+                var $this = this;
+                this.loading = true;
+                setTimeout(function () {
+                    if ($this.serverQuery.page < $this.serverQuery.pages){
+                        $this.serverQuery.page++;
+                        ApiService.get($this.url, {...$this.serverQuery, ...this.query}).then(response => {
+                            $this.serverItems.push(...response.handel.data);
+                            $this.serverQuery.pages = response.handel.meta.last_page;
+                            $this.loading = false;
+                        })
+                    }
+                }, 1000)
+            }
         },
         watch: {
-            ...GlobalField.watch(storeNamespace),
+            ...GlobalField.watch(),
             ...SelectField.watch
         }
     }

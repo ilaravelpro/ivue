@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <i-form-fields :items="fields" />
-    </div>
+    <i-form-fields :items="fields" />
 </template>
 
 <script>
@@ -11,7 +9,7 @@
         name: "i-form",
         props: {
             items: [Object, Array],
-            storeIndex: {
+            storeNamespace: {
                 type: String,
                 default: 'DataSingle'
             }

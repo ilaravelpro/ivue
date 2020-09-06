@@ -32,15 +32,19 @@
                 default: 'Please Select...'
             },
             desc: [String, Number, Object, Array],
-            storeNamespace: [String, Object],
+            storeNamespace: {
+                type: [String, Object],
+                default: 'DataSingle'
+            },
             fieldIndex: [String, Object],
             search: Boolean,
             multiple: Boolean,
             actions: Boolean,
             diff: [String, Number, Object, Array],
-            release: Function,
+            release: [Function, Object],
             view: Function,
             icon: Object,
+            url: String,
             type: {
                 type: String,
                 default: 'single'
@@ -49,9 +53,17 @@
                 type: [Object, Array],
                 default: () => []
             },
+            firstItems: {
+                type: [Object, Array],
+                default: () => []
+            },
             options: {
                 type: [Object, Array],
                 default: () => []
+            },
+            query: {
+                type: Object,
+                default: {}
             },
             css: {
                 type: [Object, Array],
@@ -59,10 +71,10 @@
             },
         },
         computed: {
-            ...GlobalField.computed(storeNamespace),
+            ...GlobalField.computed(),
         },
         methods: {
-            ...GlobalField.methods(storeNamespace),
+            ...GlobalField.methods(),
         }
     }
 

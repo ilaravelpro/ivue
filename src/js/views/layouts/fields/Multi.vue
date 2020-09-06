@@ -33,7 +33,10 @@
             label: String,
             placeholder: String,
             fields:[Array, Object],
-            storeNamespace: [String, Object],
+            storeNamespace: {
+                type: [String, Object],
+                default: 'DataSingle'
+            },
             fieldIndex: [String, Object],
             icon: Object,
             options: {
