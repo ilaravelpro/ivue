@@ -15,7 +15,7 @@ const StoreDataSingle = {
                 status = $child.status
             }
         });
-        if (system)
+        if (system && system.errors)
             render.push(...Object.values(system.errors).map((value, index) => {
                 return Object.values(system.errors).join(', ')
             }))
@@ -62,7 +62,7 @@ const StoreDataSingle = {
         updateByKey({commit, state, dispatch}, [key, value]) {
             return commit('setState', {key: "item." + key, value: value})
         },
-        storeData({commit, state, dispatch, getters}, url = null) {
+        storeData({commit, state, dispatch, getters}, [url, redirect]) {
             commit('setLoading', true)
             return new Promise((resolve, reject) => {
                 if (getters.iErrorsHandel.status) {
@@ -70,7 +70,11 @@ const StoreDataSingle = {
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
                     ApiService.post(url, params, true).then(response => {
-                        commit('setState', {key: 'errors.system', value: {errors: {}}})
+                        commit('setState', {key: 'errors.system', value: {}})
+                        if (redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
+                            commit('setState', {key: 'item', value: response.handel.data})
+                            appRouter.push({name: state.resource + '.edit', params: {id: response.handel.data.id}})
+                        }
                         resolve(response)
                     }).catch(error => {
                         commit('setState', {key: 'errors.system', value: error.handel})
