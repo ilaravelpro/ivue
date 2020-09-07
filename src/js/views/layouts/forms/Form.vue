@@ -3,7 +3,6 @@
 </template>
 
 <script>
-    import {mapActions, mapGetters} from "vuex";
     import BaseFrom from "../../../handel/functions/form/base.func";
     export default {
         name: "i-form",

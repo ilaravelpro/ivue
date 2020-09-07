@@ -22,12 +22,13 @@ const SelectField = {
             var $items = this.releaseItems([...this.firstItems, ...(this.url ? this.serverItems: this.items)]);
             $items = $items.filter(item => {
                 var $diff = true;
-                if ($this.diff && typeof ($this.diff) === 'object') {
-                    $.each($this.diff, function (i, v) {
+                var diff = this.getIndex('diff') !== this.getIndex('store') ? this.getValue(this.getIndex('diff')) : $this.diff;
+                if (diff && typeof (diff) === 'object') {
+                    $.each(diff, function (i, v) {
                         if ($diff) $diff = v.value ? v.value !== item.value : v !== item.value;
                     })
                 } else
-                    $diff = $this.diff !== item.value;
+                    $diff = diff !== item.value;
                 var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
                 return $diff ? $search : false;
             });
@@ -69,16 +70,15 @@ const SelectField = {
                 if ($elm.hasClass("selected")) {
                     $elm.removeClass("selected");
                     this.model = this.model.filter(function (v, i) {
-                        console.log(($this.type === 'single' && !$.isArray(v) ? v : v.value), ($this.type === 'single' && $.isArray(item) ? item : item.value))
-                        return ($this.type === 'single' && !$.isArray(v) ? v : v.value) !== ($this.type === 'single' && $.isArray(item) ? item : item.value);
+                        return ($this.type === 'single' && typeof(v) == 'object' ? v.value : v) !== ($this.type === 'single' && typeof(item) === 'object' ? item.value : item);
                     })
                     this.model = this.model.map(function (item, index, array) {
-                        return $this.type === 'single' && $.isArray(item) ? item.value : item;
+                        return $this.type === 'single' && typeof(item) === 'object' ? item.value : item;
                     })
                 } else {
                     $elm.addClass("selected");
                     if (!this.model) this.model = [];
-                    this.model.push($this.type === 'single'? item.value : item);
+                    this.model.push($this.type === 'single' && typeof(item) === 'object' ? item.value : item);
                 }
             } else {
                 if ($elm.hasClass("selected")) {
@@ -87,7 +87,7 @@ const SelectField = {
                 } else {
                     container.find("ul li").removeClass("selected");
                     $elm.addClass("selected");
-                    this.model = this.type === 'single' && $.isArray(item) ? item.value : item;
+                    this.model = this.type === 'single' && typeof(item) === 'object' ? item.value : item;
                 }
             }
             return item
@@ -174,7 +174,6 @@ const SelectField = {
             container.find("ul li").removeClass("selected");
             if ($.isArray(this._value) && this.multiple) {
                 setTimeout(function () {
-                    console.log($this._value)
                     $.each($this._value, function (i, v) {
                         if (container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").length)
                             container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").addClass("selected");
@@ -185,16 +184,40 @@ const SelectField = {
                     container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
                 }, 500)
             }
+        },
+        moreLoad() {
+            var $this = this;
+            this.loading = true;
+            setTimeout(function () {
+                if ($this.serverQuery.page < $this.serverQuery.pages){
+                    $this.serverQuery.page++;
+                    if (!$this.useModel){
+                        $this.serverQuery.q = $this.model
+                    }
+                    ApiService.get($this.url, {...$this.serverQuery, ...$this.query}).then(response => {
+                        $this.serverItems.push(...response.handel.data);
+                        $this.serverQuery.pages = response.handel.meta.last_page;
+                        $this.loading = false;
+                        if (!$this.useModel && Object.keys(response.handel.data).length === 1){
+                            $this.searchText = typeof($this.release) === 'object' ? response.handel.data[0][$this.release['text']]: response.handel.data[0].name || response.handel.data[0].title;
+                        }
+                        setTimeout(function () {
+                            $this.useModel = true;
+                        }, 100)
+
+                    })
+                }
+            }, 1000)
         }
     },
     watch: {
         _value: {
             handler: function (newValue, oldValue) {
-                if (this.getIndex('store') &&
+                if (this.getIndex('update') &&
                     this.getOption('store.update', true) &&
                     typeof (newValue) !== 'undefined' &&
                     newValue !== oldValue)
-                    this.updateValue(this.getIndex('store'), this.model);
+                    this.updateValue(this.getIndex('update'), this.model);
                 this.checkItems();
             },
             deep: true
@@ -207,7 +230,7 @@ const SelectField = {
         },
         searchText: {
             handler: function (newValue, oldValue) {
-               if (newValue !== oldValue && this.useModel){
+               if (this.url && newValue !== oldValue && this.useModel){
                    this.serverItems = [];
                    this.serverQuery.q = newValue;
                    this.serverQuery.page = 0;

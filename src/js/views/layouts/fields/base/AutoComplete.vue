@@ -2,7 +2,7 @@
     <div ref="select" class="i-autocomplete" :class="styleForField">
         <div class="select-title select-search cursor-pointer">
             <div class="input-group">
-                <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto"
+                <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto"  :class="{'text-primary font-weight-bold': searchText === selectText}"
                        @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusout">
             </div>
         </div>
@@ -41,15 +41,20 @@
             },
             fieldIndex: [String, Object],
             diff: [String, Number, Object, Array],
-            release: Function,
+            release: [Function, Object],
             view: Function,
             focusin: Function,
             focusout: Function,
+            url: String,
             type: {
                 type: String,
                 default: 'single'
             },
             items: {
+                type: [Object, Array],
+                default: () => []
+            },
+            firstItems: {
                 type: [Object, Array],
                 default: () => []
             },
@@ -68,7 +73,16 @@
                 selectText: '',
                 selected: null,
                 search: true,
-                selecting: null
+                selecting: null,
+                model: null,
+                loading: false,
+                height: 0,
+                serverItems: [],
+                serverQuery: {
+                    page: 0,
+                    pages: 1,
+                },
+                useModel: false
             }
         },
         mounted() {
@@ -76,6 +90,9 @@
                 if (!event.target.matches('.select-title, .select-item, .select-search input, .select-actions div button'))
                     $('.select-items').removeClass('d-block')
             }
+        },
+        created() {
+            if (this.url)this.moreLoad()
         },
         computed: {
             ...GlobalField.computed(storeNamespace),

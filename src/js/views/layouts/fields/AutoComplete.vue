@@ -40,13 +40,18 @@
             },
             fieldIndex: [String, Object],
             diff: [String, Number, Object, Array],
-            release: Function,
+            release: [Function, Object],
             view: Function,
+            url: String,
             type: {
                 type: String,
                 default: 'single'
             },
             items: {
+                type: [Object, Array],
+                default: () => []
+            },
+            firstItems: {
                 type: [Object, Array],
                 default: () => []
             },

@@ -2,12 +2,14 @@
     <div :class="style">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
         <template v-for="item in items">
-            <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace" />
+            <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if(getValue) : true" :storeNamespace="storeNamespace" />
         </template>
     </div>
 </template>
 
 <script>
+    import GlobalField from "../../../handel/functions/field/global.func";
+
     export default {
         name: "i-form-fields",
         props: {
@@ -20,9 +22,13 @@
             }
         },
         computed: {
+            ...GlobalField.computed(),
             style() {
                 return this.css || null;
             }
+        },
+        methods: {
+            ...GlobalField.methods()
         }
     }
 </script>

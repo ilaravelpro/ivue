@@ -98,19 +98,19 @@ const GlobalField = {
         return {
             ['iRecord']: {
                 handler: function (newValue) {
-                    if (this.getIndex('store') && this.getOption('store.get', true) && typeof(newValue) !== "undefined") {
-                        this.model = this.getValue(this.getIndex('store'));
+                    if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined") {
+                        this.model = this.getValue(this.getIndex('get'));
                     }
                 },
                 deep: true
             },
             _value: {
                 handler: function (newValue, oldValue) {
-                    if (this.getIndex('store') &&
+                    if (this.getIndex('update') &&
                         this.getOption('store.update', true) &&
                         typeof (newValue) !== 'undefined' &&
                         newValue !== oldValue)
-                        this.updateValue(this.getIndex('store'), this.model);
+                        this.updateValue(this.getIndex('update'), this.model);
 
                 },
                 deep: true
@@ -124,7 +124,7 @@ const GlobalField = {
             },
             model: {
                 handler: function (newValue) {
-                    if (!(this.getIndex('store') &&
+                    if (!(this.getIndex('update') &&
                         this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);
                 },
