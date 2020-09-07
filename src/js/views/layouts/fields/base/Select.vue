@@ -105,6 +105,7 @@
 
                     });
             });
+            this.checkItems();
         },
         created() {
             if (this.url)this.moreLoad()

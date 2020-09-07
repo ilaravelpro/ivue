@@ -1,4 +1,9 @@
 .data-table {
+    &.no-padding {
+        .container-table {
+            padding: unset;
+        }
+    }
     .container-table {
         input {
             border: none !important;

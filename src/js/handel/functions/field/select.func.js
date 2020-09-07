@@ -31,6 +31,7 @@ const SelectField = {
                 var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
                 return $diff ? $search : false;
             });
+
             return $items;
         },
     },
@@ -68,15 +69,16 @@ const SelectField = {
                 if ($elm.hasClass("selected")) {
                     $elm.removeClass("selected");
                     this.model = this.model.filter(function (v, i) {
-                        return ($this.type === 'single' ? v : v.value) !== item.value;
+                        console.log(($this.type === 'single' && !$.isArray(v) ? v : v.value), ($this.type === 'single' && $.isArray(item) ? item : item.value))
+                        return ($this.type === 'single' && !$.isArray(v) ? v : v.value) !== ($this.type === 'single' && $.isArray(item) ? item : item.value);
                     })
                     this.model = this.model.map(function (item, index, array) {
-                        return $this.type === 'single' ? item.value : item;
+                        return $this.type === 'single' && $.isArray(item) ? item.value : item;
                     })
                 } else {
                     $elm.addClass("selected");
                     if (!this.model) this.model = [];
-                    this.model.push($this.type === 'single' ? item.value : item);
+                    this.model.push($this.type === 'single'? item.value : item);
                 }
             } else {
                 if ($elm.hasClass("selected")) {
@@ -85,7 +87,7 @@ const SelectField = {
                 } else {
                     container.find("ul li").removeClass("selected");
                     $elm.addClass("selected");
-                    this.model = this.type === 'single' ? item.value : item;
+                    this.model = this.type === 'single' && $.isArray(item) ? item.value : item;
                 }
             }
             return item
@@ -166,25 +168,40 @@ const SelectField = {
             else
                 return item.text;
         },
+        checkItems() {
+            var $this = this;
+            var container = $(this.$refs.select);
+            container.find("ul li").removeClass("selected");
+            if ($.isArray(this._value) && this.multiple) {
+                setTimeout(function () {
+                    console.log($this._value)
+                    $.each($this._value, function (i, v) {
+                        if (container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").length)
+                            container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").addClass("selected");
+                    })
+                }, 500)
+            } else if (this._value && typeof (this._value) !== 'object') {
+                setTimeout(function () {
+                    container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
+                }, 500)
+            }
+        }
     },
     watch: {
+        _value: {
+            handler: function (newValue, oldValue) {
+                if (this.getIndex('store') &&
+                    this.getOption('store.update', true) &&
+                    typeof (newValue) !== 'undefined' &&
+                    newValue !== oldValue)
+                    this.updateValue(this.getIndex('store'), this.model);
+                this.checkItems();
+            },
+            deep: true
+        },
         itemsByFiltered: {
             handler: function (newValue) {
-                var $this = this;
-                var container = $(this.$refs.select);
-                container.find("ul li").removeClass("selected");
-                if (typeof (this._value) === 'object') {
-                    setTimeout(function () {
-                        $.each($this._value, function (i, v) {
-                            if (container.find("ul li[data-value='" + ($this.type === 'single' ? v : v.value) + "']").length)
-                                container.find("ul li[data-value='" + ($this.type === 'single' ? v : v.value) + "']").addClass("selected");
-                        })
-                    }, 500)
-                } else if (this._value && typeof (this._value) !== 'object') {
-                    setTimeout(function () {
-                        container.find("ul li[data-value='" + ($this.type === 'single' ? $this._value : $this._value.value) + "']").addClass("selected");
-                    }, 500)
-                }
+                this.checkItems();
             },
             deep: true
         },

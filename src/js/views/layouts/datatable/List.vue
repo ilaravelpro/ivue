@@ -1,6 +1,6 @@
 <template>
     <div class="data-table" :id="id">
-        <div class="row px-3 mt-3 mx-0">
+        <div v-if="filter" class="row px-3 mt-3 mx-0">
             <div class="col-lg-6 col-xl-5 col-12">
                 <div class="row">
                     <div class="col-md-6 align-self-center">

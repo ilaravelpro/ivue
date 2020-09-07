@@ -47,6 +47,10 @@
                 }
             },
             multiple: Boolean,
+            fetch: {
+                type: Boolean,
+                default: true
+            },
         },
         data() {
             return {
@@ -59,7 +63,7 @@
             }
         },
         created() {
-            if (typeof(this.$route.params.id) !== 'undefined')
+            if (typeof(this.$route.params.id) !== 'undefined' && this.fetch !== false)
                 this.$store.dispatch(this.storeNamespace + '/fetchData', [this.$route.params.id, null])
         },
         destroyed() {
@@ -73,7 +77,7 @@
         watch: {
             '$route.params.id': {
                 handler: function (newValue) {
-                    if (newValue !== 'undefined')
+                    if (newValue !== 'undefined' && this.fetch !== false)
                         this.$store.dispatch(this.storeNamespace + '/fetchData', [this.$route.params.id, null])
                 },
                 deep: true

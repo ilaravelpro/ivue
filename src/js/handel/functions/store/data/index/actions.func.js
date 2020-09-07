@@ -2,7 +2,7 @@ const StoreDataIndexActions = {
     fetchData({commit, state}) {
         commit('setLoading', true)
         return new Promise((resolve, reject) => {
-            ApiService.get(state.resource, state.query)
+            ApiService.get(state.url ? state.url : state.resource, state.query)
                 .then(response => {
                     commit('setAll', response.handel)
                     resolve(response.handel)
