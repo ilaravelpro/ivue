@@ -85,7 +85,8 @@
                 serverQuery: {
                     page: 0,
                     pages: 1,
-                }
+                },
+                useModel: false
             }
         },
         mounted() {
@@ -121,10 +122,20 @@
                 setTimeout(function () {
                     if ($this.serverQuery.page < $this.serverQuery.pages){
                         $this.serverQuery.page++;
-                        ApiService.get($this.url, {...$this.serverQuery, ...this.query}).then(response => {
+                        if (!$this.useModel){
+                            $this.serverQuery.q = $this.model
+                        }
+                        ApiService.get($this.url, {...$this.serverQuery, ...$this.query}).then(response => {
                             $this.serverItems.push(...response.handel.data);
                             $this.serverQuery.pages = response.handel.meta.last_page;
                             $this.loading = false;
+                            if (!$this.useModel && Object.keys(response.handel.data).length === 1){
+                                $this.searchText = response.handel.data[0].name || response.handel.data[0].title;
+                            }
+                            setTimeout(function () {
+                                $this.useModel = true;
+                            }, 100)
+
                         })
                     }
                 }, 1000)

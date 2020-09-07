@@ -4,6 +4,7 @@ const SelectField = {
             return this.model || this.value || null;
         },
         getSelects() {
+            var $this = this;
             if (this.multiple) {
                 return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " Selected" : this.placeholder;
             } else {
@@ -27,7 +28,7 @@ const SelectField = {
                     })
                 } else
                     $diff = $this.diff !== item.value;
-                var $search = this.url ? String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1 : true;
+                var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
                 return $diff ? $search : false;
             });
             return $items;
@@ -60,18 +61,22 @@ const SelectField = {
         },
         _onSelect(item, index) {
             if (!item) item = this.itemsByFiltered[index];
+            var $this  = this;
             var container = $(this.$refs.select);
             var $elm = container.find("ul li[data-value='" + item.value + "']");
             if (this.multiple) {
                 if ($elm.hasClass("selected")) {
                     $elm.removeClass("selected");
                     this.model = this.model.filter(function (v, i) {
-                        return v.value !== item.value;
+                        return ($this.type === 'single' ? v : v.value) !== item.value;
+                    })
+                    this.model = this.model.map(function (item, index, array) {
+                        return $this.type === 'single' ? item.value : item;
                     })
                 } else {
                     $elm.addClass("selected");
                     if (!this.model) this.model = [];
-                    this.model.push(item);
+                    this.model.push($this.type === 'single' ? item.value : item);
                 }
             } else {
                 if ($elm.hasClass("selected")) {
@@ -171,13 +176,13 @@ const SelectField = {
                 if (typeof (this._value) === 'object') {
                     setTimeout(function () {
                         $.each($this._value, function (i, v) {
-                            if (container.find("ul li[data-value='" + v.value + "']").length)
-                                container.find("ul li[data-value='" + v.value + "']").addClass("selected");
+                            if (container.find("ul li[data-value='" + ($this.type === 'single' ? v : v.value) + "']").length)
+                                container.find("ul li[data-value='" + ($this.type === 'single' ? v : v.value) + "']").addClass("selected");
                         })
                     }, 500)
                 } else if (this._value && typeof (this._value) !== 'object') {
                     setTimeout(function () {
-                        container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
+                        container.find("ul li[data-value='" + ($this.type === 'single' ? $this._value : $this._value.value) + "']").addClass("selected");
                     }, 500)
                 }
             },
@@ -185,7 +190,8 @@ const SelectField = {
         },
         searchText: {
             handler: function (newValue, oldValue) {
-               if (newValue !== oldValue){
+               if (newValue !== oldValue && this.useModel){
+                   this.serverItems = [];
                    this.serverQuery.q = newValue;
                    this.serverQuery.page = 0;
                    this.serverQuery.pages = 1;

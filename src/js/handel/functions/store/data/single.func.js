@@ -35,6 +35,7 @@ const StoreDataSingle = {
                 typeForm: null
             },
             desc: {},
+            styles: {},
             errors: {
                 user: {},
                 system: {errors: {}},
@@ -57,6 +58,7 @@ const StoreDataSingle = {
         iOptionAll: state => state.options,
         iLoading: state => state.loading,
         iFields: state => state.fields,
+        iStyleAll: state => state.styles,
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {

@@ -16,6 +16,9 @@ const GlobalField = {
             iOptionAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iOptionAll']
             },
+            iStyleAll() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iStyleAll']
+            },
             _value() {
                 return this.model || this.value || null;
             },
@@ -45,8 +48,11 @@ const GlobalField = {
                 var $option = iPath.get(this.options, key);
                 return $ioption || $option || $default;
             },
-            getStyle(key) {
-                return iPath.get(this.css, key);
+            getStyle(key, $default = null) {
+                var $istyles = iPath.get(this.iStyleAll, this.getIndex('style')) || iPath.get(this.iStyleAll, 'global');
+                $istyles = iPath.get($istyles, key);
+                var $style = iPath.get(this.css, key);
+                return $style || $istyles || $default;
             },
             getValue(key) {
                 return iPath.get(this.iRecord, key)
@@ -56,6 +62,9 @@ const GlobalField = {
             },
             getError(key) {
                 return iPath.get(this.iErrorAll, key)
+            },
+            getErrorStatus(key) {
+                return iPath.get(this.iErrorAll, key + '.status')
             },
             setError() {
                 var $error = this.getError(this.getIndex('error') || this.getIndex('store'));
