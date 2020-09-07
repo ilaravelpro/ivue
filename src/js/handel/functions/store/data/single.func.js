@@ -64,6 +64,9 @@ const StoreDataSingle = {
         updateByKey({commit, state, dispatch}, [key, value]) {
             return commit('setState', {key: "item." + key, value: value})
         },
+        delByKey({commit, state, dispatch}, key) {
+            return commit('delState', 'item.' + key)
+        },
         storeData({commit, state, dispatch, getters}, [url, redirect]) {
             commit('setLoading', true)
             return new Promise((resolve, reject) => {

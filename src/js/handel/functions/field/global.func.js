@@ -60,6 +60,9 @@ const GlobalField = {
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
             },
+            delValue(key) {
+                this.$store.dispatch(this.storeNamespace + '/delByKey', key);
+            },
             getError(key) {
                 return iPath.get(this.iErrorAll, key)
             },

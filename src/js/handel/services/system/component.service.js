@@ -3,6 +3,7 @@ window.Vue = require('vue');
 Vue.component('i-datatable-list', require('../../../views/layouts/datatable/List').default);
 
 Vue.component('i-page-create', require('../../../views/layouts/pages/Create').default);
+Vue.component('i-repeater-accordion', require('../../../views/layouts/repeaters/Accordion').default);
 
 Vue.component('i-modal', require('../../../views/layouts/tools/Modal').default);
 Vue.component('i-form', require('../../../views/layouts/forms/Form').default);
