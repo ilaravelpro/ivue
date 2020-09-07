@@ -1,5 +1,5 @@
 <template>
-    <i-form-fields :items="fields" :storeNamespace="storeNamespace" />
+    <i-form-fields :items="fields(name)" :storeNamespace="storeNamespace" />
 </template>
 
 <script>
@@ -9,13 +9,14 @@
         name: "i-form",
         props: {
             items: [Object, Array],
+            name: String,
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
             }
         },
-        computed: {
-            ...BaseFrom.computed
+        methods: {
+            ...BaseFrom.methods
         },
     }
 </script>

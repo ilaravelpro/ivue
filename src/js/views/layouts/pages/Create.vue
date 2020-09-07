@@ -6,12 +6,21 @@
                 <li v-for="(error, index) in errorAll.errors">{{ error }}</li>
             </ul>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <i-form class="d-flex flex-wrap" :store-namespace="storeNamespace"></i-form>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary" @click="submit">Submit</button>
+        <div class="d-flex flex-wrap">
+            <div v-for="(row , index) in rows" :class="row.class" class="my-2">
+                <div class="card">
+                    <div v-if="$scopedSlots[`row.${row.name}.header`]" class="card-header">
+                        <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
+                    </div>
+                    <div class="card-body">
+                        <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
+                        <i-form v-else class="d-flex flex-wrap" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
+                    </div>
+                    <div v-if="row.btn !== false" class="card-footer">
+                        <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
+                        <button v-else type="submit" class="btn btn-primary" @click="submit">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +33,20 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
-            }
+            },
+            rows: {
+                type: [Object, Array],
+                default: () => {
+                    return {
+                        general: {
+                            title: 'General',
+                            name: 'general',
+                            class: 'col-xl-12',
+                        }
+                    }
+                }
+            },
+            multiple: Boolean,
         },
         data() {
             return {
