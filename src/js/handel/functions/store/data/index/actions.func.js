@@ -16,10 +16,12 @@ const StoreDataIndexActions = {
 
     },
     destroyData({commit, state, dispatch}, id) {
-        ApiService.delete('sections/' + id)
-            .then(response => {
-                dispatch('fetchData')
-            })
+        return new Promise((resolve, reject) => {
+            ApiService.delete((state.url ? state.url : state.resource)+ '/' + id)
+                .then(response => {
+                    dispatch('fetchData')
+                })
+        })
     },
     setQuery({commit}, value) {
         commit('setQuery', purify(value))

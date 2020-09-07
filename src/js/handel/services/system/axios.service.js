@@ -56,6 +56,7 @@ const AxiosService = {
     delete(resource, notify = true, params = {}, headers = {}) {
         return this.query({
             method: 'delete',
+            url: resource,
             params : params,
             headers : headers,
         }, notify)
