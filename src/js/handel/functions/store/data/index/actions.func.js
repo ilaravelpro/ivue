@@ -1,5 +1,3 @@
-import iRequest from "../../../../libs/iRequest.lib";
-
 const StoreDataIndexActions = {
     fetchData({commit, state}) {
         commit('setLoading', true)
