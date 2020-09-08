@@ -15,7 +15,10 @@ const actions = {
 };
 
 const mutations = {
-    ...StoreDataIndex.mutations
+    ...StoreDataIndex.mutations,
+    resetState(state) {
+        state = Object.assign(state, initialState())
+    }
 };
 
 export default {

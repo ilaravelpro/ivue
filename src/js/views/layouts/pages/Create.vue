@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
-                        <i-form v-else class="d-flex flex-wrap" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
+                        <i-form v-else class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
                     <div v-if="row.btn !== false" class="card-footer">
                         <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
@@ -51,6 +51,9 @@
                 type: Boolean,
                 default: true
             },
+            resource: String,
+            url: String,
+            typeForm: String,
         },
         data() {
             return {
