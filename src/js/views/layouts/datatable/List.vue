@@ -11,7 +11,7 @@
                         <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" type="array"
                                     :items="filterData.type.items"
                                     v-model="filterData.value"/>
-                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" :value.sync="filterData.value"  placeholder="Search..." :options="{icon: {append: {class: 'fa fa-search'}}}" />
+                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value"  placeholder="Search..." :options="{icon: {append: {class: 'fa fa-search'}}}" />
                     </div>
                 </div>
             </div>
