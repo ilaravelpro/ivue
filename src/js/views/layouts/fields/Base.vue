@@ -6,7 +6,7 @@
             <slot name="label-append"/>
         </label>
         <div :class="styleForGroup">
-            <slot v-if="getOption('customInputGroup')" name="input-group"></slot>
+            <slot v-if="$scopedSlots['input-group']" name="input-group"></slot>
             <div v-else class="input-group">
                 <template class="input-group-prepend">
                     <slot name="prepend"></slot>

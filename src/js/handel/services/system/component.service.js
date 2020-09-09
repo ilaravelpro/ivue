@@ -3,6 +3,7 @@ window.Vue = require('vue');
 Vue.component('i-datatable-list', require('../../../views/layouts/datatable/List').default);
 
 Vue.component('i-page-create', require('../../../views/layouts/pages/Create').default);
+Vue.component('i-repeater-base', require('../../../views/layouts/repeaters/Base').default);
 Vue.component('i-repeater-accordion', require('../../../views/layouts/repeaters/Accordion').default);
 
 Vue.component('i-modal', require('../../../views/layouts/tools/Modal').default);
@@ -12,6 +13,7 @@ Vue.component('i-form-tabs', require('../../../views/layouts/forms/FormTabs').de
 Vue.component('i-form-wizard', require('../../../views/layouts/forms/FormWizard').default);
 
 Vue.component('i-base', require('../../../views/layouts/fields/Base').default);
+Vue.component('i-multi', require('../../../views/layouts/fields/Multi').default);
 Vue.component('i-base-input', require('../../../views/layouts/fields/base/Input').default);
 Vue.component('i-base-text-area', require('../../../views/layouts/fields/base/TextArea').default);
 Vue.component('i-base-file', require('../../../views/layouts/fields/base/File').default);

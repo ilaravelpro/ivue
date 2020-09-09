@@ -25,8 +25,14 @@
             },
             fieldIndex: [String, Object],
             icon: Object,
-            focusin: Function,
-            focusout: Function,
+            focusin: {
+                type: Function,
+                default: () => []
+            },
+            focusout: {
+                type: Function,
+                default: () => []
+            },
             resize: Boolean,
             type: {
                 type: String,

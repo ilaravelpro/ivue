@@ -1,14 +1,11 @@
 <template>
     <i-base
         :label="label"
-        :desc.sync="desc"
         :store-namespace="storeNamespace"
         :field-index="fieldIndex"
         :options="options"
         :icon="icon"
         :css="css"
-        v-on:update:focusin="focusin = $event"
-        v-on:update:focusout="focusout = $event"
     >
         <slot slot="label-append" name="label-append"/>
         <slot slot="label-prepend" name="label-prepend"/>
@@ -16,7 +13,9 @@
         <slot slot="append" name="append"/>
         <template slot="body">
             <template v-for="item in fields">
-                <component :is="item.component" v-bind="item.attrs"/>
+                <component :is="item.component" v-bind="item.attrs">
+                    <template v-if="item.text">{{ item.text }}</template>
+                </component>
             </template>
         </template>
     </i-base>

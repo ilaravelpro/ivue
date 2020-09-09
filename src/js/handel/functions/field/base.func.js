@@ -10,8 +10,8 @@ const BaseField = {
             return $style;
         },
         styleForLabel() {
-            var $style = 'text-left col-form-label my-auto ';
-            $style += this.getStyle('label') ? this.getStyle('label') : '';
+            var $style = 'text-left col-form-label ';
+            $style += this.getStyle('label') ? this.getStyle('label') : 'my-auto';
             return $style;
         },
         styleForGroup() {

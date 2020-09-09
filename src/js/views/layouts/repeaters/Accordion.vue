@@ -6,7 +6,7 @@
             <div class="col-lg-4">
                 <a @click="addRow"
                    class="btn btn-sm font-weight-bolder btn-primary">
-                    <i class="la la-plus"></i> {{ addTitle ? addTitle : 'Add Item'}}
+                    <i class="fa fa-plus"></i> {{ addTitle ? addTitle : 'Add Item'}}
                 </a>
             </div>
         </div>
@@ -43,7 +43,8 @@
 </template>
 
 <script>
-    import GlobalField from "../../../handel/functions/field/global.func";
+    import LoadData from "../../../handel/functions/store/load.func";
+    import BaseRepeater from "../../../handel/functions/repeaters/base.func";
 
     export default {
         name: "i-repeater-accordion",
@@ -96,35 +97,14 @@
             }
         },
         computed: {
-            ...GlobalField.computed(),
-            styleForTextArea() {
-                return this.styleForField + (this.resize ? 'resize-none' : '');
-            }
+            ...LoadData.computed(),
         },
         methods: {
-            ...GlobalField.methods(),
-            addRow: function() {
-                var add = {};
-                $.each(this.items, function (i, v) {
-                    add[i] = v;
-                });
-                if (this.getValue(this.getIndex('get'))){
-                    this.updateValue(this.getIndex('update') + '.' + Number(Object.keys(this.getValue(this.getIndex('get'))).length), add)
-                }
-                else {
-                    this.updateValue(this.getIndex('update') , [add])
-                }
-                this.$forceUpdate()
-            },
-            removeRow: function(index) {
-                if (confirm('Are you sure you want to delete this element?')) {
-                    this.delValue(this.getIndex('get') + '.' + index)
-                    this.$forceUpdate()
-                }
-            },
+            ...LoadData.methods(),
+            ...BaseRepeater.methods
         },
         watch: {
-            ...GlobalField.watch(),
+            ...LoadData.watch(),
         }
     }
 </script>

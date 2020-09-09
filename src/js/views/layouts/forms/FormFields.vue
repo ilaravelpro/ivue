@@ -2,7 +2,9 @@
     <div :class="style">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
         <template v-for="item in items">
-            <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if(getValue) : true" :storeNamespace="storeNamespace" />
+            <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if(getValue) : true" :storeNamespace="storeNamespace" >
+                <template v-if="item.text">{{ item.text }}</template>
+            </component>
         </template>
     </div>
 </template>
