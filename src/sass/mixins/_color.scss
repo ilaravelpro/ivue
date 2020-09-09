@@ -4,7 +4,7 @@
         @if ($prefix) {
             $label: $prefix + "-" + $label;
         }
-        .color-#{$label} {
+        .#{'color-' + $label} {
             color: $color !important;
 
             a:link, a:visited {
@@ -21,7 +21,7 @@
                 }
             }
         }
-        a.color-#{$label} {
+        #{'a.color-' + $label} {
             @if ($check) {
                 &:hover, &:active {
                     color: mix(black, $color, 15%) !important;
@@ -32,14 +32,14 @@
                 }
             }
         }
-        .bg-#{$label} {
+        .#{'bg-' + $label} {
             background-color: $color !important;
         }
-        .border-color-#{$label} {
+        .#{'border-color-' + $label} {
             border-color: $color !important;
         }
         @each $pos in left, right, top, bottom {
-            .border-#{$pos}-color-#{$label} {
+            .#{'border-' + $pos + '-color-' + $label} {
                 border-#{$pos}-color: $color !important;
             }
         }

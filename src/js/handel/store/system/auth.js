@@ -1,3 +1,5 @@
+import Notify from "../../plugins/notify.plugin";
+
 const state = {
     errors: null,
     user: {},
@@ -56,6 +58,7 @@ const actions = {
                     reject(response);
                 });
         } else {
+            Notify({message: 'Your validation key has expired. Please log in again.'}, {type: 'd'})
             context.commit('logOut');
         }
     },
@@ -65,7 +68,6 @@ const actions = {
         if (password) {
             user.password = password;
         }
-
         return ApiService.put("me", user).then(({data}) => {
             context.commit('setUser', data);
             return data;
@@ -89,6 +91,7 @@ const mutations = {
         state.user = {};
         state.errors = {};
         TokenService.destroyToken();
+        appRouter.push({name: 'auth.login'});
     }
 };
 

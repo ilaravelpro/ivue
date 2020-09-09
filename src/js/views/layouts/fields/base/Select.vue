@@ -92,7 +92,7 @@
         mounted() {
             var $this = this;
             window.onclick = function(event) {
-                if (!event.target.matches('.select-title, .select-item, .select-search input, .select-actions div button'))
+                if (event.target.matches && !event.target.matches('.select-title, .select-item, .select-search input, .select-actions div button'))
                     $('.select-items').removeClass('d-block')
             }
             $(document).ready(function(){

@@ -34,7 +34,7 @@ const Notify = (content, options) => {
         mouse_over: true,
         showProgressbar: false,
         spacing: 10,
-        timer: 3000,
+        timer: 1500,
         placement: {
             from: 'top',
             align: 'right'

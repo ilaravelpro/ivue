@@ -6,7 +6,7 @@ const BaseField = {
             if (this.getOption('field.row')) $style += ' row';
             if (this.getOption('field.validate')|| this.statusError === 'invalid') $style += ' validated';
             if (this.getOption('field.relative')) $style += ' position-relative';
-            if (this.getStyle('field')) $style += ' ' + this.getStyle('field');
+            if (this.getStyle('section')) $style += ' ' + this.getStyle('section');
             return $style;
         },
         styleForLabel() {

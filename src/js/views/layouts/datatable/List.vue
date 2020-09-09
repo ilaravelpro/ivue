@@ -61,7 +61,7 @@
                         </select>
                     </div>
                     <i-datatable-pagination class="my-2" :current="meta.current_page" :pages="meta.last_page"
-                                            :current.sync="pagination.current"/>
+                                            v-on:update:current="pagination.current = $event"/>
                 </div>
                 <div class="col-md-3 col-12 p-0">
                     <div class="page-stats text-md-right text-center">
