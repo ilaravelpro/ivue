@@ -8,6 +8,7 @@
         :icon="icon"
         :css="css"
         :value="value"
+        :slots="slots"
         v-on:update:focusin="focusin = $event"
         v-on:update:focusout="focusout = $event"
     >
@@ -39,6 +40,7 @@
             },
             fieldIndex: [String, Object],
             icon: Object,
+            slots: Object,
             resize: Boolean,
             type: {
                 type: String,

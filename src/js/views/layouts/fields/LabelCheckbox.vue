@@ -1,28 +1,18 @@
 <template>
-    <i-base
-        :label="label"
-        :desc.sync="desc"
-        :store-namespace="storeNamespace"
-        :field-index="fieldIndex"
-        :options="options"
-        :css="css"
-        :value="value"
-        :slots="slots"
-    >
-        <slot slot="label-append" name="label-append"/>
-        <slot slot="label-prepend" name="label-prepend"/>
-        <slot slot="prepend" name="prepend"/>
-        <slot slot="append" name="append"/>
-        <template slot="body">
-            <i-base-checkbox v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
-        </template>
-    </i-base>
+    <label
+        class="i-checkbox" :class="styleForLabel" data-toggle="tooltip" data-placement="top" :title="label">
+        <i-base-checkbox v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
+        <span class="checkmark fa color-primary"></span>
+    </label>
 </template>
 
 
 <script>
+
+    import GlobalField from "../../../handel/functions/field/global.func";
+
     export default {
-        name: 'i-checkbox',
+        name: 'i-label-checkbox',
         model: {
             event: 'change'
         },
@@ -45,6 +35,15 @@
                 type: [Object, Array],
                 default: () => []
             },
+        },
+        computed: {
+            ...GlobalField.computed(),
+            styleForLabel() {
+                return this.getStyle('label') ? this.getStyle('label') : '';
+            },
+        },
+        methods: {
+            ...GlobalField.methods()
         }
     }
 

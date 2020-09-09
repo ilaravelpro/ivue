@@ -1,15 +1,15 @@
 <template>
-    <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model" :class="styleForTextArea" @focusin="focusin"
-              @focusout="focusout"></textarea>
-    <input v-else ref="input" :type="type" :placeholder="placeholder" v-model="model" :class="styleForField" @focusin="focusin" @focusout="focusout">
+    <input type="checkbox"
+           :checked="getCheck"
+           @change="changeValue"
+    />
 </template>
-
 
 <script>
     import GlobalField from "../../../../handel/functions/field/global.func";
 
     export default {
-        name: 'i-base-input',
+        name: 'i-base-checkbox',
         model: {
             event: 'change'
         },
@@ -22,20 +22,6 @@
                 default: 'DataSingle'
             },
             fieldIndex: [String, Object],
-            icon: Object,
-            focusin: {
-                type: Function,
-                default: () => []
-            },
-            focusout: {
-                type: Function,
-                default: () => []
-            },
-            resize: Boolean,
-            type: {
-                type: String,
-                default: 'text'
-            },
             options: {
                 type: [Object, Array],
                 default: () => []
@@ -48,6 +34,7 @@
         data() {
             return {
                 model: null,
+                checked: false
             }
         },
         created() {
@@ -55,18 +42,43 @@
                 this.model = this.getValue(this.getIndex('store'));
             }
         },
+
         computed: {
             ...GlobalField.computed(),
-            styleForTextArea() {
-                return this.styleForField + (this.resize ? 'resize-none' : '');
+            getCheck() {
+                if (this.getIndex('get') && this.getOption('store.get', true)) {
+                    this.checked = Boolean(this.model);
+                }else {
+                    this.checked = Boolean(this.value);
+                }
+                switch (this.checked) {
+                    case 'true':
+                        this.checked = true;
+                        break;
+                    case 'false':
+                        this.checked = false;
+                        break;
+                }
+                return this.checked;
             }
         },
         methods: {
-            ...GlobalField.methods()
+            ...GlobalField.methods(),
+            changeValue: function () {
+                this.checked = !this.getCheck;
+            },
         },
         watch: {
             ...GlobalField.watch(),
+            checked: {
+                handler: function (newValue) {
+                    if (typeof(newValue) !== "undefined") {
+                        this.model = newValue ? 1 : null
+                    }
+                }
+            }
         }
-    }
 
+    }
 </script>
+

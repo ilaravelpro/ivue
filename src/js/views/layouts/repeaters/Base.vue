@@ -6,6 +6,7 @@
             :field-index="fieldIndex"
             :options="options"
             :css="css"
+            :slots="slots"
         >
             <slot slot="label-append" name="label-append"/>
             <slot slot="label-prepend" name="label-prepend"/>
@@ -73,6 +74,7 @@
             },
             value: [String, Number, Object, Array],
             desc: [String, Number, Object, Array],
+            slots: Object,
             header: Function,
             body: Function,
             storeNamespace: {

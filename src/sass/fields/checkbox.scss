@@ -35,7 +35,7 @@
     }
     .checkmark {
         &:after {
-            right: 9px;
+            right: 12px;
             top: 1px;
             width: 5px;
             text-align: center;
@@ -51,7 +51,7 @@
         border: 1px solid $color-dark;
         border-radius: 3px;
         &:after {
-            content: "\e824";
+            content: "\f00c";
             position: absolute;
             display: none;
         }

@@ -82,6 +82,9 @@ const LoadData = {
                     this.$emit('update:desc', $desc);
                 }
             },
+            getSlots(name) {
+                return this.slots && this.slots[name] ? this.slots[name] : false;
+            }
         }
     },
     watch() {
