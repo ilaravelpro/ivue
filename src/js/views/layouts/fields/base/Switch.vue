@@ -1,8 +1,8 @@
 <template>
-    <input type="checkbox"
-           :checked="getCheck"
-           @change="changeValue"
-    />
+    <label class="switch" :class="styleForField">
+        <input type="checkbox" :checked="checked" :class="{ 'checked': model ? true :false}" @change="changeValue()">
+        <span class="slider" :class="styleForSlider"></span>
+    </label>
 </template>
 
 <script>
@@ -10,12 +10,12 @@
     import CheckboxField from "../../../../handel/functions/field/checkbox.func";
 
     export default {
-        name: 'i-base-checkbox',
+        name: 'i-base-switch',
         model: {
             event: 'change'
         },
         props: {
-            placeholder: String,
+            label: String,
             value: [String, Number, Object, Array],
             desc: [String, Number, Object, Array],
             storeNamespace: {
@@ -39,13 +39,25 @@
             }
         },
         created() {
-            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
+            if (this.getIndex('store') && this.getOption('store.get', true) && typeof (this.getValue(this.getIndex('store'))) !== "undefined") {
                 this.model = this.getValue(this.getIndex('store'));
             }
         },
         computed: {
             ...GlobalField.computed(),
-            ...CheckboxField.computed
+            ...CheckboxField.computed,
+            styleForField() {
+                var $style = '';
+                if (this.getOption('field.control_field')) $style += 'form-control text-left ';
+                if (this._icon && this._icon.prepend) $style += 'border-left-0 border-right-radius-4px ';
+                if (this._icon && this._icon.append) $style += 'border-right-0 border-left-radius-4px ';
+                if (this.error && typeof (this.error.status) !== 'undefined') $style += ' is-' + this.error.status;
+                if (this.getStyle('field')) $style += ' ' + this.getStyle('field');
+                return $style;
+            },
+            styleForSlider() {
+                return this.getStyle('slider') ? this.getStyle('slider') : '';
+            },
         },
         methods: {
             ...GlobalField.methods(),

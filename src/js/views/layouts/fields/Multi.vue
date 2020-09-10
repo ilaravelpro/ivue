@@ -13,7 +13,7 @@
         <slot slot="append" name="append"/>
         <template slot="body">
             <template v-for="item in fields">
-                <component :is="item.component" v-bind="item.attrs">
+                <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace">
                     <template v-if="item.text">{{ item.text }}</template>
                 </component>
             </template>
