@@ -9,7 +9,7 @@
             </li>
         </ul>
         <div class="tab-content" :class="_style_contents">
-            <div v-for="(tab, index) in  Object.values(tabs)" class="tab-pane fade show p-2" :class="index === 0 ? 'active' :''"
+            <div v-for="(tab, index) in  Object.values(tabs)" class="tab-pane fade show p-2" :class="index === 0 ? 'active ' :''"
                  :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
                 <slot v-if="$scopedSlots[`tab.${tab.name}`]" :name="`tab.${tab.name}`" v-bind:tab="tab" v-bind:namespace="storeNamespace"></slot>
                 <slot v-else-if="$scopedSlots[`tab_body`]" name="tab_body" v-bind:tab="tab" v-bind:namespace="storeNamespace"></slot>

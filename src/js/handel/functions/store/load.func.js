@@ -101,10 +101,7 @@ const LoadData = {
             iRecordValue: {
                 handler: function (newValue, oldValue) {
                     if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined") {
-                        var $this = this
-                        setTimeout(function () {
-                            $this.model = $this.getValue($this.getIndex('get'));
-                        }, 1000)
+                        this.model = this.getValue(this.getIndex('get'));
                     }
                 },
                 deep: true
