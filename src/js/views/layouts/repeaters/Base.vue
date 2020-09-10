@@ -104,6 +104,11 @@
                 model: null,
             }
         },
+        created() {
+            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
+                this.model = this.getValue(this.getIndex('store'));
+            }
+        },
         computed: {
             ...LoadData.computed(),
             ...BaseField.computed,

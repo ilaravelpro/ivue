@@ -32,7 +32,7 @@ const StoreDataSingle = {
             masks: {},
             options: {
                 excepts: [],
-                typeForm: null
+                typeForm: null,
             },
             desc: {},
             styles: {},
@@ -42,6 +42,7 @@ const StoreDataSingle = {
             },
             loading: false,
             fields: [],
+            timeout: 0
         }
     },
     getters: {
@@ -59,6 +60,7 @@ const StoreDataSingle = {
         iLoading: state => state.loading,
         iFields: state => state.fields,
         iStyleAll: state => state.styles,
+        iTimeout: state => state.timeout,
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {

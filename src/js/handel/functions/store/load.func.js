@@ -4,6 +4,9 @@ const LoadData = {
             iRecord() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iRecord']
             },
+            iRecordValue() {
+                return iPath.get(this.$store.getters[this.storeNamespace + '/' + 'iRecord'], this.getIndex('get'))
+            },
             iMaskAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iMaskAll']
             },
@@ -18,6 +21,9 @@ const LoadData = {
             },
             iStyleAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iStyleAll']
+            },
+            iTimeout() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iTimeout']
             },
             _value() {
                 return this.model || this.value || null;
@@ -49,6 +55,9 @@ const LoadData = {
             },
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
+            },
+            updateState(key, value) {
+                this.$store.commit(this.storeNamespace + '/setState', {key: key, value: value});
             },
             delValue(key) {
                 this.$store.dispatch(this.storeNamespace + '/delByKey', key);
@@ -89,10 +98,13 @@ const LoadData = {
     },
     watch() {
         return {
-            ['iRecord']: {
-                handler: function (newValue) {
+            iRecordValue: {
+                handler: function (newValue, oldValue) {
                     if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined") {
-                        this.model = this.getValue(this.getIndex('get'));
+                        var $this = this
+                        setTimeout(function () {
+                            $this.model = $this.getValue($this.getIndex('get'));
+                        }, 1000)
                     }
                 },
                 deep: true

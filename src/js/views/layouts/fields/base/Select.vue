@@ -108,6 +108,9 @@
             this.checkItems();
         },
         created() {
+            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
+                this.model = this.getValue(this.getIndex('store'));
+            }
             if (this.url)this.moreLoad()
         },
         computed: {
