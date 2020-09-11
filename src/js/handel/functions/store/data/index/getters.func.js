@@ -1,10 +1,10 @@
 const StoreDataIndexGetters = {
-    data: state => state.all,
-    total: state => state.all.length,
-    meta:          state => state.meta,
-    filters:       state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.allowed : [],
-    operators:     state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.operators : [],
-    loading: state => state.loading,
+    iRecords:       state => state.all,
+    iTotal:         state => state.all.length,
+    iMeta:          state => state.meta,
+    iFilterAll:     state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.allowed : [],
+    iOperatorAll:   state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.operators : [],
+    iLoading:       state => state.loading,
 };
 
 export default StoreDataIndexGetters;

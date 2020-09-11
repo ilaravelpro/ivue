@@ -20,7 +20,7 @@
     import GlobalField from "../../../../handel/functions/field/global.func";
     import SelectField from "../../../../handel/functions/field/select.func";
     import AutoCompleteField from "../../../../handel/functions/field/auto.complete.func";
-    import LoadData from "../../../../handel/functions/store/load.func";
+    import LoadSingleData from "../../../../handel/functions/store/loadSingle.func";
 
     var storeNamespace = 'DataSingle';
 
@@ -93,7 +93,7 @@
             }
         },
         created() {
-            LoadData.setValueOnCreate(this)
+            LoadSingleData.setValueOnCreate(this)
             if (this.url)this.moreLoad()
         },
         computed: {

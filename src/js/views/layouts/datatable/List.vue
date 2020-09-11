@@ -22,7 +22,8 @@
         </div>
 
         <div class="container-table">
-            <div class="wrap-table">
+            <div class="wrap-table position-relative">
+                <loading :status="!iLoading"/>
                 <table>
                     <thead>
                     <tr class="table-head">
@@ -60,7 +61,7 @@
                             <option v-for="itemPerPage in itemsPerPage" :value="itemPerPage">{{ itemPerPage }}</option>
                         </select>
                     </div>
-                    <i-datatable-pagination class="my-2" :current="meta.current_page" :pages="meta.last_page"
+                    <i-datatable-pagination class="my-2" :current="iMeta.current_page" :pages="iMeta.last_page"
                                             v-on:update:current="pagination.current = $event"/>
                 </div>
                 <div class="col-md-3 col-12 p-0">
@@ -75,8 +76,8 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions} from 'vuex'
     import IDatatablePagination from "./Pagination";
+    import DataTableList from "../../../handel/functions/datatable/list.func";
 
     export default {
         name: "i-datatable-list",
@@ -90,7 +91,7 @@
             items: [Array, Object],
             storeNamespace: {
                 type: String,
-                default: 'GlobalIndex'
+                default: 'DataIndex'
             },
             edit: {
                 type: Boolean,
@@ -135,79 +136,12 @@
             }
         },
         computed: {
-            ...mapGetters('DataIndex', ['data', 'total', 'meta', 'loading', 'filters', 'operators']),
-            getFilters() {
-                return this.server ? this.filters : [
-                    {
-                        name: "all",
-                        title: "all",
-                        type: "text",
-                    }
-                ];
-            },
-            itemsPerPage(){
-                return iPath.get(this.options, 'itemsPerPage', [10,20,40,100]);
-            },
-            filteredItems() {
-                let items = this.server ? this.data : this.items;
-                if (!this.server && this.filterData) {
-                    items = items.filter((row) => {
-                        if (this.filterData.type.name === 'all')
-                            return Object.keys(row).some((key) => {
-                                return String(row[key]).toLowerCase().indexOf(this.filterData.value.toLowerCase()) > -1;
-                            })
-                        else
-                            return String(row[this.filterData.type.name]).toLowerCase().indexOf(this.filterData.value.toLowerCase()) > -1;
+            ...DataTableList.computed,
 
-                    });
-                }
-                let sortKey = this.sortKey;
-                if (!this.server && sortKey) {
-                    let order = this.sortOrders[sortKey] || 1;
-                    items = items.slice().sort((a, b) => {
-                        let index = this.getIndex(this.columns, 'name', sortKey);
-                        a = String(a[sortKey]).toLowerCase();
-                        b = String(b[sortKey]).toLowerCase();
-                        if (this.columns[index].type && this.columns[index].type === 'date') {
-                            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
-                        } else if (this.columns[index].type && this.columns[index].type === 'number') {
-                            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
-                        } else {
-                            return (a === b ? 0 : a > b ? 1 : -1) * order;
-                        }
-                    });
-                }
-                return items;
-            },
-            paginatedItems() {
-                return this.paginate(this.filteredItems, this.pagination.length, this.pagination.current);
-            },
-            getActions() {
-                let $actions = typeof (this.actions) === "object" ? this.actions : {};
-                if (typeof ($actions.delete) === "undefined") {
-                    $actions =  {delete: {
-                            title: 'Delete',
-                            name: 'delete',
-                            icon: 'fa fa-trash-alt',
-                            type: 'func',
-                            action: this.deleteItem
-                        }, ...$actions};
-                }
-                if (typeof ($actions.edit) === "undefined") {
-                    $actions =  {edit: {
-                            title: 'Edit',
-                            name: 'edit',
-                            icon: 'fa fa-edit',
-                            type: 'linkWithId',
-                            action: this.resource + '.edit'
-                        }, ...$actions};
-                }
-                return $actions;
-            }
         },
         created() {
-            var  $this = this;
-            this.setState(['resource', this.resource]);
+            var $this = this;
+            this.setState('resource', this.resource);
             if (this.server) this.paginateServer();
             this.columns.forEach((column) => {
                 $this.sortOrders[column.name] = -1;
@@ -217,121 +151,10 @@
             this.renderStyle();
         },
         watch: {
-            columns: {
-                handler: function () {
-                    /*var  $this = this;
-                    this.columns.forEach((column) => {
-                        $this.sortOrders[column.name] = -1;
-                    });*/
-                },
-                deep: true
-            },
-            pagination: {
-                handler: function () {
-                    if (this.server) this.paginateServer();
-                },
-                deep: true
-            },
-            sortOrders: {
-                handler: function (newValue) {
-                    if (this.server) this.paginateServer();
-                },
-                deep: true
-            }
+            ...DataTableList.watch
         },
         methods: {
-            ...mapActions('DataIndex', ['fetchData', 'destroyData', 'setState']),
-            deleteItem(item) {
-                if (confirm('Are you sure you want to delete this Item?'))
-                    this.destroyData(item.id)
-            },
-            query() {
-                var query = {
-                    page: this.pagination.current,
-                    per_page: this.pagination.length
-                };
-                query['order'] = this.sortKey;
-                query['sort'] = this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc';
-                query['filter'] = {
-                    type: this.filterData.type.value,
-                    operator: this.filterData.operator.value,
-                    value: (this.filterData.type.type === 'select' ? this.filterData.value.value : this.filterData.value),
-                };
-                return query;
-            },
-            renderStyle() {
-                var style = '@media screen and (max-width: 992px) {';
-                this.columns.forEach((column, index) => {
-                    style += `
-                    table tbody tr td:nth-child(${index + 1}):before {
-                        content: "${column.label}"
-                    }
-                  `;
-                });
-                style += `
-                    table tbody tr td:last-child:before {
-                        content: "Action"
-                    }`
-                style += '}'
-                if (!style) return;
-                this.styleTag = document.createElement('style');
-                this.styleTag.appendChild(document.createTextNode(style));
-                document.head.appendChild(this.styleTag);
-            },
-            paginateServer() {
-                iProcessing.init(this.resource + '.paginate_server', this, ($this) => {
-                    $this.setState(['resource', $this.resource]);
-                    $this.setState(['url', $this.url]);
-                    $this.setState(['query', $this.query()]);
-                    $this.fetchData().then(resp => {
-                        $this.$forceUpdate()
-                    });
-                }, 500)
-            },
-            paginate(array, length, pageNumber) {
-                this.pagination.total = this.server ? this.meta.total : array.length;
-                this.pagination.from = this.pagination.total ? ((pageNumber - 1) * length) + 1 : ' ';
-                this.pagination.to = pageNumber * length > this.pagination.total ? this.pagination.total : pageNumber * length;
-                return this.server ? array : array.slice((pageNumber - 1) * length, pageNumber * length);
-            },
-            sortBy(key) {
-                this.resetPagination();
-                this.sortKey = key;
-                this.sortOrders[key] = this.sortOrders[key] * -1;
-                if (this.server) this.paginateServer();
-            },
-            getIndex(array, key, value) {
-                return array.findIndex(i => i[key] === value)
-            },
-            resetQuery() {
-                this.filterData = {
-                    type: {},
-                    operator: {},
-                    value: '',
-                };
-                this.setState(['query', {}]);
-                this.sortKey = 'created_at';
-                this.columns.forEach((column) => {
-                    this.sortOrders[column.name] = -1;
-                });
-                this.pagination.current = 1;
-            },
-            resetPagination() {
-                this.pagination.current = 1;
-            },
-            actionItem(item, action) {
-                switch (action.type) {
-                    case 'linkWithId':
-                        this.$router.push({name: action.action, params: {id: item.id}});
-                        break;
-                    case 'route':
-                        this.$router.push(action.action);
-                        break;
-                    case 'func':
-                        action.action(item)
-                        break
-                }
-            }
+            ...DataTableList.methods,
         },
     }
 </script>

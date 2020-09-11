@@ -7,7 +7,7 @@
 
 <script>
     import GlobalField from "../../../../handel/functions/field/global.func";
-    import LoadData from "../../../../handel/functions/store/load.func";
+    import LoadSingleData from "../../../../handel/functions/store/loadSingle.func";
 
     export default {
         name: 'i-base-input',
@@ -53,7 +53,7 @@
             }
         },
         created() {
-            LoadData.setValueOnCreate(this)
+            LoadSingleData.setValueOnCreate(this)
         },
         computed: {
             ...GlobalField.computed(),

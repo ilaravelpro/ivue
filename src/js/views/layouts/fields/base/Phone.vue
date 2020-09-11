@@ -14,7 +14,7 @@
         from "../../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/plan/temps";
     import FlightPlanProcess
         from "../../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/plan/process";
-    import LoadData from "../../../../handel/functions/store/load.func";
+    import LoadSingleData from "../../../../handel/functions/store/loadSingle.func";
 
     export default {
         name: 'i-base-phone',
@@ -62,7 +62,7 @@
             }
         },
         created() {
-            LoadData.setValueOnCreate(this)
+            LoadSingleData.setValueOnCreate(this)
         },
         computed: {
             ...GlobalField.computed(),

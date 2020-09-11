@@ -1,4 +1,4 @@
-const LoadData = {
+const LoadSingleData = {
     setValueOnCreate($this) {
         var set = this._setValueOnCreate;
         if ($this.getIndex('store') && $this.getOption('store.get', true) && typeof ($this.getValue($this.getIndex('store'))) !== "undefined" && $this.getValue($this.getIndex('store')) !== null)
@@ -121,9 +121,9 @@ const LoadData = {
                     if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined" && !_.isEqual(newValue, oldValue)) {
                         var $this = this;
                         if (this.iFetched)
-                            LoadData._setValueOnCreate($this)
+                            LoadSingleData._setValueOnCreate($this)
                         else
-                            setTimeout(function () {LoadData._setValueOnCreate($this)}, 1)
+                            setTimeout(function () {LoadSingleData._setValueOnCreate($this)}, 1)
                     }
                 },
                 deep: true
@@ -158,4 +158,4 @@ const LoadData = {
     },
 };
 
-export default LoadData;
+export default LoadSingleData;

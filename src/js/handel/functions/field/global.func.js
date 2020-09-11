@@ -1,9 +1,9 @@
-import LoadData from "../store/load.func";
+import LoadSingleData from "../store/loadSingle.func";
 
 const GlobalField = {
     computed() {
         return {
-            ...LoadData.computed(),
+            ...LoadSingleData.computed(),
             _icon() {
                 return this.icon || this.getOption('icon');
             },
@@ -20,12 +20,12 @@ const GlobalField = {
     },
     methods() {
         return {
-            ...LoadData.methods(),
+            ...LoadSingleData.methods(),
         }
     },
     watch(storeNamespace = 'DataSingle') {
         return {
-            ...LoadData.watch(),
+            ...LoadSingleData.watch(),
             getMask: {
                 handler: function (newValue) {
                     if (newValue)

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import LoadData from "../../../handel/functions/store/load.func";
+    import LoadSingleData from "../../../handel/functions/store/loadSingle.func";
     import BaseRepeater from "../../../handel/functions/repeaters/base.func";
 
     export default {
@@ -97,17 +97,17 @@
             }
         },
         created() {
-            LoadData.setValueOnCreate(this)
+            LoadSingleData.setValueOnCreate(this)
         },
         computed: {
-            ...LoadData.computed(),
+            ...LoadSingleData.computed(),
         },
         methods: {
-            ...LoadData.methods(),
+            ...LoadSingleData.methods(),
             ...BaseRepeater.methods
         },
         watch: {
-            ...LoadData.watch(),
+            ...LoadSingleData.watch(),
         }
     }
 </script>
