@@ -75,21 +75,24 @@ const LoadData = {
                     this.$emit('update:error', $error);
                 }
             },
-            getMask(name) {
+            findMask(name) {
                 return iPath.get(this.iMaskAll, name)
             },
-            setMask() {
-                var mask = this.getMask(this.getIndex('mask') || this.getIndex('store'));
-                if (typeof (mask) !== "undefined") this.$emit('update:imask', mask);
+            getMask() {
+                var mask = this.findMask(this.getIndex('mask'));
+                return this.mask || mask;
+            },
+            setMask(key, value) {
+                this.$store.dispatch(this.storeNamespace + '/setMask', [key, value]);
             },
             getDesc(name) {
                 return iPath.get(this.iDescAll, name)
             },
-            setDesc() {
-                var $desc = this.getDesc(this.getIndex('desc') || this.getIndex('store'));
-                if (typeof ($desc) !== "undefined" && !_.isEqual(this.desc, $desc)) {
-                    this.$emit('update:desc', $desc);
-                }
+            findDesc() {
+                return this.getDesc(this.getIndex('desc'))
+            },
+            setDesc(key, value) {
+                this.$store.dispatch(this.storeNamespace + '/setDesc', [key, value]);
             },
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
@@ -129,24 +132,6 @@ const LoadData = {
                     if (!(this.getIndex('update') &&
                         this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);
-                },
-                deep: true
-            },
-            iErrorAll: {
-                handler: function () {
-                    this.setError();
-                },
-                deep: true
-            },
-            iMaskAll: {
-                handler: function () {
-                    this.setMask();
-                },
-                deep: true
-            },
-            iDescAll: {
-                handler: function () {
-                    this.setDesc();
                 },
                 deep: true
             },

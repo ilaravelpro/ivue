@@ -26,6 +26,16 @@ const GlobalField = {
     watch(storeNamespace = 'DataSingle') {
         return {
             ...LoadData.watch(),
+            getMask: {
+                handler: function (newValue) {
+                    if (newValue)
+                        if (typeof(newValue.numeric) !== "undefined"){
+                            $(this.$refs.input).inputmask('numeric', JSON.parse(JSON.stringify(this.mask.numeric)))
+                        } else
+                            $(this.$refs.input).inputmask(this.mask)
+                },
+                deep: true
+            },
         }
     },
 };

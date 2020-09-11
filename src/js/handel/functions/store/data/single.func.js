@@ -5,12 +5,13 @@ import Notify from "../../../plugins/notify.plugin";
 const StoreDataSingle = {
     handelErrors(errors = null, status = true, system = null) {
         var render = [];
+        var $this = this;
         $.each(errors, function (i, v) {
             if (typeof (v.status) !== 'undefined' && v.status === 'invalid') {
                 status = false;
                 render.push(v.text);
             } else {
-                var $child = this.handelErrors(v, status)
+                var $child = $this.handelErrors(v, status)
                 render.push(...$child.errors)
                 status = $child.status
             }
@@ -42,6 +43,7 @@ const StoreDataSingle = {
             },
             loading: false,
             fields: [],
+            functions: {},
             timeout: 0
         }
     },
@@ -64,7 +66,9 @@ const StoreDataSingle = {
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {
-            return commit('setState', {key: "item." + key, value: value})
+            var $commit = commit('setState', {key: "item." + key, value: value})
+            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch)
+            return $commit;
         },
         delByKey({commit, state, dispatch}, key) {
             return commit('delState', 'item.' + key)
@@ -99,9 +103,9 @@ const StoreDataSingle = {
         fetchData({state, commit, dispatch}, [id, url]) {
             url = url || state.url || state.resource;
             if (id) url += '/' + id;
-            return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true})
+            return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true, func: 'afterFetch'})
         },
-        fetchDataBy({commit, dispatch}, {url, resource, params, parent}) {
+        fetchDataBy({commit, state, dispatch}, {url, resource, params, parent, func}) {
             commit('setLoading', true)
             return new Promise((resolve, reject) => {
                 ApiService.get(url, params)
@@ -111,6 +115,7 @@ const StoreDataSingle = {
                             key: 'parent',
                             value: response.handel.parent
                         })
+                        if (state.functions[func]) state.functions[func](response.handel, state, dispatch)
                         resolve(response.handel.data)
                     })
                     .catch(error => {
@@ -140,22 +145,22 @@ const StoreDataSingle = {
             return commit('delState', 'options.' + option)
         },
         setMask({commit, state, dispatch}, [key, value]) {
-            return commit('setState', {key: 'options.' + key, value: value})
+            return commit('setState', {key: 'masks.' + key, value: value})
         },
         addMask({commit, state, dispatch}, mask) {
-            return commit('addState', {key: 'options', value: mask})
+            return commit('addState', {key: 'masks', value: mask})
         },
         delMask({commit, state, dispatch}, mask) {
-            return commit('delState', 'options.' + mask)
+            return commit('delState', 'masks.' + mask)
         },
         setDesc({commit, state, dispatch}, [key, value]) {
-            return commit('setState', {key: 'options.' + key, value: value})
+            return commit('setState', {key: 'desc.' + key, value: value})
         },
         addDesc({commit, state, dispatch}, desc) {
-            return commit('addState', {key: 'options', value: desc})
+            return commit('addState', {key: 'desc', value: desc})
         },
         delDesc({commit, state, dispatch}, desc) {
-            return commit('delState', 'options.' + desc)
+            return commit('delState', 'desc.' + desc)
         },
         resetState({commit}) {
             commit('resetState')

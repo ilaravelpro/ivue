@@ -1,7 +1,7 @@
 <template>
     <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model" :class="styleForTextArea" @focusin="focusin"
               @focusout="focusout"></textarea>
-    <input v-else ref="input" :type="type" :placeholder="placeholder" v-model="model" :class="styleForField" @focusin="focusin" @focusout="focusout">
+    <input v-else ref="input" v-mask="getMask()" :type="type" :placeholder="placeholder" :value="model" @keyup="changeValue(($event.target.value).replace(/_/gi,''))" :class="styleForField" @focusin="focusin" @focusout="focusout">
 </template>
 
 
@@ -44,6 +44,7 @@
                 type: [Object, Array],
                 default: () => []
             },
+            mask: [String, Number, Object, Array],
         },
         data() {
             return {
@@ -62,7 +63,10 @@
             }
         },
         methods: {
-            ...GlobalField.methods()
+            ...GlobalField.methods(),
+            changeValue(v) {
+                this.model = v
+            }
         },
         watch: {
             ...GlobalField.watch(),

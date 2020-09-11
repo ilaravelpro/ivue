@@ -54,6 +54,7 @@
                 type: [Object, Array],
                 default: () => []
             },
+            mask: [String, Number, Object, Array],
         },
         data() {
             return {
