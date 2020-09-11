@@ -57,10 +57,6 @@
                     country: '98',
                     number: ''
                 },
-                timeout: {
-                  time: 0,
-                  out: null
-                },
                 defCountry: 98,
                 setNumber: false
             }
@@ -81,16 +77,12 @@
         methods: {
             ...GlobalField.methods(),
             updateMobile($e) {
-                var $this = this;
-                if (this.timeout.time && this.timeout.time + 2000 > new Date().getTime())
-                    clearTimeout(this.timeout.out)
-                this.timeout.time = new Date().getTime();
-                this.timeout.out = setTimeout(function () {
+                iProcessing.init(this.storeNamespace + '.' + this.getIndex('store'), this, ($this) => {
                     $this.model = {
                         country: $e.countryCallingCode,
                         number: $e.nationalNumber,
                     }
-                }, 2000)
+                })
             }
         },
         watch: {

@@ -77,10 +77,6 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import IDatatablePagination from "./Pagination";
-    import ApiService
-        from "../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/api.service";
-    import AvitaTemps
-        from "../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/avita/temps";
 
     export default {
         name: "i-datatable-list",
@@ -121,10 +117,6 @@
         },
         data() {
             return {
-                timeout: {
-                    time: {},
-                    out: null
-                },
                 filterData: {
                     type: {},
                     operator: {},
@@ -287,17 +279,14 @@
                 document.head.appendChild(this.styleTag);
             },
             paginateServer() {
-                if (this.timeout.time && this.timeout.time + 2000 > new Date().getTime())
-                    clearTimeout(this.timeout.out)
-                this.timeout.time = new Date().getTime();
-                this.timeout.out = setTimeout(function () {
-                    this.setState(['resource', this.resource]);
-                    this.setState(['url', this.url]);
-                    this.setState(['query', this.query()]);
-                    this.fetchData().then(resp => {
-                        this.$forceUpdate()
+                iProcessing.init(this.resource + '.paginate_server', this, ($this) => {
+                    $this.setState(['resource', $this.resource]);
+                    $this.setState(['url', $this.url]);
+                    $this.setState(['query', $this.query()]);
+                    $this.fetchData().then(resp => {
+                        $this.$forceUpdate()
                     });
-                }, 2000)
+                }, 500)
             },
             paginate(array, length, pageNumber) {
                 this.pagination.total = this.server ? this.meta.total : array.length;
