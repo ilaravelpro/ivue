@@ -77,6 +77,10 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import IDatatablePagination from "./Pagination";
+    import ApiService
+        from "../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/api.service";
+    import AvitaTemps
+        from "../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/avita/temps";
 
     export default {
         name: "i-datatable-list",
@@ -117,13 +121,17 @@
         },
         data() {
             return {
+                timeout: {
+                    time: {},
+                    out: null
+                },
                 filterData: {
                     type: {},
                     operator: {},
                     value: '',
                 },
                 styleTag: null,
-                sortKey: 'created_at',
+                sortKey: 'id',
                 sortOrders: {},
                 pagination: {
                     current: 1,
@@ -144,20 +152,6 @@
                         type: "text",
                     }
                 ];
-            },
-            query() {
-                var query = {
-                    page: this.pagination.current,
-                    per_page: this.pagination.length
-                };
-                query['order'] = this.sortKey;
-                query['sort'] = this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc';
-                query['filter'] = {
-                    type: this.filterData.type.value,
-                    operator: this.filterData.operator.value,
-                    value: (this.filterData.type.type === 'select' ? this.filterData.value.value : this.filterData.value),
-                };
-                return query;
             },
             itemsPerPage(){
                 return iPath.get(this.options, 'itemsPerPage', [10,20,40,100]);
@@ -248,7 +242,6 @@
             },
             sortOrders: {
                 handler: function (newValue) {
-                    console.log(newValue)
                     if (this.server) this.paginateServer();
                 },
                 deep: true
@@ -259,6 +252,20 @@
             deleteItem(item) {
                 if (confirm('Are you sure you want to delete this Item?'))
                     this.destroyData(item.id)
+            },
+            query() {
+                var query = {
+                    page: this.pagination.current,
+                    per_page: this.pagination.length
+                };
+                query['order'] = this.sortKey;
+                query['sort'] = this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc';
+                query['filter'] = {
+                    type: this.filterData.type.value,
+                    operator: this.filterData.operator.value,
+                    value: (this.filterData.type.type === 'select' ? this.filterData.value.value : this.filterData.value),
+                };
+                return query;
             },
             renderStyle() {
                 var style = '@media screen and (max-width: 992px) {';
@@ -280,10 +287,17 @@
                 document.head.appendChild(this.styleTag);
             },
             paginateServer() {
-                this.setState(['resource', this.resource]);
-                this.setState(['url', this.url]);
-                this.setState(['query', this.query]);
-                this.fetchData();
+                if (this.timeout.time && this.timeout.time + 2000 > new Date().getTime())
+                    clearTimeout(this.timeout.out)
+                this.timeout.time = new Date().getTime();
+                this.timeout.out = setTimeout(function () {
+                    this.setState(['resource', this.resource]);
+                    this.setState(['url', this.url]);
+                    this.setState(['query', this.query()]);
+                    this.fetchData().then(resp => {
+                        this.$forceUpdate()
+                    });
+                }, 2000)
             },
             paginate(array, length, pageNumber) {
                 this.pagination.total = this.server ? this.meta.total : array.length;
@@ -295,7 +309,7 @@
                 this.resetPagination();
                 this.sortKey = key;
                 this.sortOrders[key] = this.sortOrders[key] * -1;
-                this.$forceUpdate()
+                if (this.server) this.paginateServer();
             },
             getIndex(array, key, value) {
                 return array.findIndex(i => i[key] === value)
