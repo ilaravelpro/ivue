@@ -44,7 +44,8 @@ const StoreDataSingle = {
             loading: false,
             fields: [],
             functions: {},
-            timeout: 0
+            timeout: 0,
+            fetched: false
         }
     },
     getters: {
@@ -63,6 +64,7 @@ const StoreDataSingle = {
         iFields: state => state.fields,
         iStyleAll: state => state.styles,
         iTimeout: state => state.timeout,
+        iFetched: state => state.fetched,
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {
@@ -116,13 +118,19 @@ const StoreDataSingle = {
                             value: response.handel.parent
                         })
                         if (state.functions[func]) state.functions[func](response.handel, state, dispatch)
+                        if (resource === 'item')
+                            setTimeout(function () {
+                                state.fetched = true
+                            }, 100)
                         resolve(response.handel.data)
                     })
                     .catch(error => {
                         reject(error)
                     })
                     .finally(() => {
-                        commit('setLoading', false)
+                        setTimeout(function () {
+                            commit('setLoading', false)
+                        }, 1)
                     })
             })
         },

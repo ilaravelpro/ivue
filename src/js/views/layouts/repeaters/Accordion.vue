@@ -97,9 +97,7 @@
             }
         },
         created() {
-            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
-                this.model = this.getValue(this.getIndex('store'));
-            }
+            LoadData.setValueOnCreate(this)
         },
         computed: {
             ...LoadData.computed(),

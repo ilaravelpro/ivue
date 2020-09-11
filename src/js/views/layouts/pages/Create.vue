@@ -13,6 +13,7 @@
                         <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                     </div>
                     <div class="card-body">
+                        <loading v-if="row.loading !== false" :status="!loading"/>
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                         <i-form v-else class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
@@ -63,6 +64,9 @@
         computed: {
             errorAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iErrorsHandel']
+            },
+            loading() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iLoading']
             }
         },
         created() {
@@ -88,3 +92,7 @@
         }
     }
 </script>
+
+<style scoped>
+
+</style>

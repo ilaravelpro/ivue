@@ -14,6 +14,7 @@
         from "../../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/plan/temps";
     import FlightPlanProcess
         from "../../../../../../../../../../../../avita/front/src/assets/resources/js/core/services/store/curd/services/plan/process";
+    import LoadData from "../../../../handel/functions/store/load.func";
 
     export default {
         name: 'i-base-phone',
@@ -65,9 +66,7 @@
             }
         },
         created() {
-            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
-                this.model = this.getValue(this.getIndex('store'));
-            }
+            LoadData.setValueOnCreate(this)
         },
         computed: {
             ...GlobalField.computed(),

@@ -24,6 +24,7 @@
 <script>
     import GlobalField from "../../../../handel/functions/field/global.func";
     import SelectField from "../../../../handel/functions/field/select.func";
+    import LoadData from "../../../../handel/functions/store/load.func";
     export default {
         name: 'i-base-select',
         model: {
@@ -108,9 +109,7 @@
             this.checkItems();
         },
         created() {
-            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
-                this.model = this.getValue(this.getIndex('store'));
-            }
+            LoadData.setValueOnCreate(this)
             if (this.url)this.moreLoad()
         },
         computed: {

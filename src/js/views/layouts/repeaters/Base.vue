@@ -15,12 +15,12 @@
             <template slot="input-group">
                 <template v-for="(item, index) in model">
                     <div class="d-flex flex-wrap mb-0">
-                        <template v-if="typeof(body) === 'function'" >
+                        <template v-if="typeof(body) === 'function'">
                             <template v-for="comp in body(item, index)">
                                 <component :is="comp.component" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>
-                        <slot v-else name="body" v-bind:item="item" v-bind:index="index" ></slot>
+                        <slot v-else name="body" v-bind:item="item" v-bind:index="index"></slot>
                         <div :class="removeClass">
                             <a @click="removeRow(index)"
                                class="btn btn-sm font-weight-bolder btn-danger">
@@ -54,23 +54,23 @@
         props: {
             title: {
                 type: String,
-                default : ""
+                default: ""
             },
             addTitle: {
                 type: String,
-                default : ""
+                default: ""
             },
             prefixTitle: {
                 type: String,
-                default : ""
+                default: ""
             },
             id: {
                 type: String,
-                default : ""
+                default: ""
             },
             itemName: {
                 type: String,
-                default : "name"
+                default: "name"
             },
             value: [String, Number, Object, Array],
             desc: [String, Number, Object, Array],
@@ -105,9 +105,7 @@
             }
         },
         created() {
-            if (this.getIndex('store') && this.getOption('store.get', true) && typeof(this.getValue(this.getIndex('store'))) !== "undefined") {
-                this.model = this.getValue(this.getIndex('store'));
-            }
+            LoadData.setValueOnCreate(this)
         },
         computed: {
             ...LoadData.computed(),

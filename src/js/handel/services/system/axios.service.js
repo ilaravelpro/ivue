@@ -2,7 +2,12 @@ import Axios from "axios";
 import iRequest from "../../libs/iRequest.lib";
 
 const instance = Axios.create();
-
+instance.interceptors.request.use(config => {
+    return config
+})
+instance.interceptors.response.use(response => {
+    return response
+})
 const AxiosService = {
     setBaseURL(url) {
         instance.defaults.baseURL = url;

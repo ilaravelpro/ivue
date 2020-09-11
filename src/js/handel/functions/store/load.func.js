@@ -1,4 +1,16 @@
 const LoadData = {
+    setValueOnCreate($this) {
+        var set = this._setValueOnCreate;
+        if ($this.getIndex('store') && $this.getOption('store.get', true) && typeof ($this.getValue($this.getIndex('store'))) !== "undefined" && $this.getValue($this.getIndex('store')) !== null)
+            if ($this.iFetched)
+                set($this)
+            else
+                setTimeout(function () {set($this)}, 1)
+    },
+    _setValueOnCreate($this) {
+        if (!_.isEqual($this.model, $this.getValue($this.getIndex('get'))))
+            $this.model = $this.getValue($this.getIndex('get'));
+    },
     computed() {
         return {
             iRecord() {
@@ -24,6 +36,9 @@ const LoadData = {
             },
             iTimeout() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iTimeout']
+            },
+            iFetched() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iFetched']
             },
             _value() {
                 return this.model || this.value || null;
@@ -105,7 +120,10 @@ const LoadData = {
                 handler: function (newValue, oldValue) {
                     if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined" && !_.isEqual(newValue, oldValue)) {
                         var $this = this;
-                        $this.model = $this.getValue($this.getIndex('get'));
+                        if (this.iFetched)
+                            LoadData._setValueOnCreate($this)
+                        else
+                            setTimeout(function () {LoadData._setValueOnCreate($this)}, 1)
                     }
                 },
                 deep: true
