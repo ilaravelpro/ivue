@@ -50,7 +50,7 @@
                 default: 'single'
             },
             items: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             firstItems: {

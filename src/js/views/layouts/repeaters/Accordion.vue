@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <div v-if="getErrorStatus(getIndex('error') + '.' . index)" :class="`alert alert-${getErrorStatus(getIndex('error') + '.' . index) === 'valid' ? 'success' : 'danger'}`" role="alert">{{ getError(getIndex('error') + '.' . index+ '.text') }}</div>
                         <template v-if="typeof(body) === 'function'" >
-                            <template v-for="item in body(row, index)">
+                            <template v-for="item in body(row, index, getIndex)">
                                 <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>

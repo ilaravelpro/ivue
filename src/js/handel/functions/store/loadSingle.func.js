@@ -55,7 +55,7 @@ const LoadSingleData = {
             getOption(key, $default = null) {
                 var $ioption = iPath.get(this.iOptionAll, this.getIndex('option'));
                 $ioption = iPath.get($ioption, key);
-                var $option = iPath.get(this.options, key);
+                var $option = iPath.get(typeof(this.options) === 'function' ? this.options(this.getValue, this.updateValue) : this.options, key);
                 $option = $ioption || $option;
                 return $option || $default;
             },

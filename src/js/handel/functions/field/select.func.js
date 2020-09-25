@@ -17,9 +17,12 @@ const SelectField = {
                 return this._value && typeof ($select) !== 'undefined' && $select.text ? $select.text : this.placeholder;
             }
         },
+        getItems() {
+            return typeof(this.items) === 'function' ? this.items(this.getValue, this.updateValue) : this.items;
+        },
         itemsByFiltered() {
             var $this = this;
-            var $items = this.releaseItems([...this.firstItems, ...(this.url ? this.serverItems: this.items)]);
+            var $items = this.releaseItems([...this.firstItems, ...(this.url ? this.serverItems: this.getItems)]);
             $items = $items.filter(item => {
                 var $diff = true;
                 var diff = this.getIndex('diff') !== this.getIndex('store') ? this.getValue(this.getIndex('diff')) : $this.diff;
@@ -169,21 +172,22 @@ const SelectField = {
                 return item.text;
         },
         checkItems() {
-            var $this = this;
-            var container = $(this.$refs.select);
-            container.find("ul li").removeClass("selected");
-            if ($.isArray(this._value) && this.multiple) {
-                setTimeout(function () {
-                    $.each($this._value, function (i, v) {
-                        if (container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").length)
-                            container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").addClass("selected");
-                    })
-                }, 500)
-            } else if (this._value && typeof (this._value) !== 'object') {
-                setTimeout(function () {
-                    container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
-                }, 500)
-            }
+            iProcessing.init(this.fieldIndex, this, function ($this) {
+                var container = $($this.$refs.select);
+                container.find("ul li").removeClass("selected");
+                if ($.isArray($this._value) && $this.multiple) {
+                    setTimeout(function () {
+                        $.each($this._value, function (i, v) {
+                            if (container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").length)
+                                container.find("ul li[data-value='" + ($this.type === 'single' && !$.isArray(v)? v : v.value) + "']").addClass("selected");
+                        })
+                    }, 500)
+                } else if ($this._value && typeof ($this._value) !== 'object') {
+                    setTimeout(function () {
+                        container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
+                    }, 500)
+                }
+            }, 1000)
         },
         moreLoad() {
             var $this = this;

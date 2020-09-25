@@ -1,6 +1,5 @@
 const BaseRepeater = {
     computed: {
-
     },
     methods: {
         addRow: function() {

@@ -14,9 +14,9 @@
             <slot slot="append" name="append"/>
             <template slot="input-group">
                 <template v-for="(item, index) in model">
-                    <div class="d-flex flex-wrap mb-0">
+                    <div class="d-flex flex-wrap my-2">
                         <template v-if="typeof(body) === 'function'">
-                            <template v-for="comp in body(item, index)">
+                            <template v-for="comp in body(item, index, getIndex)">
                                 <component :is="comp.component" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>
@@ -90,13 +90,13 @@
                 type: [Object, Array],
                 default: () => []
             },
-            items: {
-                type: Array,
-                default: () => []
-            },
             removeClass: {
                 type: [String, Object],
                 default: 'col-md-4 my-auto'
+            },
+            type: {
+                type: String,
+                default: 'multi'
             },
         },
         data() {

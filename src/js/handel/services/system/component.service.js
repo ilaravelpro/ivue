@@ -33,3 +33,4 @@ Vue.component('i-phone', require('../../../views/layouts/fields/Phone').default)
 Vue.component('i-switch', require('../../../views/layouts/fields/Switch').default);
 Vue.component('i-checkbox', require('../../../views/layouts/fields/Checkbox').default);
 Vue.component('i-label-checkbox', require('../../../views/layouts/fields/LabelCheckbox').default);
+Vue.component('i-table', require('../../../views/layouts/fields/Table').default);
