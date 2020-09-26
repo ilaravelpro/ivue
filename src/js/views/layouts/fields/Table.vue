@@ -11,7 +11,7 @@
             <div v-if="getOption('fields.append')" class="px-0" v-for="item in getOption('fields.append')" :class="item.style" v-text="item.title"></div>
         </div>
         <div class="d-flex" v-for="(row, index) in getRows">
-            <div class="col-1">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') : String(getOption('prefix.row')).toUpperCase() }}</div>
+            <div class="col-12 col-md-1 my-auto">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') : String(getOption('prefix.row')).toUpperCase() }}</div>
             <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" class="p-0 pr-4" :class="item.style">
                 <component :is="item.component" v-bind="item.attrs" :field-index="fieldIndex + '.' + getOption('prefix.row')+ '.' + index + '.' + item.name" :store-namespace="storeNamespace"></component>
             </div>
