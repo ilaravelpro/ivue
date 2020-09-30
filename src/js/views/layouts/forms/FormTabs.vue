@@ -11,12 +11,14 @@
         <div class="tab-content" :class="_style_contents">
             <div v-for="(tab, index) in  Object.values(tabs)" class="tab-pane fade show p-2" :class="index === 0 ? 'active ' :''"
                  :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
+                <button v-if="isBtnView(tab)" class="btn btn-warning" @click="setView(tab)">Load Tab</button>
                 <slot v-if="$scopedSlots[`tab.${tab.name}`]" :name="`tab.${tab.name}`" v-bind:tab="tab" v-bind:namespace="storeNamespace"></slot>
                 <slot v-else-if="$scopedSlots[`tab_body`]" name="tab_body" v-bind:tab="tab" v-bind:namespace="storeNamespace"></slot>
-                <template v-else-if="tab.items" v-for="item in tab.items">
+                <template v-else-if="tab.items" v-for="item in tab.items" v-if="isView(tab)">
                     <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace"/>
                 </template>
             </div>
+
         </div>
     </div>
 </template>
@@ -35,7 +37,13 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
-            }
+            },
+            btnView: Boolean
+        },
+        data() {
+          return {
+              viewComp: {}
+          }
         },
         computed: {
             _style() {
@@ -56,7 +64,7 @@
             },
             _orientation() {
                 return this.vertical ? 'vertical' : 'horizontal';
-            }
+            },
         },
         methods: {
             getStyle(name) {
@@ -66,6 +74,16 @@
             },
             _id(name) {
                 return this.id + '_' + name;
+            },
+            isBtnView(tab) {
+                return this.btnView || tab.btnView;
+            },
+            isView(tab) {
+                return this.isBtnView(tab) ? this.viewComp[tab.name] : true;
+            },
+            setView(tab) {
+                this.viewComp[tab.name] = !this.viewComp[tab.name];
+                this.$forceUpdate()
             },
         }
     }

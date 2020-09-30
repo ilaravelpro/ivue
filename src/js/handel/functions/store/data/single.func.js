@@ -1,6 +1,7 @@
 import StoreDataSingleState from "./single/state.func";
 import iData from "../../../libs/iData.lib";
 import Notify from "../../../plugins/notify.plugin";
+import vueDeepSet from "vue-set-value";
 
 const StoreDataSingle = {
     handelErrors(errors = null, status = true, system = null) {
@@ -83,14 +84,14 @@ const StoreDataSingle = {
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
                     ApiService.post(url, params, true).then(response => {
-                        commit('setState', {key: 'errors.system', value: {}})
+                        commit('setStateMain', {key: 'errors.system', value: {}})
                         if (redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
                             commit('setState', {key: 'item', value: response.handel.data})
                             appRouter.push({name: state.resource + '.edit', params: {id: response.handel.data.id}})
                         }
                         resolve(response)
                     }).catch(error => {
-                        commit('setState', {key: 'errors.system', value: error.handel})
+                        commit('setStateMain', {key: 'errors.system', value: error.handel})
                         reject(error)
                     }).finally(() => {
                         commit('setLoading', false)
@@ -112,8 +113,8 @@ const StoreDataSingle = {
             return new Promise((resolve, reject) => {
                 ApiService.get(url, params)
                     .then(response => {
-                        commit('setState', {key: resource, value: response.handel.data})
-                        if (parent && response.handel.parent) commit('setState', {
+                        commit('setStateMain', {key: resource, value: response.handel.data})
+                        if (parent && response.handel.parent) commit('setStateMain', {
                             key: 'parent',
                             value: response.handel.parent
                         })
@@ -176,6 +177,16 @@ const StoreDataSingle = {
     },
     mutations: {
         setState(state, {key, value}) {
+            iProcessing.init(key, [state, key, value], function (context, timeout) {
+                if (typeof(timeout.value) === "undefined" || !_.isEqual(timeout.value, value)){
+                    console.log(key)
+                    iPath.set(...context)
+                    return value;
+                }
+            }, 3000)
+            return true
+        },
+        setStateMain(state, {key, value}) {
             return iPath.set(state, key, value)
         },
         addState(state, {key, value}) {

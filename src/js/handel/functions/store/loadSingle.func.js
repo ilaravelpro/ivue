@@ -40,6 +40,9 @@ const LoadSingleData = {
             iFetched() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iFetched']
             },
+            iLoading() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iLoading']
+            },
             _value() {
                 return this.model || this.value || null;
             },
