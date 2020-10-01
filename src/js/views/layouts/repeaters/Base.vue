@@ -92,7 +92,7 @@
             },
             removeClass: {
                 type: [String, Object],
-                default: 'col-md-4 my-auto'
+                default: 'col-4 my-auto'
             },
             type: {
                 type: String,

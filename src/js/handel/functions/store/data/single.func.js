@@ -183,7 +183,7 @@ const StoreDataSingle = {
                     iPath.set(...context)
                     return value;
                 }
-            }, 3000)
+            }, 100)
             return true
         },
         setStateMain(state, {key, value}) {

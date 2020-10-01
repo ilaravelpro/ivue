@@ -1,28 +1,28 @@
 <template>
-    <div class="i-table  mb-2 overflow-x-auto">
+    <div class="i-table  mb-2 overflow-hidden">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
         <button class="btn btn-warning" @click="viewTable = !viewTable">Load Table</button>
-        <template v-if="viewTable">
+        <div class="overflow-x-auto w-fit-content w-md-100" v-if="viewTable">
             <component v-if="getSlots('columns')" :is="getSlots('columns')"
                        :store-namespace="storeNamespace"></component>
             <div v-else-if="columns" class="d-flex">
-                <div class="col-1"></div>
-                <div v-if="getOption('fields.prepend')" class="px-0" v-for="item in getOption('fields.prepend')"
+                <div class="col-2 col-lg-1"></div>
+                <div v-if="getOption('fields.prepend')" class="px-0 text-center" v-for="item in getOption('fields.prepend')"
                      :class="item.style" v-text="item.title"></div>
-                <div class="px-0" :class="getStyle('column')" v-for="column in getColumns">{{ column ? column + ' '+
+                <div class="px-0 text-center" :class="getStyle('column')" v-for="column in getColumns">{{ column ? column + ' '+
                     String(getOption('unit.column')).toUpperCase() : '' }}
                 </div>
-                <div v-if="getOption('fields.append')" class="px-0" v-for="item in getOption('fields.append')"
+                <div v-if="getOption('fields.append')" class="px-0 text-center" v-for="item in getOption('fields.append')"
                      :class="item.style" v-text="item.title"></div>
             </div>
             <div class="d-flex" v-for="(row, index) in getRows">
-                <div class="col-12 col-md-1 my-auto">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
+                <div class="col-2 col-lg-1 my-auto">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
                     String(getOption('prefix.row')).toUpperCase() }}
                 </div>
                 <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" class="p-0 pr-4"
                      :class="item.style">
                     <component :is="item.component" v-bind="item.attrs"
-                               :field-index="fieldIndex + '.' + getOption('prefix.row')+ index + '.' + item.name"
+                               :field-index="fieldIndex + '.' + (getOption('prefix.column') ? getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + getOption('prefix.row')+ index)"
                                :store-namespace="storeNamespace"></component>
                 </div>
                 <div class="pr-4 mb-2" :class="getStyle('column')" v-for="(column, key) in getColumns">
@@ -38,11 +38,11 @@
                 <div v-if="getOption('fields.append')" v-for="item in getOption('fields.append')" class="p-0 pr-4"
                      :class="item.style">
                     <component :is="item.component" v-bind="item.attrs"
-                               :field-index="fieldIndex + '.' + getOption('prefix.row') + index + '.' + item.name"
+                               :field-index="fieldIndex + '.' + (getOption('prefix.column') ? getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + getOption('prefix.row')+ index)"
                                :store-namespace="storeNamespace"></component>
                 </div>
             </div>
-        </template>
+        </div>
     </div>
 </template>
 

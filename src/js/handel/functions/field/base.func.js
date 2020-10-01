@@ -16,7 +16,7 @@ const BaseField = {
         },
         styleForGroup() {
             var $style = this.getStyle('group') ? this.getStyle('group') : 'my-auto';
-            $style = this.label ? $style : 'p-0 my-2';
+            $style += this.label ? '' : ' p-0 my-2';
             return $style;
         },
         statusError() {
