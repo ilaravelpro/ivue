@@ -22,12 +22,12 @@ const actions = {
     create(context, [type, data]) {
         return iAuthService.create(type, data);
     },
-    auth(context, [pin, credentials]) {
-        return new Promise(resolve => {
-            iAuthService.verify('auth', pin, credentials)
-                .then((configs, data, response) => {
-                    context.commit('setUser', response);
-                    resolve(configs, data, response);
+    auth(context, pin) {
+        return new Promise((resolve, reject) => {
+            iAuthService.verify('auth', pin, {})
+                .then(response => {
+                    context.commit('setUser', response.handel);
+                    resolve(response);
                 })
                 .catch(response => {
                     context.commit('setError', response.handel.errors);

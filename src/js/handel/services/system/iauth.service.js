@@ -8,11 +8,11 @@ const prefix = 'iauth/session/';
 const iAuthService = {
     sessions: {},
     create(session, data) {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             return ApiService.post(prefix + session, data, true)
                 .then(response => {
                     iPath.set(this.sessions, session + ".configs", iPath.get(response, 'handel.additional'))
-                    resolve(iPath.get(response, 'handel.additional'), iPath.get(response, 'handel.data'), response);
+                    resolve(response);
                 })
                 .catch(response => {
                     reject(response);
@@ -20,10 +20,10 @@ const iAuthService = {
         });
     },
     verify(session, pin, data) {
-        return new Promise(resolve => {
-            return ApiService.post(prefix + session + "/" + pin, data, true)
+        return new Promise((resolve, reject) => {
+            return ApiService.post(prefix + session + "/" + iPath.get(this.sessions, session + ".configs.session_key") + "/" + pin , data, true)
                 .then(response => {
-                    resolve(iPath.get(response, 'handel.additional'), iPath.get(response, 'handel.data'), response);
+                    resolve(response);
                 })
                 .catch(response => {
                     reject(response);
