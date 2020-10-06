@@ -130,6 +130,7 @@ const SelectField = {
                 if (this.selecting) this.setSelect(null, this.selecting)
                 $(this.$refs.select).find('ul').removeClass('d-block');
             }
+            if (container.find("ul li.selected").length)
             container.find("ul li.selected")[0].scrollIntoView({
                 behavior: "smooth",
             });

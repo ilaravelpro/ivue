@@ -8,7 +8,7 @@
         :css="css"
     >
         <template slot="body" ref="select">
-            <i-base-select v-bind="$props"></i-base-select>
+            <i-base-select v-bind="$props"  @change="$emit('change', $event )"></i-base-select>
         </template>
     </i-base>
 </template>

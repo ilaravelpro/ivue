@@ -44,8 +44,14 @@
             diff: [String, Number, Object, Array],
             release: [Function, Object],
             view: Function,
-            focusin: Function,
-            focusout: Function,
+            focusin: {
+                type: Function,
+                default: () => []
+            },
+            focusout: {
+                type: Function,
+                default: () => []
+            },
             url: String,
             type: {
                 type: String,

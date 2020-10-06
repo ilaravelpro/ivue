@@ -10,7 +10,7 @@
         v-on:update:focusout="focusout = $event"
     >
         <template slot="body" ref="autocomplete">
-            <i-base-autocomplete v-bind="$props" :focusin="focusin" :focusout="focusout"></i-base-autocomplete>
+            <i-base-autocomplete v-bind="$props"  @change="$emit('change', $event )" :focusin="focusin" :focusout="focusout"></i-base-autocomplete>
         </template>
     </i-base>
 </template>

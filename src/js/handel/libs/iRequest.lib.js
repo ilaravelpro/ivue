@@ -3,7 +3,7 @@ import Notify from "../plugins/notify.plugin";
 const iRequest = {
     then(response, notify) {
         var content = {};
-        content.message = 'The operation was successful.';
+        content.message = response.data.message_text || 'The operation was successful.';
         let data = response.data.data;
         let parent = {};
         let additional = response.data.additional ? response.data.additional : {};
