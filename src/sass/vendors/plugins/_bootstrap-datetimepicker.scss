@@ -39,28 +39,29 @@
             &.prev,
             &.switch,
             &.next {
-                color: $black-75;
+                color: $i-material-color-black-primary;
                 font-weight: 500;
                 display: table-cell;
 
                 .glyphicon {
-                    color: $dark-50;
+                    color: $i-material-color-black-primary;
                 }
 
                 &:hover {
-                    background: $gray-100 !important;
+                    background: $i-material-color-grey-100 !important;
                 }
             }
 
             &.dow {
                 font-weight: 500;
-                color: $dark-75;
+                color: $i-material-color-black-primary;
             }
 
             &.next {
                 > span {
                     &:before {
-                        @include ki(get($ki-types, arrowNext));
+                        font-family: 'Font Awesome 5 Pro';
+                        content: '\f054';
                         font-size: 0.7rem;
                     }
                 }
@@ -69,7 +70,8 @@
             &.prev {
                 >span {
                     &:before {
-                        @include ki(get($ki-types, arrowBack));
+                        font-family: 'Font Awesome 5 Pro';
+                        content: '\f053';
                         font-size: 0.7rem;
                     }
                 }
@@ -80,23 +82,23 @@
     tbody {
         tr>td {
             span {
-                color: $dark-50;
+                color: $i-material-color-black-primary;
                 font-weight: 400;
             }
 
             &.day {
-                color: $dark-50;
+                color: $i-material-color-black-primary;
 
                 &:hover {
-                    background: $gray-100;
+                    background: $i-material-color-grey-100;
                 }
 
                 &.old {
-                    color: $dark-50;
+                    color: $i-material-color-black-primary;
                 }
 
                 &.new {
-                    color: $dark-75;
+                    color: $i-material-color-black-divider;
                 }
 
                 &.selected,
@@ -124,7 +126,7 @@
                 }
 
                 &.range {
-                    background: $gray-100;
+                    background: $i-material-color-grey-100;
                 }
             }
 
@@ -132,11 +134,11 @@
             span.hour,
             span.minute,
             span.month {
-                color: $dark-50;
+                color: $i-material-color-black-primary;
 
                 &.focused,
                 &:hover {
-                    background: $gray-100;
+                    background: $i-material-color-grey-100;
                 }
 
                 &.active:hover,
@@ -157,14 +159,14 @@
                 font-weight: 500;
 
                 &:hover {
-                    background-color: $gray-100;
+                    background-color: $i-material-color-grey-100;
                 }
             }
         }
     }
 
     &.datetimepicker-inline {
-        border: 1px solid $gray-100;
+        border: 1px solid $i-material-color-grey-100;
     }
 }
 
