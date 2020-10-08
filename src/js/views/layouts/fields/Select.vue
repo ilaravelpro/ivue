@@ -62,7 +62,7 @@
                 default: () => []
             },
             query: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => {}
             },
             css: {

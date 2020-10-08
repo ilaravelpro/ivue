@@ -199,12 +199,13 @@ const SelectField = {
                     if (!$this.useModel){
                         $this.serverQuery.q = $this.model
                     }
-                    ApiService.get($this.url, {...$this.serverQuery, ...$this.query}).then(response => {
+
+                    ApiService.get($this.url, {...$this.serverQuery, ...(typeof($this.query) === 'function' ? $this.query($this) : $this.query)}).then(response => {
                         $this.serverItems.push(...response.handel.data);
                         $this.serverQuery.pages = response.handel.meta.last_page;
                         $this.loading = false;
                         if (!$this.useModel && Object.keys(response.handel.data).length === 1){
-                            $this.searchText = typeof($this.release) === 'object' ? response.handel.data[0][$this.release['text']]: response.handel.data[0].name || response.handel.data[0].title;
+                            $this.searchText = typeof($this.release) === 'object' ? response.handel.data[0][$this.release['text']]: response.handel.data[0].name || response.handel.data[0].title || response.handel.data[0].text;
                         }
                         setTimeout(function () {
                             $this.useModel = true;
