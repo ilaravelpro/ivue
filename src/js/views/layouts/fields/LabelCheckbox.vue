@@ -29,7 +29,13 @@
             slots: Object,
             options: {
                 type: [Object, Array, Function],
-                default: () => []
+                default: () => {
+                    return {
+                        field: {
+                            control_field: false
+                        }
+                    }
+                }
             },
             css: {
                 type: [Object, Array],

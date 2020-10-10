@@ -70,7 +70,7 @@ const StoreDataSingle = {
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {
             var $commit = commit('setState', {key: "item." + key, value: value})
-            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch)
+            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch, commit)
             return $commit;
         },
         delByKey({commit, state, dispatch}, key) {
