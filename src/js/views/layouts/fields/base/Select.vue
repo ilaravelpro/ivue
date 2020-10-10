@@ -41,7 +41,7 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             search: Boolean,
             multiple: Boolean,
             actions: Boolean,
@@ -49,7 +49,7 @@
             release: [Function, Object],
             view: Function,
             icon: Object,
-            url: String,
+            url: [String, Function],
             type: {
                 type: String,
                 default: 'single'
@@ -63,7 +63,7 @@
                 default: () => []
             },
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             query: {

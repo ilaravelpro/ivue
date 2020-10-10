@@ -36,10 +36,10 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             icon: Object,
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

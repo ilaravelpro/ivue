@@ -2,7 +2,7 @@
     <label
         class="i-checkbox mb-0" :class="styleForLabel" data-toggle="tooltip" data-placement="top" :title="label">
         <i-base-checkbox v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
-        <span class="checkmark fa color-primary"></span>
+        <span class="checkmark fa" :class="styleForCheckmark"></span>
     </label>
 </template>
 
@@ -25,10 +25,10 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             slots: Object,
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {
@@ -40,6 +40,9 @@
             ...GlobalField.computed(),
             styleForLabel() {
                 return this.getStyle('label') ? this.getStyle('label') : '';
+            },
+            styleForCheckmark() {
+                return this.styleForField + " " + this.getOption('color', 'color-primary');
             },
         },
         methods: {

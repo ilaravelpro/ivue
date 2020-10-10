@@ -23,9 +23,9 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

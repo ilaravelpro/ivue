@@ -38,7 +38,7 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             icon: Object,
             slots: Object,
             resize: Boolean,
@@ -47,7 +47,7 @@
                 default: 'text'
             },
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

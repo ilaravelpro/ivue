@@ -81,6 +81,7 @@ const StoreDataSingle = {
             return new Promise((resolve, reject) => {
                 if (getters.iErrorsHandel.status) {
                     url = url || state.url || state.resource;
+                    url = url.replace('{id}', id)
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
                     ApiService.post(url, params, true).then(response => {
@@ -105,6 +106,7 @@ const StoreDataSingle = {
         },
         fetchData({state, commit, dispatch}, [id, url]) {
             url = url || state.url || state.resource;
+            url = url.replace('{id}', id)
             if (id) url += '/' + id;
             return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true, func: 'afterFetch'})
         },
@@ -118,7 +120,7 @@ const StoreDataSingle = {
                             key: 'parent',
                             value: response.handel.parent
                         })
-                        if (state.functions[func]) state.functions[func](response.handel, state, dispatch)
+                        if (state.functions[func]) state.functions[func](response.handel, state, dispatch, commit)
                         if (resource === 'item')
                             setTimeout(function () {
                                 state.fetched = true
@@ -179,7 +181,6 @@ const StoreDataSingle = {
         setState(state, {key, value}) {
             iProcessing.init(key, [state, key, value], function (context, timeout) {
                 if (typeof(timeout.value) === "undefined" || !_.isEqual(timeout.value, value)){
-                    console.log(key)
                     iPath.set(...context)
                     return value;
                 }

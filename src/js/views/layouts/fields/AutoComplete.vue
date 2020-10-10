@@ -38,11 +38,11 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             diff: [String, Number, Object, Array],
             release: [Function, Object],
             view: Function,
-            url: String,
+            url: [String, Function],
             type: {
                 type: String,
                 default: 'single'
@@ -56,7 +56,7 @@
                 default: () => []
             },
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

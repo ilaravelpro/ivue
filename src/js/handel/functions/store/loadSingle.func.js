@@ -16,6 +16,12 @@ const LoadSingleData = {
             iRecord() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iRecord']
             },
+            iParent() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iParent']
+            },
+            iData() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iData']
+            },
             iRecordValue() {
                 return iPath.get(this.$store.getters[this.storeNamespace + '/' + 'iRecord'], this.getIndex('get'))
             },
@@ -46,21 +52,35 @@ const LoadSingleData = {
             _value() {
                 return this.model || this.value || null;
             },
+            getFieldIndex() {
+                return typeof(this.fieldIndex) === 'function' ? this.fieldIndex(this) : this.fieldIndex;
+            },
+            getContext() {
+                return this;
+            },
+            getDesc() {
+                var desc = this.findDesc(this.getIndex('desc'))
+                return this.desc || desc;
+            },
+            getMask() {
+                var mask = this.findMask(this.getIndex('mask'));
+                return this.mask || mask;
+            },
         }
     },
     methods() {
         return {
             getIndex(key = 'store') {
-                if (typeof (this.fieldIndex) === 'object')
-                    return iPath.get(this.fieldIndex, key) || iPath.get(this.fieldIndex, 'store');
-                return this.fieldIndex;
+                if (typeof (this.getFieldIndex) === 'object')
+                    return iPath.get(this.getFieldIndex, key) || iPath.get(this.getFieldIndex, 'store');
+                return this.getFieldIndex;
             },
             getOption(key, $default = null) {
                 var $ioption = iPath.get(this.iOptionAll, this.getIndex('option'));
                 $ioption = iPath.get($ioption, key);
-                var $option = iPath.get(typeof(this.options) === 'function' ? this.options(this.getValue, this.updateValue) : this.options, key);
+                var $option = iPath.get(typeof(this.options) === 'function' ? this.options(this) : this.options, key);
                 $option = $ioption || $option;
-                return $option || $default;
+                return $option === false ? false : ($option || $default);
             },
             getStyle(key, $default = null) {
                 var $istyles = iPath.get(this.iStyleAll, this.getIndex('style')) || iPath.get(this.iStyleAll, 'global');
@@ -70,6 +90,12 @@ const LoadSingleData = {
             },
             getValue(key) {
                 return iPath.get(this.iRecord, key)
+            },
+            getParentValue(key) {
+                return iPath.get(this.iParent, key)
+            },
+            getDataValue(key) {
+                return iPath.get(this.iData, key)
             },
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
@@ -96,25 +122,18 @@ const LoadSingleData = {
             findMask(name) {
                 return iPath.get(this.iMaskAll, name)
             },
-            getMask() {
-                var mask = this.findMask(this.getIndex('mask'));
-                return this.mask || mask;
-            },
             setMask(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/setMask', [key, value]);
             },
-            getDesc(name) {
+            findDesc(name) {
                 return iPath.get(this.iDescAll, name)
-            },
-            findDesc() {
-                return this.getDesc(this.getIndex('desc'))
             },
             setDesc(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/setDesc', [key, value]);
             },
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
-            }
+            },
         }
     },
     watch() {

@@ -3,7 +3,8 @@ import objectPath from "object-path";
 
 const iPath = {
     get(target, path, none = null) {
-        return objectPath.get(target, path) || none;
+        var $value = objectPath.get(target, path);
+        return $value === false ? false: ($value || none);
     },
     set(target, path, value, options) {
         var paths = path.split('.');

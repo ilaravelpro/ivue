@@ -47,7 +47,7 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             icon: Object,
             multiple: Boolean,
             btn: {
@@ -59,7 +59,7 @@
                 default: 'Upload'
             },
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

@@ -25,7 +25,7 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             icon: Object,
             focusin: {
                 type: Function,
@@ -40,7 +40,7 @@
                 default: 'text'
             },
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {

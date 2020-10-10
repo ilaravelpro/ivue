@@ -11,7 +11,7 @@
             <slot v-if="$scopedSlots['input-group']" name="input-group"></slot>
             <div v-else class="input-group">
                 <template class="input-group-prepend">
-                    <component v-if="getSlots('prepend')" :is="getSlots('prepend')"></component>
+                    <component v-if="getSlots('prepend')" :is="getSlots('prepend')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="prepend"></slot>
                 </template>
                 <span v-if="_icon && _icon.prepend" @click="_icon.prepend.action ? _icon.prepend.action() : ()=> []" slot="prepend" ref="icon_prepend" class="input-group-text bg-white border-right-0">
@@ -23,11 +23,11 @@
                     <i :class="_icon.append.class" aria-hidden="true"></i>
                 </span>
                 <template class="input-group-append">
-                    <component v-if="getSlots('append')" :is="getSlots('append')"></component>
+                    <component v-if="getSlots('append')" :is="getSlots('append')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="append"></slot>
                 </template>
             </div>
-            <span v-if="desc && desc.length > 0" class="form-text text-muted">{{ desc }}</span>
+            <span v-if="getDesc && getDesc.length > 0" class="form-text text-muted">{{ getDesc }}</span>
         </div>
     </div>
 </template>
@@ -48,11 +48,11 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
-            fieldIndex: [String, Object],
+            fieldIndex: [String, Object, Function],
             icon: Object,
             slots: Object,
             options: {
-                type: [Object, Array],
+                type: [Object, Array, Function],
                 default: () => []
             },
             css: {
