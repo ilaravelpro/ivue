@@ -40,6 +40,9 @@ const SelectField = {
         },
         getUrl() {
             return typeof (this.url) === 'function' ? this.url(this) : this.url;
+        },
+        getQuery() {
+            return typeof (this.query) === 'function' ? this.query(this) : this.query;
         }
     },
     methods: {
@@ -204,7 +207,7 @@ const SelectField = {
                             $this.serverQuery.q = $this.model
                         }
 
-                        ApiService.get($this.getUrl, {...$this.serverQuery, ...(typeof ($this.query) === 'function' ? $this.query($this) : $this.query)}).then(response => {
+                        ApiService.get($this.getUrl, {...$this.serverQuery, ...$this.getQuery}).then(response => {
                             $this.serverItems.push(...response.handel.data);
                             $this.serverQuery.pages = response.handel.meta.last_page;
                             $this.loading = false;
@@ -222,6 +225,13 @@ const SelectField = {
     },
     watch: {
         getUrl: {
+            handler: function (newValue, oldValue) {
+                this.getUrl
+                    this.moreLoad()
+            },
+            deep: true
+        },
+        getQuery: {
             handler: function (newValue, oldValue) {
                 this.getUrl
                     this.moreLoad()
