@@ -72,7 +72,6 @@ const LoadSingleData = {
         return {
             getIndex(key = 'store') {
                 if (typeof (this.getFieldIndex) === 'object'){
-                    console.log(iPath.get(this.getFieldIndex, key))
                     return iPath.get(this.getFieldIndex, key) || iPath.get(this.getFieldIndex, 'store');
                 }
                 return this.getFieldIndex;
