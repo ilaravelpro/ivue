@@ -20,7 +20,7 @@ const OpenLayers = {
         iPath.set(this.maps, target + '.callbacks', callbacks)
         iPath.set(this.maps, target + '.params', params)
         this.initMap(target);
-        if (iPath.get(inits, target + '.initLayerSwitcher.status') !== false) this.initLayerSwitcher(target)
+        if (iPath.get(inits, target + '.initClick.status') !== false) this.initClick(target)
         if (iPath.get(inits, target + '.initMoveEnd.status') !== false) this.initMoveEnd(target)
         if (iPath.get(inits, target + '.initLayerSwitcher.status') !== false) this.initLayerSwitcher(target)
         if (iPath.get($this.maps, target + '.callbacks.onEnd')) iPath.get($this.maps, target + '.callbacks.onEnd')($this, target, inits, callbacks, params)
