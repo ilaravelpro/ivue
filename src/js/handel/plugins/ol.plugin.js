@@ -1,5 +1,6 @@
 import "ol/ol.css";
 import "../../../sass/skins/ol/init.scss";
+import "ol-layerswitcher/src/ol-layerswitcher.css";
 
 import Map from "ol/Map";
 import View from "ol/View";
@@ -29,9 +30,7 @@ const OpenLayers = {
         OpenLayersLayers.init(target, iPath.get(this.maps, target + '.callbacks.onLayers'))
         iPath.set(this.maps, target + '.map', new Map({
             target: target,
-            layers: [
-                iPath.get(OpenLayersLayers.layers, target + '.main', [])
-            ],
+            layers: arrayColumn(Object.values(iPath.get(OpenLayersLayers.layers, target, {})), 'group'),
             view: new View(iPath.get(this.maps, target + '.params.view', {
                 center: fromLonLat(this.params.center),
                 zoom: 5,

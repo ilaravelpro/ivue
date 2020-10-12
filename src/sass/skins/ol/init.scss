@@ -1,1 +1,7 @@
 @import "popup";
+.layer-switcher {
+    position: initial !important;
+    .layer-switcher ul {
+        padding-left: 0.5em !important;
+    }
+}

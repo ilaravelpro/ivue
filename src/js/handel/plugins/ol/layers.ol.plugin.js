@@ -10,10 +10,10 @@ const OpenLayersLayers = {
     layers: {},
     fetchLayerOSM(target) {
         var $this = this;
-        iPath.set(this.layers, target + '.osm', new TileLayer({
+        iPath.set(this.layers, target + '.base.osm', new TileLayer({
             title: 'OSM',
             type: 'base',
-            visible: iPath.get(OpenLayers.maps, target + '.params.osm.status', true),
+            visible: iPath.get(OpenLayers.maps, target + '.params.layers.base.osm.status', true),
             source: new OSM({
                 attributions: $this.attributions(target),
             })
@@ -25,9 +25,9 @@ const OpenLayersLayers = {
             $layers = callback(this, target, this.attributions(target))
         else{
             this.fetchLayerOSM(target);
-            $layers.push(iPath.get(this.layers, target + '.osm'))
+            $layers.push(iPath.get(this.layers, target + '.base.osm'))
         }
-        iPath.set(this.layers, target + '.main', new GroupLayer({
+        iPath.set(this.layers, target + '.base.group', new GroupLayer({
             'title': 'Base maps',
             layers: $layers
         }));
