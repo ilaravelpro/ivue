@@ -6,7 +6,9 @@ $axios.setAuthorization(`Bearer ${TokenService.getToken()}`);
 
 const ApiService = {
     ...$axios,
+    token: null,
     setBearerToken(token) {
+        $axios.setAuthorization(`Bearer ${token}`);
         $axios.setAuthorization(`Bearer ${token}`);
     }
 };

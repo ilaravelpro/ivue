@@ -12,6 +12,7 @@ window.purify = o => JSON.parse(JSON.stringify(o))
 Vue.prototype.$eventHub = new Vue();
 
 import 'bootstrap-notify';
+
 import { abilitiesPlugin } from '@casl/vue'
 import ability from './handel/config/ability'
 /*Vue.use(abilitiesPlugin, ability)
@@ -22,4 +23,3 @@ moment.updateLocale(window.app_locale, {
         dow: 1
     }
 })
-

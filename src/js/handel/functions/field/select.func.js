@@ -226,15 +226,25 @@ const SelectField = {
     watch: {
         getUrl: {
             handler: function (newValue, oldValue) {
-                this.getUrl
+                if (this.getUrl) {
+                    this.serverItems = [];
+                    this.serverQuery.q = newValue;
+                    this.serverQuery.page = 0;
+                    this.serverQuery.pages = 1;
                     this.moreLoad()
+                }
             },
             deep: true
         },
         getQuery: {
             handler: function (newValue, oldValue) {
-                this.getUrl
+                if (this.getUrl) {
+                    this.serverItems = [];
+                    this.serverQuery.q = newValue;
+                    this.serverQuery.page = 0;
+                    this.serverQuery.pages = 1;
                     this.moreLoad()
+                }
             },
             deep: true
         },

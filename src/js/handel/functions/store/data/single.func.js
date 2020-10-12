@@ -69,8 +69,9 @@ const StoreDataSingle = {
     },
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {
+            var old = iPath.get(state, "item." + key)
             var $commit = commit('setState', {key: "item." + key, value: value})
-            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch, commit)
+            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch, commit, old)
             return $commit;
         },
         delByKey({commit, state, dispatch}, key) {

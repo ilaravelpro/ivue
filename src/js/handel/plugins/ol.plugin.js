@@ -1,3 +1,6 @@
+import "ol/ol.css";
+import "../../../sass/skins/ol/init.scss";
+
 import Map from "ol/Map";
 import View from "ol/View";
 import {fromLonLat, toLonLat} from "ol/proj";
