@@ -82,7 +82,7 @@ const StoreDataSingle = {
             return new Promise((resolve, reject) => {
                 if (getters.iErrorsHandel.status) {
                     url = url || state.url || state.resource;
-                    url = url.replace('{id}', id)
+                    url = url.replace('{id}', state.item.id)
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
                     ApiService.post(url, params, true).then(response => {

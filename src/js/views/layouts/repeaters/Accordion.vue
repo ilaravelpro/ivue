@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="accordion" :id="id">
-            <div v-for="(row, index) in getValue(getIndex('get'))" class="card" >
+            <div v-for="(row, index) in getValue(getIndex('get'))" class="card overflow-unset" >
                 <div class="card-header" :id="'heading_' + id + '_' +index">
                     <div class="card-title d-block collapsed" data-toggle="collapse" :data-target="'#collapse_' + id + '_' +index"
                          aria-expanded="false" :aria-controls="'collapse_' + id + '_' +index">

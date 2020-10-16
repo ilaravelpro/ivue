@@ -18,7 +18,7 @@ const SelectField = {
             }
         },
         getItems() {
-            return typeof (this.items) === 'function' ? this.items(this.getValue, this.updateValue) : this.items;
+            return typeof (this.items) === 'function' ? this.items(this) : this.items;
         },
         itemsByFiltered() {
             var $this = this;
@@ -226,9 +226,9 @@ const SelectField = {
     watch: {
         getUrl: {
             handler: function (newValue, oldValue) {
-                if (this.getUrl) {
+                if (this.getUrl && !_.isEqual(newValue, oldValue)) {
                     this.serverItems = [];
-                    this.serverQuery.q = newValue;
+                    this.serverQuery.q = '';
                     this.serverQuery.page = 0;
                     this.serverQuery.pages = 1;
                     this.moreLoad()
@@ -238,9 +238,9 @@ const SelectField = {
         },
         getQuery: {
             handler: function (newValue, oldValue) {
-                if (this.getUrl) {
+                if (this.getUrl && !_.isEqual(newValue, oldValue)) {
                     this.serverItems = [];
-                    this.serverQuery.q = newValue;
+                    this.serverQuery.q = '';
                     this.serverQuery.page = 0;
                     this.serverQuery.pages = 1;
                     this.moreLoad()

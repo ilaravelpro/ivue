@@ -3,10 +3,12 @@ import objectPath from "object-path";
 
 const iPath = {
     get(target, path, none = null) {
+        path = String(path)
         var $value = objectPath.get(target, path);
         return $value === false ? false: ($value || none);
     },
     set(target, path, value, options) {
+        path = String(path)
         var paths = path.split('.');
         var $dpath = [];
         $.each(paths, function ($i, $v) {
@@ -19,9 +21,11 @@ const iPath = {
         return vueDeepSet(...[target, path, value, options]);
     },
     append(target, path, value, options) {
+        path = String(path)
         return this.set(target, path + '.' + Object.keys(this.get(target, path)).length, value, options);
     },
     del(target, path) {
+        path = String(path)
         return objectPath.del(target, path);
     }
 };

@@ -95,8 +95,8 @@ const LoadSingleData = {
             getParentValue(key) {
                 return iPath.get(this.iParent, key)
             },
-            getDataValue(key) {
-                return iPath.get(this.iData, key)
+            getDataValue(key, none = null) {
+                return iPath.get(this.iData, key, none)
             },
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
