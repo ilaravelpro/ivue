@@ -85,6 +85,7 @@ const StoreDataSingle = {
                     url = url.replace('{id}', state.item.id)
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
                     if (state.item.id) url += '/' + state.item.id;
+                    if (state.functions['onChangeUrl']) url = state.functions['onChangeUrl'](url, state, dispatch, commit)
                     ApiService.post(url, params, true).then(response => {
                         commit('setStateMain', {key: 'errors.system', value: {}})
                         if (redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){

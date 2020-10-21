@@ -1,7 +1,7 @@
 <template>
     <div class="i-table  mb-2 overflow-hidden">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
-        <button class="btn btn-warning" @click="viewTable = !viewTable">Load Table</button>
+        <button class="btn btn-warning" v-if="!viewTable" @click="viewTable = !viewTable">Load Table</button>
         <div class="overflow-x-auto w-fit-content w-md-100" v-if="viewTable">
             <component v-if="getSlots('columns')" :is="getSlots('columns')"
                        :store-namespace="storeNamespace"></component>
