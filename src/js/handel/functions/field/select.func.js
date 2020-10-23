@@ -43,6 +43,9 @@ const SelectField = {
         },
         getQuery() {
             return typeof (this.query) === 'function' ? this.query(this) : this.query;
+        },
+        getUseFirst() {
+            return this._value ? false : this.useFirst
         }
     },
     methods: {
@@ -194,6 +197,12 @@ const SelectField = {
                         container.find("ul li[data-value='" + $this._value + "']").addClass("selected");
                     }, 500)
                 }
+                setTimeout(function () {
+                    if ($this.itemsByFiltered.length && !$this._value.length && !$this.useFirst) {
+                        $this.setSelect(null, 0)
+                        $this.useFirst = true;
+                    }
+                }, 1000)
             }, 1000)
         },
         moreLoad() {
