@@ -19,7 +19,7 @@ const StoreDataSingle = {
         });
         if (system && system.errors)
             render.push(...Object.values(system.errors).map((value, index) => {
-                return Object.values(system.errors).join(', ')
+                return Object.values(value).join(', ')
             }))
         return {errors: render, status: status};
     },
@@ -176,6 +176,7 @@ const StoreDataSingle = {
             return commit('delState', 'desc.' + desc)
         },
         resetState({commit}) {
+            iProcessing.timeouts = {}
             commit('resetState')
         }
     },
@@ -203,6 +204,28 @@ const StoreDataSingle = {
         },
         resetState(state) {
             state = Object.assign(state, StoreDataSingleState())
+            $.each({
+                status: true,
+                item: {},
+                parent: {},
+                data: {},
+                masks: {},
+                options: {
+                    excepts: [],
+                    typeForm: null,
+                },
+                desc: {},
+                styles: {},
+                errors: {
+                    user: {},
+                    system: {errors: {}},
+                },
+                loading: false,
+                timeout: 0,
+                fetched: false
+            }, function (key, value) {
+                iPath.set(state, key, value)
+            })
         }
     }
 };

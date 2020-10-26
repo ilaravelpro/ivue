@@ -3,7 +3,7 @@
         <div class="select-title cursor-pointer" @click="onShow">
             {{ getSelects }}
         </div>
-        <ul class="select-items" ref="items">
+        <ul class="select-items p-0" ref="items">
             <li v-if="search" class="select-search px-3">
                 <input ref="search" type="text" placeholder="Search..." class="form-control" @keyup="filtering($event)" v-model="searchText">
             </li>

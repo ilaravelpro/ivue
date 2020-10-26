@@ -156,7 +156,7 @@ const LoadSingleData = {
                     if (this.getIndex('update') &&
                         this.getOption('store.update', true) &&
                         typeof (newValue) !== 'undefined' &&
-                        newValue !== oldValue)
+                        (!this.iRecordValue || newValue !== oldValue))
                         this.updateValue(this.getIndex('update'), this.model);
 
                 },

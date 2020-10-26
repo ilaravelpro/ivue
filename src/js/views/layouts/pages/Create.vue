@@ -70,6 +70,7 @@
             }
         },
         created() {
+            this.$store.dispatch(this.storeNamespace + '/resetState')
             if (typeof(this.$route.params.id) !== 'undefined' && this.fetch !== false)
                 this.$store.dispatch(this.storeNamespace + '/fetchData', [this.$route.params.id, null])
         },

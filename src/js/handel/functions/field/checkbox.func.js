@@ -26,7 +26,7 @@ const CheckboxField = {
         checked: {
             handler: function (newValue) {
                 if (typeof (newValue) !== "undefined") {
-                    this.model = newValue ? 1 : null
+                    this.model = newValue ? true : false
                 }
             }
         }
