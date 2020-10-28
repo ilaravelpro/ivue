@@ -63,11 +63,11 @@ const SelectField = {
             })
         },
         onShow() {
-            if ($(this.$refs.select).find('ul').hasClass('d-block'))
-                $(this.$refs.select).find('ul').removeClass('d-block');
+            if ($(this.$refs.items).hasClass('d-block'))
+                $(this.$refs.items).removeClass('d-block');
             else {
                 $('.i-select').find('ul').removeClass('d-block');
-                $(this.$refs.select).find('ul').addClass('d-block');
+                $(this.$refs.items).addClass('d-block');
             }
         },
         onSelect(item, index) {
@@ -101,6 +101,7 @@ const SelectField = {
                     $elm.addClass("selected");
                     this.model = this.type === 'single' && typeof (item) === 'object' ? item.value : item;
                 }
+                this.onShow()
             }
             return item
         },

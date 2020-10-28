@@ -71,7 +71,9 @@ const StoreDataSingle = {
         updateByKey({commit, state, dispatch}, [key, value]) {
             var old = iPath.get(state, "item." + key)
             var $commit = commit('setState', {key: "item." + key, value: value})
-            if (typeof(state.functions['afterUpdateByKey']) === 'function') state.functions['afterUpdateByKey'](key, state, dispatch, commit, old)
+            if (typeof(state.functions['afterUpdateByKey']) === 'function') setTimeout(function () {
+                state.functions['afterUpdateByKey'](key, state, dispatch, commit, old)
+            }, 15)
             return $commit;
         },
         delByKey({commit, state, dispatch}, key) {
@@ -187,7 +189,7 @@ const StoreDataSingle = {
                     iPath.set(...context)
                     return value;
                 }
-            }, 100)
+            }, 10)
             return true
         },
         setStateMain(state, {key, value}) {

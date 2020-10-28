@@ -89,8 +89,9 @@ const LoadSingleData = {
                 var $style = iPath.get(this.css, key);
                 return $style || $istyles || $default;
             },
-            getValue(key) {
-                return iPath.get(this.iRecord, key)
+            getValue(key, $default) {
+                var $value = iPath.get(this.iRecord, key);
+                return typeof($value) !== "undefined" ? $value : $default
             },
             getParentValue(key) {
                 return iPath.get(this.iParent, key)

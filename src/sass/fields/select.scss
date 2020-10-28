@@ -1,6 +1,11 @@
 .i-select {
+    &:after {
+        content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+        width: 9px;
+        height: 26px;
+        float: right;
+    }
     .select-title {
-        background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center/8px 10px;
         .unselect {
             background-color: #f4030e;
             color: #ffffff;
@@ -22,7 +27,7 @@
         border: 1px solid #add8e6;
         border-top: none;
         max-height: 180px;
-        margin: 7px 0 0;
+        margin: 0;
         overflow-y: scroll;
         overflow-x: hidden;
         position: absolute;

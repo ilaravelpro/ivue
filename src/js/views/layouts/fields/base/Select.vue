@@ -1,6 +1,6 @@
 <template>
     <div ref="select" class="i-select" :class="styleForField">
-        <div class="select-title cursor-pointer" @click="onShow">
+        <div class="select-title cursor-pointer text-no-wrap w-90" @click="onShow">
             {{ getSelects }}
         </div>
         <ul class="select-items p-0" ref="items">
