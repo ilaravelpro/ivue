@@ -49,6 +49,13 @@ const AutoCompleteField = {
                     typeof (newValue) !== 'undefined' &&
                     newValue !== oldValue)
                     this.updateValue(this.getIndex('update'), this.model);
+                var item = this.itemsByFiltered.filter(item => {
+                    return item.value === newValue
+                })
+                if(item.length) {
+                    this.searchText = item[0].text;
+                    this.selectText = item[0].text;
+                }
                 this.checkItems();
                 this.useModel = this.model === this.selectText;
                 if (this.url && !this.useModel){

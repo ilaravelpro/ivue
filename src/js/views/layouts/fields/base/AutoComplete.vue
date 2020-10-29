@@ -6,7 +6,7 @@
                        @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusout">
             </div>
         </div>
-        <ul class="select-items w-sm-250px">
+        <ul class="select-items w-sm-250px p-0">
             <li class="select-item" v-for="(item, index) in itemsByFiltered" :data-key="index"
                 :data-value="item.value"
                 @click="onSelect(item, index, $event)" v-html="viewItem(item, index, itemsByFiltered)">
@@ -89,7 +89,8 @@
                     page: 0,
                     pages: 1,
                 },
-                useModel: false
+                useModel: false,
+                modelAll: null
             }
         },
         mounted() {

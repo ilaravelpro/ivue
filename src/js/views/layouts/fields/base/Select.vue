@@ -88,7 +88,8 @@
                     pages: 1,
                 },
                 useModel: false,
-                useFirst: false
+                useFirst: false,
+                modelAll: null
             }
         },
         mounted() {
