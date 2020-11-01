@@ -5,6 +5,7 @@ const StoreDataIndexState = () => {
         all: [],
         meta: {},
         query: {},
+        configs: {},
         loading: false,
     }
 };

@@ -45,6 +45,7 @@ const StoreDataSingle = {
             loading: false,
             fields: [],
             functions: {},
+            configs: {},
             timeout: 0,
             fetched: false
         }
@@ -110,8 +111,9 @@ const StoreDataSingle = {
         },
         fetchData({state, commit, dispatch}, [id, url]) {
             url = url || state.url || state.resource;
-            url = url.replace('{id}', id)
+            url = String(url).replace('{id}', id)
             if (id) url += '/' + id;
+            if (state.functions['onFetchUrl']) url = state.functions['onFetchUrl'](url, state, dispatch, commit)
             return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true, func: 'afterFetch'})
         },
         fetchDataBy({commit, state, dispatch}, {url, resource, params, parent, func}) {
@@ -176,6 +178,9 @@ const StoreDataSingle = {
         },
         delDesc({commit, state, dispatch}, desc) {
             return commit('delState', 'desc.' + desc)
+        },
+        setState({commit}, [name, value]) {
+            commit('setState', [name, value])
         },
         resetState({commit}) {
             iProcessing.timeouts = {}

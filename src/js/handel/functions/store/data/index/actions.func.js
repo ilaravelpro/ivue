@@ -1,10 +1,17 @@
 const StoreDataIndexActions = {
-    fetchData({commit, state}) {
+    fetchData({commit, state, dispatch}, page = 1) {
         commit('setLoading', true)
         return new Promise((resolve, reject) => {
-            ApiService.get(state.url ? state.url : state.resource, state.query)
+            ApiService.get(state.url ? state.url : state.resource, {page:page, ...state.query})
                 .then(response => {
-                    commit('setAll', response.handel)
+                    if (page > 1){
+                        commit('setState', ['all', [...state.all, ...response.handel.data]])
+                        commit('setState', ['total', response.handel.meta.total])
+                        commit('setState', ['meta', response.handel.meta])
+                    }else
+                        commit('setAll', response.handel)
+                    if (iPath.get(state.configs, 'fetchDataAll') === true && response.handel.meta.last_page > response.handel.meta.current_page)
+                        dispatch('fetchData', response.handel.meta.current_page + 1)
                     resolve(response.handel)
                 })
                 .finally(() => {

@@ -4,12 +4,12 @@
             <label class="i-checkbox text-no-wrap">{{ item.title }}
                 <input type="checkbox" @change="checking(item,null ,item.children)"
                        :checked="checked(item.id)" :value="item.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span class="checkmark fa color-blue"></span>
             </label>
             <label v-for="(child, cindex) in item.children" class="i-checkbox text-no-wrap ml-3">{{ child.title }}
                 <input type="checkbox" @change="checking(item, child ,item.children)" :checked="checked(child.id)"
                        :value="child.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span class="checkmark fa color-blue"></span>
             </label>
         </div>
     </div>
