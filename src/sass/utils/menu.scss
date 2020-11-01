@@ -1,0 +1,114 @@
+.btn-toggle-main-menu {
+    display: inline-block;
+    cursor: pointer;
+    .bar1, .bar2, .bar3 {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 5px;
+        transition: 0.4s;
+        border-radius: 5px;
+    }
+    &.open {
+        .bar1 {
+            -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+            transform: rotate(-40deg) translate(-6px, 6px);
+        }
+        .bar2 {
+            opacity: 0;
+        }
+        .bar3 {
+            -webkit-transform: rotate(40deg) translate(-3px, -5px);
+            transform: rotate(40deg) translate(-3px, -5px);
+        }
+    }
+}
+
+.btn-toggle-profile-menu {
+    img {
+        max-height: 32px;
+        max-width: 32px;
+    }
+}
+
+.info-user {
+    color: $white;
+    .avatar {
+        background-size: cover;
+        background-position: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .flag {
+        span {
+            float: right;
+            margin-top: 0.8rem;
+            margin-right: 5px;
+        }
+    }
+}
+.info-code {
+    border-bottom: 1px solid $color-white;
+}
+
+.menu-left {
+    height: 100%;
+    width: 275px;
+    position: fixed;
+    z-index: 25;
+    left: -275px;
+    right: auto;
+    background-color: $color-white;
+    overflow-x: hidden;
+    padding-top: 50px;
+    -webkit-transition: left 0.3s ease, right 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease;
+    &.show {
+        -webkit-transition: right 0.3s ease, left 0.3s ease;
+        transition: right 0.3s ease, left 0.3s ease;
+        left: 0;
+        right: auto;
+    }
+}
+.menu-right {
+    height: 100%;
+    width: 275px;
+    position: fixed;
+    z-index: 25;
+    right: -275px;
+    left: auto;
+    background-color: $color-white;
+    overflow-x: hidden;
+    padding-top: 50px;
+    -webkit-transition: right 0.3s ease, left 0.3s ease;
+    transition: right 0.3s ease, left 0.3s ease;
+    &.show {
+        -webkit-transition: left 0.3s ease, right 0.3s ease;
+        transition: left 0.3s ease, right 0.3s ease;
+        right: 0;
+        left: auto;
+    }
+}
+.menu-top {
+    .dropdown-menu.show {
+        transform: unset !important;
+        top: 26px !important;
+        bottom: unset !important;
+    }
+}
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+.black-page {
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.68);
+    z-index: 20;
+    position: fixed;
+    display: none;
+}
