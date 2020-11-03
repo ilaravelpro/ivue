@@ -58,7 +58,7 @@
         computed: {
             ...GlobalField.computed(),
             styleForTextArea() {
-                return this.styleForField + (this.resize ? 'resize-none' : '');
+                return this.styleForField + (this.resize ? ' resize-none' : '');
             }
         },
         methods: {
