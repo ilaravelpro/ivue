@@ -35,6 +35,7 @@ const StoreDataSingle = {
             options: {
                 excepts: [],
                 typeForm: null,
+                useId: true,
             },
             desc: {},
             styles: {},
@@ -87,7 +88,7 @@ const StoreDataSingle = {
                     url = url || state.url || state.resource;
                     url = url.replace('{id}', state.item.id)
                     let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
-                    if (state.item.id) url += '/' + state.item.id;
+                    if (state.item.id && state.options.useId) url += '/' + state.item.id;
                     if (state.functions['onChangeUrl']) url = state.functions['onChangeUrl'](url, state, dispatch, commit)
                     ApiService.post(url, params, true).then(response => {
                         commit('setStateMain', {key: 'errors.system', value: {}})
@@ -112,7 +113,7 @@ const StoreDataSingle = {
         fetchData({state, commit, dispatch}, [id, url]) {
             url = url || state.url || state.resource;
             url = String(url).replace('{id}', id)
-            if (id) url += '/' + id;
+            if (id && state.options.useId) url += '/' + id;
             if (state.functions['onFetchUrl']) url = state.functions['onFetchUrl'](url, state, dispatch, commit)
             return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true, func: 'afterFetch'})
         },

@@ -2,7 +2,7 @@
     <div class="i-form-wizard" :class="_style">
         <h4 v-if="stepTitle">{{ tabs[current].title }}</h4>
         <div class="steps">
-            <ul class="my-0" :class="_style_nav" role="tablist"
+            <ul class="my-0 pl-2" :class="_style_nav" role="tablist"
                 :aria-orientation="_orientation">
                 <li v-for="(tab, index) in tabs"
                     :class="_style_nav_item(index)" @click="current = index" :style="`width: ${ 100  / Object.keys(tabs).length }%`">
@@ -12,7 +12,7 @@
                 </li>
             </ul>
         </div>
-        <div class="content">
+        <div class="content px-2">
             <div class="tab-content" :class="_style_contents">
                 <div v-for="(tab, index) in tabs" class="tab-pane fade show" :class="_style_content(index)"
                      :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
