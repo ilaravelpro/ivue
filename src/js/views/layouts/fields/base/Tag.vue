@@ -51,6 +51,7 @@
                 model: [],
                 s_value: [],
                 setAll: null,
+                setEnter: false
             }
         },
         computed: {
@@ -83,10 +84,16 @@
             }
             $(this.$refs.tags).tagsinput(options);
             $(this.$refs.tags).on('itemAdded', function (event) {
-                if ($this.setAll !== false) $this.s_value = $(this).tagsinput('items');
+                if ($this.setAll !== false) {
+                    $this.s_value = Array.from($(this).tagsinput('items'));
+                    $this.setEnter = true;
+                }
             });
             $(this.$refs.tags).on('itemRemoved', function (event) {
-                if ($this.setAll !== false) $this.s_value = $(this).tagsinput('items');
+                if ($this.setAll !== false) {
+                    $this.s_value = Array.from($(this).tagsinput('items'));
+                    $this.setEnter = true;
+                }
             });
         },
         methods: {
@@ -102,7 +109,7 @@
                     setTimeout(function () {
                         $elm.tagsinput('add', v);
                         if (Object.keys(event).length - 1 === i)
-                            $this.setAll = true
+                            $this.setAll = true;
                     }, $timeout)
                     $timeout += 500;
                 })
@@ -115,7 +122,8 @@
                     if (!(this.getIndex('update') &&
                         this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);
-                    if (newValue && Object.keys(Array.from(newValue)).length > 1) this.changeValue(newValue);
+                    if (this.setEnter === false && newValue && Object.keys(Array.from(newValue)).length > 1) this.changeValue(newValue);
+                    this.setEnter = true;
                 },
                 deep: true
             },

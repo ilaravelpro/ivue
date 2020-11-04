@@ -19,13 +19,17 @@ const AxiosService = {
 
     query(options, notify = false) {
         return new Promise((resolve, reject) => {
-            instance(options)
-                .then(response => {
-                    resolve({handel: iRequest.then(response, notify), root: response})
-                })
-                .catch(error => {
-                    reject({handel: iRequest.catch(error), root: error})
-                })
+            try {
+                instance(options)
+                    .then(response => {
+                        resolve({handel: iRequest.then(response, notify), root: response})
+                    })
+                    .catch(error => {
+                        reject({handel: iRequest.catch(error), root: error})
+                    })
+            }catch (e) {
+                console.log(e)
+            }
         })
     },
 
