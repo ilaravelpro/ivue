@@ -55,6 +55,13 @@
         created() {
             LoadSingleData.setValueOnCreate(this)
         },
+        mounted() {
+            var $this = this;
+            if (this.$attrs['data-toggle'])
+                $(this.$refs.input).on('changeDate', function(ev){
+                    $this.changeValue(date2str(ev.date, $this.$attrs['data-toggle'] === 'datepicker'? "yyyy/MM/dd" : "yyyy/MM/dd hh:mm"));
+                });
+        },
         computed: {
             ...GlobalField.computed(),
             styleForTextArea() {

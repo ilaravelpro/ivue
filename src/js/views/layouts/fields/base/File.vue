@@ -1,29 +1,32 @@
 <template>
-    <div class="i-file w-100">
-        <label class="m-0 d-block w-100">
-            <div v-if="btn" class="btn-upload text-center cursor-pointer align-items-center justify-content-center " v-bind:class="{ multiple: multiple}">
-                <template v-if="getUrls && !multiple">
-                    <div v-bind:style="{backgroundImage: 'url(' + getUrls + ')'}"
-                         class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
-                </template>
-                <div class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px pt-2" v-else>
-                    <div class="fa fa-cloud-upload-alt font-size-1-5 font-size-md-5"></div>
-                    <div class="font-size-0-8 font-size-md-1-2">{{ btnTitle }}</div>
+    <div class="w-100" :class="{'i-file': !getOption('just-input')}">
+        <input v-if="getOption('just-input')" type="file" :class="styleForField" @change="handleFileChange" :multiple="multiple"/>
+        <template v-else>
+            <label class="m-0 d-block w-100">
+                <div v-if="btn" class="btn-upload text-center cursor-pointer align-items-center justify-content-center " v-bind:class="{ multiple: multiple}">
+                    <template v-if="getUrls && !multiple">
+                        <div v-bind:style="{backgroundImage: 'url(' + getUrls + ')'}"
+                             class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
+                    </template>
+                    <div class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px pt-2" v-else>
+                        <div class="fa fa-cloud-upload-alt font-size-1-5 font-size-md-5"></div>
+                        <div class="font-size-0-8 font-size-md-1-2">{{ btnTitle }}</div>
+                    </div>
                 </div>
-            </div>
-            <slot v-else name="action" v-bind:value="model" v-bind:url="url" v-bind:multiple="multiple"></slot>
-            <input type="file" hidden @change="handleFileChange" :multiple="multiple"/>
-        </label>
-        <hr v-if="multiple && Object.keys(getUrls).length" class="border-primary m-0">
-        <div v-if="getUrls && multiple" class="items flex flex-warp">
-            <div v-for="(ur,  index) in getUrls" class="item m-2">
-                <div v-bind:style="{backgroundImage: 'url(' + ur + ')'}"
-                     class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
-                <span class="btn-cancel bg-white border border-primary btn btn-xs btn-icon d-flex" @click="delFile(index)">
+                <slot v-else name="action" v-bind:value="model" v-bind:url="url" v-bind:multiple="multiple"></slot>
+                <input type="file" hidden @change="handleFileChange" :multiple="multiple"/>
+            </label>
+            <hr v-if="multiple && Object.keys(getUrls).length" class="border-primary m-0">
+            <div v-if="getUrls && multiple" class="items flex flex-warp">
+                <div v-for="(ur,  index) in getUrls" class="item m-2">
+                    <div v-bind:style="{backgroundImage: 'url(' + ur + ')'}"
+                         class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
+                    <span class="btn-cancel bg-white border border-primary btn btn-xs btn-icon d-flex" @click="delFile(index)">
                     <i class="trh-icon-cancel"></i>
                 </span>
+                </div>
             </div>
-        </div>
+        </template>
     </div>
 </template>
 

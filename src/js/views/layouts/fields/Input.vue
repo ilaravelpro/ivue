@@ -17,7 +17,7 @@
         <slot slot="prepend" name="prepend"/>
         <slot slot="append" name="append"/>
         <template slot="body">
-            <i-base-input v-bind="$props" @change="$emit('change', $event )" :focusin="focusin" :focusout="focusout"></i-base-input>
+            <i-base-input v-bind="{...$props, ...$attrs}" @change="$emit('change', $event )" :focusin="focusin" :focusout="focusout"></i-base-input>
         </template>
     </i-base>
 </template>
