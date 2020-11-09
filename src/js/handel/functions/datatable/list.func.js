@@ -50,25 +50,26 @@ const DataTableList = {
             return this.paginate(this.filteredItems, this.pagination.length, this.pagination.current);
         },
         getActions() {
-            let $actions = typeof (this.actions) === "object" ? this.actions : {};
-            if (typeof ($actions.delete) === "undefined") {
-                $actions =  {delete: {
-                        title: 'Delete',
-                        name: 'delete',
-                        icon: 'fa fa-trash-alt',
-                        type: 'func',
-                        action: this.deleteItem
-                    }, ...$actions};
-            }
-            if (typeof ($actions.edit) === "undefined") {
-                $actions =  {edit: {
-                        title: 'Edit',
-                        name: 'edit',
-                        icon: 'fa fa-edit',
-                        type: 'linkWithId',
-                        action: this.resource + '.edit'
-                    }, ...$actions};
-            }
+            var $delete = {
+                title: 'Delete',
+                name: 'delete',
+                icon: 'fa fa-trash-alt',
+                type: 'func',
+                action: this.deleteItem
+            };
+            var $edit =  {
+                title: 'Edit',
+                name: 'edit',
+                icon: 'fa fa-edit',
+                type: 'linkWithId',
+                action: this.resource + '.edit'
+            };
+            let $actions = typeof (this.actions) === "function" ? this.actions(this, $edit, $delete) : typeof (this.actions) === "object" ? this.actions : {};
+            if (typeof ($actions.delete) === "undefined" && this.delete)
+                $actions =  {delete: $delete, ...$actions};
+            if (typeof ($actions.edit) === "undefined" && this.edit)
+                $actions =  {edit: $edit, ...$actions};
+
             return $actions;
         }
     },

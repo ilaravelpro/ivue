@@ -113,7 +113,7 @@
                 type: Boolean,
                 default: true
             },
-            actions: Object,
+            actions: [Object, Function],
             newAction: Object,
         },
         data() {

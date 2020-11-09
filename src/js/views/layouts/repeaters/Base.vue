@@ -16,7 +16,7 @@
                 <template v-for="(item, index) in model">
                     <div class="d-flex flex-wrap my-2">
                         <template v-if="typeof(body) === 'function'">
-                            <template v-for="comp in body(item, index, getIndex)">
+                            <template v-for="comp in body(item, index, getContext)">
                                 <component :is="comp.component" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>
