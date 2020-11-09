@@ -4,7 +4,7 @@
 
 
 // Base
-.datetimepicker {
+.datetimepicker, .datepicker {
     width: 265px;
     padding: 10px;
     left: auto;
@@ -165,7 +165,7 @@
         }
     }
 
-    &.datetimepicker-inline {
+    &.datetimepicker-inline, .datepicker-inline {
         border: 1px solid $i-material-color-grey-100;
     }
 }
