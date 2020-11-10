@@ -2,7 +2,7 @@ import 'bootstrap-datetime-picker';
 import 'bootstrap-datepicker';
 import 'bootstrap-datetime-picker/css/bootstrap-datetimepicker.css';
 import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
-$(function () {
+$(document).ready(function () {
     $('[data-toggle="datetimepicker"] input').datetimepicker({
         todayHighlight: !0,
         autoclose: !0,

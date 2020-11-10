@@ -114,6 +114,10 @@
                 default: true
             },
             actions: [Object, Function],
+            baseFilter: {
+                type: [Array, Object, Function],
+                default : () => {return {}}
+            },
             newAction: Object,
         },
         data() {
