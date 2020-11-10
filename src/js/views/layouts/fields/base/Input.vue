@@ -1,7 +1,10 @@
 <template>
-    <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model" :class="styleForTextArea" @focusin="focusin"
+    <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model"
+              :class="styleForTextArea" @focusin="focusin"
               @focusout="focusout"></textarea>
-    <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder" :value="model" @keyup="changeValue(($event.target.value).replace(/_/gi,''))" :class="styleForField" @focusin="focusin" @focusout="focusout">
+    <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
+           :value="model" @keyup="changeValue(($event.target.value).replace(/_/gi,''))" :class="styleForField"
+           @focusin="focusin" @focusout="focusout">
 </template>
 
 
@@ -57,10 +60,32 @@
         },
         mounted() {
             var $this = this;
-            if (this.$attrs['data-toggle'])
-                $(this.$refs.input).on('changeDate', function(ev){
-                    $this.changeValue(date2str(ev.date, $this.$attrs['data-toggle'] === 'datepicker'? "yyyy/MM/dd" : "yyyy/MM/dd hh:mm"));
+
+            if (this.$attrs['data-toggle']) {
+                switch (this.$attrs['data-toggle']) {
+                    case 'datepicker':
+                        $(this.$refs.input).datepicker({
+                            format: "yyyy/mm/dd",
+                            todayBtn: "linked",
+                            orientation: "bottom right",
+                            autoclose: true,
+                            todayHighlight: true
+                        });
+                        break;
+                    case 'datetimepicker':
+                        $(this.$refs.input).datetimepicker({
+                            todayHighlight: !0,
+                            autoclose: !0,
+                            pickerPosition: "bottom-right",
+                            todayBtn: !0,
+                            format: "yyyy/mm/dd hh:ii"
+                        });
+                        break;
+                }
+                $(this.$refs.input).on('changeDate', function (ev) {
+                    $this.changeValue(date2str(ev.date, $this.$attrs['data-toggle'] === 'datepicker' ? "yyyy/MM/dd" : "yyyy/MM/dd hh:mm"));
                 });
+            }
         },
         computed: {
             ...GlobalField.computed(),
