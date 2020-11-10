@@ -60,7 +60,6 @@
         },
         mounted() {
             var $this = this;
-
             if (this.$attrs['data-toggle']) {
                 switch (this.$attrs['data-toggle']) {
                     case 'datepicker':
