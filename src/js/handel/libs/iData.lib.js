@@ -1,3 +1,5 @@
+import {isFile} from "bootstrap-vue/esm/utils/inspect";
+
 const iData = {
     handel(item, temp = null, method = null, except = []) {
         switch (temp) {
@@ -16,7 +18,7 @@ const iData = {
     toFormData(params, data, name, except = []) {
         var $this = this;
         name = name || '';
-        if (typeof data === 'object' && except.indexOf(name) === -1) {
+        if (!isFile(data) && typeof data === 'object' && except.indexOf(name) === -1) {
             $.each(data, function (index, value) {
                 if (name === '') {
                     $this.toFormData(params, value, index, except);
