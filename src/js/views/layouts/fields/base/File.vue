@@ -134,6 +134,12 @@
         },
         watch: {
             ...GlobalField.watch(storeNamespace),
+            iRecordValue: {
+                handler: function (newValue, oldValue) {
+
+                },
+                deep: true
+            },
         }
     }
 
