@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-wrap input-group">
-        <i-base-autocomplete class="col-4" :store-namespace="storeNamespace" placeholder="Enter Country" :fieldIndex="getFieldIndex + '.country'" :items="countries" @change="model.country = $event" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}"/>
-        <i-base-input class="col-8" :store-namespace="storeNamespace" @change="model.number = $event" :fieldIndex="getFieldIndex + '.number'" placeholder="Enter Mobile"/>
+        <i-base-autocomplete class="col-4" :store-namespace="storeNamespace" placeholder="Enter Country" :items="countries" @change="model.country = $event" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}"/>
+        <i-base-input class="col-8" :store-namespace="storeNamespace" @change="model.number = $event" placeholder="Enter Mobile"/>
     </div>
 </template>
 
