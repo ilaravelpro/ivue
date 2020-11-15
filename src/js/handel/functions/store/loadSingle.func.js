@@ -102,6 +102,9 @@ const LoadSingleData = {
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
             },
+            updateDataValue(key, value) {
+                this.$store.commit(this.storeNamespace + '/setState', {key: 'data.' + key, value: value});
+            },
             updateState(key, value) {
                 this.$store.commit(this.storeNamespace + '/setState', {key: key, value: value});
             },
