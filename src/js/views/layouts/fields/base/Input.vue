@@ -3,7 +3,7 @@
               :class="styleForTextArea" @focusin="focusin"
               @focusout="focusout"></textarea>
     <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
-           :value="model" @keyup="changeValue(($event.target.value).replace(/_/gi,''))" :class="styleForField"
+           :value="model" :class="styleForField"
            @focusin="focusin" @focusout="focusout">
 </template>
 
@@ -84,7 +84,10 @@
                 $(this.$refs.input).on('changeDate', function (ev) {
                     $this.changeValue(date2str(ev.date, $this.$attrs['data-toggle'] === 'datepicker' ? "yyyy/MM/dd" : "yyyy/MM/dd hh:mm"));
                 });
-            }
+            }else
+                $(this.$refs.input).on('change', function (ev) {
+                    $this.changeValue((ev.target.value).replace(/_/gi,''));
+                });
         },
         computed: {
             ...GlobalField.computed(),
