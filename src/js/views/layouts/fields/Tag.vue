@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        name: 'i-input',
+        name: 'i-tag',
         model: {
             event: 'change'
         },
@@ -57,6 +57,10 @@
                 default: () => []
             },
             mask: [String, Number, Object, Array],
+            items: {
+                type: [Object, Array, Function],
+                default: () => []
+            }
         },
         data() {
             return {

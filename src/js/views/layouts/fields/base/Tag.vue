@@ -45,6 +45,10 @@
                 default: () => []
             },
             mask: [String, Number, Object, Array],
+            items: {
+                type: [Object, Array, Function],
+                default: () => []
+            }
         },
         data: () => {
             return {
@@ -56,6 +60,9 @@
         },
         computed: {
             ...GlobalField.computed(),
+            getItems() {
+                return typeof (this.items) === 'function' ? this.items(this.getContext) : this.items;
+            }
         },
         created() {
             LoadSingleData.setValueOnCreate(this)
@@ -81,10 +88,16 @@
                 });
                 tags.initialize();
                 options.typeaheadjs.source = tags.ttAdapter()
+                $(this.$refs.tags).tagsinput(options);
+            }else{
+                iPath.del(options, 'typeaheadjs')
+                iPath.del(options, 'itemValue')
+                iPath.del(options, 'itemText')
+                $(this.$refs.tags).tagsinput(options);
             }
-            $(this.$refs.tags).tagsinput(options);
             $(this.$refs.tags).on('itemAdded', function (event) {
                 if ($this.setAll !== false) {
+                    console.log()
                     $this.s_value = Array.from($(this).tagsinput('items'));
                     $this.setEnter = true;
                 }
@@ -113,6 +126,9 @@
                     }, $timeout)
                     $timeout += 500;
                 })
+                setTimeout(function () {
+                    $this.setAll = true;
+                }, $timeout - 500)
             },
         },
         watch: {
@@ -131,6 +147,25 @@
                 handler: function (newValue, oldValue) {
                     if (!_.isEqual(newValue, oldValue))
                         this.model = newValue
+                },
+                deep: true
+            },
+            getItems: {
+                handler: function (newValue, oldValue) {
+                    if (typeof(newValue) === 'object' && newValue.length) {
+                        var options = this.options;
+                        var model = this.model;
+                        $(this.$refs.tags).tagsinput('destroy');
+                        options.typeaheadjs.source = function(query, syncResults){
+                            var $items = newValue.filter(item => {
+                                return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
+                            });
+                            syncResults($items);
+                        }
+                        $(this.$refs.tags).tagsinput(options);
+                        this.changeValue(model);
+                        this.$forceUpdate()
+                    }
                 },
                 deep: true
             }
