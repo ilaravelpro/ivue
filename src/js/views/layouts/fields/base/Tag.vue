@@ -89,15 +89,27 @@
                 tags.initialize();
                 options.typeaheadjs.source = tags.ttAdapter()
                 $(this.$refs.tags).tagsinput(options);
+            }else if (typeof(this.getItems) === 'object' && this.getItems.length) {
+                var model = this.model;
+                options.typeaheadjs.source = function(query, syncResults){
+                    var $items = $this.getItems.filter(item => {
+                        return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
+                    });
+                    if (!$items.length && model && Object.values(model).length)
+                        $items = model.filter(item => {
+                            return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
+                        });
+                    syncResults($items);
+                }
+                $(this.$refs.tags).tagsinput(options);
+                this.changeValue(model);
+                this.$forceUpdate()
             }else{
                 iPath.del(options, 'typeaheadjs')
-                iPath.del(options, 'itemValue')
-                iPath.del(options, 'itemText')
                 $(this.$refs.tags).tagsinput(options);
             }
             $(this.$refs.tags).on('itemAdded', function (event) {
                 if ($this.setAll !== false) {
-                    console.log()
                     $this.s_value = Array.from($(this).tagsinput('items'));
                     $this.setEnter = true;
                 }
@@ -160,6 +172,10 @@
                             var $items = newValue.filter(item => {
                                 return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
                             });
+                            if (!$items.length && model && Object.values(model).length)
+                                $items = model.filter(item => {
+                                    return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
+                                });
                             syncResults($items);
                         }
                         $(this.$refs.tags).tagsinput(options);
