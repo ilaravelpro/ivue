@@ -162,6 +162,10 @@ const DataTableList = {
                     action.action(item)
                     break
             }
+        },
+        actionCheck(item, action, index) {
+            if (!item.actions) return true;
+            return iPath.get(item.actions, index, true);
         }
     },
     watch: {

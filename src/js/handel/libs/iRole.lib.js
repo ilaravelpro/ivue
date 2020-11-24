@@ -1,6 +1,3 @@
-import iPath from "./iPath.lib";
-import iRequest from "./iRequest.lib";
-
 const iRole = {
     scopes: {},
     can(name) {
@@ -8,11 +5,12 @@ const iRole = {
             var $return = true;
             var $this = this;
             $.each(name, function (i, scope) {
-                if ($this.scopes[scope] == 0) $return = false;
+                if ($this.scopes[scope] === 0) $return = false;
             })
             return $return;
         }
-        return this.scopes[name] == 0 ? false: true;
+        name = String(name).replace('.index', '.view')
+        return this.scopes[name] === 0 ? false: true;
     },
     fetch() {
         var $this = this;

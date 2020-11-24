@@ -44,7 +44,7 @@
                             </template>
                         </td>
                         <td v-if="action">
-                            <button v-for="(action, index) in getActions" @click="actionItem(item, action)"
+                            <button v-for="(action, index) in getActions" v-if="actionCheck(item, action, index)" @click="actionItem(item, action)"
                                     class="btn btn-icon btn-light btn-sm" :class="index !== Object.keys(getActions)[Object.keys(getActions).length - 1] ? 'mr-1' : ''" :title="action.title">
                                 <span :class="action.icon"></span>
                             </button>
