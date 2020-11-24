@@ -1,15 +1,31 @@
+import iPath from "./iPath.lib";
+import iRequest from "./iRequest.lib";
+
 const iRole = {
     scopes: {},
-    can() {
-        Vue.$root.user
+    can(name) {
+        if (typeof(name) === 'object'){
+            var $return = true;
+            var $this = this;
+            $.each(name, function (i, scope) {
+                if ($this.scopes[scope] == 0) $return = false;
+            })
+            return $return;
+        }
+        return this.scopes[name] == 0 ? false: true;
     },
     fetch() {
-        console.log(appStore.getters['AircraftBasesSingle' + '/' + 'iRecord'])
         var $this = this;
-        ApiService.get('rules')
-            .then(response => {
-                $this.scopes = response.handel.data
-            })
+        return new Promise((resolve, reject) => {
+            ApiService.get('rules')
+                .then(response => {
+                    $this.scopes = response.handel.data
+                    resolve(response.handel.data)
+                })
+                .catch(error => {
+                    reject(error)
+                })
+        })
     }
 };
 

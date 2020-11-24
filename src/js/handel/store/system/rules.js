@@ -9,7 +9,7 @@ const getters = {
 }
 
 const actions = {
-    fetchData({ commit }, rules) {
+    fetch({ commit }) {
         return new Promise((resolve, reject) => {
             ApiService.get('rules')
             .then(response => {
