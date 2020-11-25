@@ -199,7 +199,7 @@ const SelectField = {
                     }, 500)
                 }
                 setTimeout(function () {
-                    if ($this.itemsByFiltered.length && $this._value && !$this._value.length && !$this.useFirst) {
+                    if ($this.itemsByFiltered.length && $this.$options.name !== 'i-base-autocomplete' && !$this.multiple && $this._value && !$this._value.length && !$this.useFirst) {
                         $this.setSelect(null, 0)
                         $this.useFirst = true;
                     }
