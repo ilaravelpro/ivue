@@ -67,8 +67,8 @@ const DataTableList = {
             let $actions = typeof (this.actions) === "function" ? this.actions(this, $edit, $delete) : typeof (this.actions) === "object" ? this.actions : {};
             if (typeof ($actions.delete) === "undefined" && this.delete)
                 $actions =  {delete: $delete, ...$actions};
-            if (typeof ($actions.edit) === "undefined" && this.edit)
-                $actions =  {edit: $edit, ...$actions};
+            if (typeof ($actions.update) === "undefined" && this.edit)
+                $actions =  {update: $edit, ...$actions};
 
             return $actions;
         }
