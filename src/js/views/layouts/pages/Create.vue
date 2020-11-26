@@ -6,7 +6,7 @@
                 <li v-for="(error, index) in errorAll.errors">{{ error }}</li>
             </ul>
         </div>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap" ref="forms">
             <div v-for="(row , index) in rows" :class="row.class" class="my-2">
                 <div class="card">
                     <div v-if="$scopedSlots[`row.${row.name}.header`]" class="card-header">
@@ -15,7 +15,7 @@
                     <div class="card-body" :class="getStyle('card.body')">
                         <loading v-if="row.loading !== false" :status="!loading"/>
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
-                        <i-form v-else class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
+                        <i-form v-else ref="form" class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
                     <div v-if="row.btn !== false" class="card-footer">
                         <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
@@ -80,6 +80,14 @@
         },
         destroyed() {
             this.$store.dispatch(this.storeNamespace + '/resetState')
+        },
+        mounted() {
+            var $this = this;
+            $(document).ready(function () {
+                $($this.$refs.forms).find('input').keypress(function (e) {
+                    if ($(this).attr('data-role') !== 'tagsinput' && e.key === "Enter") $this.submit()
+                })
+            });
         },
         methods: {
             ...LoadSingleData.methods(),
