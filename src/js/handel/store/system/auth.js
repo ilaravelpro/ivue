@@ -45,7 +45,17 @@ const actions = {
         });
     },
     logout(context) {
-        context.commit('logOut');
+        return new Promise((resolve, reject) => {
+            ApiService.post(context.state.prefix + "/logout", {}, true)
+                .then(response => {
+                    context.commit('logOut');
+                    resolve(response);
+                })
+                .catch(response => {
+                    context.commit('setError', response.handel.errors);
+                    reject(response);
+                });
+        });
     },
     verify(context) {
         if (TokenService.getToken()) {
@@ -53,8 +63,9 @@ const actions = {
                 .then(response => {
                     context.commit('setUser', response.handel);
                 })
-                .catch(({response}) => {
+                .catch(response => {
                     context.commit('setError', response.handel.errors);
+                    context.commit('logOut');
                     reject(response);
                 });
         } else {
