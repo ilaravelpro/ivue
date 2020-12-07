@@ -31,6 +31,7 @@
             event: 'change'
         },
         props: {
+            label: String,
             value: [String, Number, Object, Array],
             placeholder: {
                 type: String,

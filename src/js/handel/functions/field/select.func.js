@@ -23,7 +23,10 @@ const SelectField = {
         itemsByFiltered() {
             var $this = this;
             var $items = this.releaseItems([...this.firstItems, ...(this.getUrl ? this.serverItems : this.getItems)]);
+            var $uniq = [];
             $items = $items.filter(item => {
+                if ($uniq.indexOf(item.value) !== -1) return false;
+                $uniq.push(item.value)
                 var $diff = true;
                 var diff = this.getIndex('diff') !== this.getIndex('store') ? this.getValue(this.getIndex('diff')) : $this.diff;
                 if (diff && typeof (diff) === 'object') {
@@ -210,15 +213,15 @@ const SelectField = {
             var $this = this;
             this.loading = true;
             if ($this.getUrl)
-                setTimeout(function () {
-                    if ($this.serverQuery.page < $this.serverQuery.pages) {
-                        $this.serverQuery.page++;
+                iProcessing.init($this.getIndex('store')+ 'moreLoad',$this,  function ($this) {
+                    if (!$this.useModel && $this.model || $this.serverQuery.page < $this.serverQuery.pages) {
+                        if ($this.useModel) $this.serverQuery.page++;
                         if (!$this.useModel) {
                             $this.serverQuery.q = $this.model
                         }
-
                         ApiService.get($this.getUrl, {...$this.serverQuery, ...$this.getQuery}).then(response => {
-                            $this.serverItems.push(...response.handel.data);
+                            if ($this.serverQuery.page > 1) $this.serverItems.push(...response.handel.data);
+                            else $this.serverItems = response.handel.data;
                             $this.serverQuery.pages = response.handel.meta.last_page;
                             $this.loading = false;
                             if (!$this.useModel && Object.keys(response.handel.data).length === 1) {
@@ -227,10 +230,9 @@ const SelectField = {
                             setTimeout(function () {
                                 $this.useModel = true;
                             }, 100)
-
                         })
                     }
-                }, 1000)
+                }, 2000)
         }
     },
     watch: {
@@ -260,12 +262,15 @@ const SelectField = {
         },
         _value: {
             handler: function (newValue, oldValue) {
+                var $this = this;
                 if (this.getIndex('update') &&
                     this.getOption('store.update', true) &&
                     typeof (newValue) !== 'undefined' &&
                     (!this.iRecordValue || newValue !== oldValue))
                     this.updateValue(this.getIndex('update'), this.model);
                 this.checkItems();
+                if (!$this.useModel)
+                    this.moreLoad()
             },
             deep: true
         },

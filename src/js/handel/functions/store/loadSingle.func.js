@@ -8,8 +8,9 @@ const LoadSingleData = {
                 setTimeout(function () {set($this)}, 1)
     },
     _setValueOnCreate($this) {
-        if (!_.isEqual($this.model, $this.getValue($this.getIndex('get'))))
+        if (!_.isEqual($this.model, $this.getValue($this.getIndex('get')))){
             $this.model = $this.getValue($this.getIndex('get'));
+        }
     },
     computed() {
         return {
