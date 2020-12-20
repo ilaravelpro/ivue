@@ -17,7 +17,7 @@ const iData = {
     toFormData(params, data, name, except = []) {
         var $this = this;
         name = name || '';
-        if (!isFile(data) && typeof data === 'object' && except.indexOf(name) === -1) {
+        if (!fs.statSync(data).isFile() && typeof data === 'object' && except.indexOf(name) === -1) {
             $.each(data, function (index, value) {
                 if (name === '') {
                     $this.toFormData(params, value, index, except);
