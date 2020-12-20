@@ -1,4 +1,3 @@
-import {isFile} from "bootstrap-vue/esm/utils/inspect";
 
 const iData = {
     handel(item, temp = null, method = null, except = []) {
