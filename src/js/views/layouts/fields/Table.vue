@@ -22,14 +22,14 @@
                 <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" class="p-0 pr-4"
                      :class="item.style">
                     <component :is="item.component" v-bind="item.attrs"
-                               :field-index="fieldIndex + '.' + (getOption('prefix.column') ? getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + getOption('prefix.row')+ index)"
+                               :field-index="handelIndexAP(item, row, index)"
                                :store-namespace="storeNamespace"></component>
                 </div>
                 <div class="pr-4 mb-2" :class="getStyle('column')" v-for="(column, key) in getColumns">
                     <div v-if="getOption('fields.columns')" class="form-group row mb-0">
                         <div v-for="item in getOption('fields.columns')" :class="getStyle('item')">
                             <component :is="item.component" v-bind="item.attrs"
-                                       :field-index="fieldIndex + '.'  + getOption('prefix.row')+ index + '.' + item.name + '.' + getOption('prefix.column')+ key"
+                                       :field-index="handelIndex(item, row, index, column, key)"
                                        :store-namespace="storeNamespace"></component>
                             <div class="d-md-none mb-3"></div>
                         </div>
@@ -38,7 +38,7 @@
                 <div v-if="getOption('fields.append')" v-for="item in getOption('fields.append')" class="p-0 pr-4"
                      :class="item.style">
                     <component :is="item.component" v-bind="item.attrs"
-                               :field-index="fieldIndex + '.' + (getOption('prefix.column') ? getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + getOption('prefix.row')+ index)"
+                               :field-index="handelIndexAP(item, row, index)"
                                :store-namespace="storeNamespace"></component>
                 </div>
             </div>
@@ -62,6 +62,8 @@
                 default: 'DataSingle'
             },
             fieldIndex: [String, Object, Function],
+            useIndex: Boolean,
+            handelExternalIndex: Function,
             options: {
                 type: [Object, Array, Function],
                 default: () => []
@@ -83,10 +85,21 @@
             },
             getRows() {
                 return typeof (this.rows) === 'function' ? this.rows(this.getValue, this.updateValue) : this.rows;
-            }
+            },
         },
         methods: {
             ...LoadSingleData.methods(),
+            handelIndex: function (item, row, index, column, key) {
+                if (this.handelExternalIndex) return this.handelExternalIndex(item, row, index, column, key)
+                if (this.useIndex)
+                    return this.fieldIndex + '.'  + this.getOption('prefix.row')+ index + '.' + item.name + '.' + this.getOption('prefix.column')+ key;
+                return this.fieldIndex + '.'  + String(row).replace('.', '_') + '.' + item.name + '.' + String(column).replace('.', '_');
+            },
+            handelIndexAP: function (item, row, index) {
+                if (this.useIndex)
+                    return this.fieldIndex + '.' + (this.getOption('prefix.column') ? this.getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + this.getOption('prefix.row')+ index);
+                return this.fieldIndex + '.' + (this.getOption('prefix.column') ? String(row).replace('.', '_') + '.' + item.name : item.name + '.' + String(row).replace('.', '_'));
+            }
         }
     }
 </script>
