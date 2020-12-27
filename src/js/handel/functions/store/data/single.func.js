@@ -191,7 +191,7 @@ const StoreDataSingle = {
     mutations: {
         setState(state, {key, value}) {
             iProcessing.init(key, [state, key, value], function (context, timeout) {
-                if (typeof(timeout.value) === "undefined" || !_.isEqual(timeout.value, value)){
+                if (timeout && (typeof(timeout.value) === "undefined" || !_.isEqual(timeout.value, value))){
                     iPath.set(...context)
                     return value;
                 }
