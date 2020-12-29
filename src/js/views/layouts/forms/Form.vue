@@ -1,9 +1,10 @@
 <template>
-    <i-form-fields :items="fields(name)" :storeNamespace="storeNamespace" />
+    <i-form-fields :items="getItems" :storeNamespace="storeNamespace" />
 </template>
 
 <script>
     import BaseFrom from "../../../handel/functions/form/base.func";
+    import GlobalField from "../../../handel/functions/field/global.func";
     export default {
         name: "i-form",
         props: {
@@ -16,6 +17,11 @@
                 type: String,
                 default: 'DataSingle'
             }
+        },
+        computed: {
+            getItems() {
+                return this.fields(this.name);
+            },
         },
         created() {
             if (this.resource)this.setState('resource', this.resource)

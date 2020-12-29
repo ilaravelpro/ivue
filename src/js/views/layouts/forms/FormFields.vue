@@ -34,6 +34,6 @@
         },
         methods: {
             ...GlobalField.methods()
-        }
+        },
     }
 </script>
