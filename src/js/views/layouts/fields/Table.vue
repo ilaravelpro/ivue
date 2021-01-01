@@ -16,7 +16,7 @@
                      :class="item.style" v-text="item.title"></div>
             </div>
             <div class="d-flex" v-for="(row, index) in getRows">
-                <div class="col-2 col-lg-1 my-auto">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
+                <div class="my-auto" :class="getStyle('row_table', 'col-2 col-lg-1')">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
                     String(getOption('prefix.row')).toUpperCase() }}
                 </div>
                 <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" class="p-0 pr-2"
