@@ -8,12 +8,12 @@
             <div v-else class="d-flex">
                 <div :class="getStyle('row_table', 'col-2 col-lg-1')"></div>
                 <div v-if="getOption('fields.prepend')" class="p-0 pr-2 text-center" v-for="item in getOption('fields.prepend')"
-                     :class="item.style" v-text="item.title"></div>
+                     :class="item.style" v-text="item.title || item.attrs.placeholder"></div>
                 <div class="pr-4 text-center" :class="getStyle('column')" v-for="column in getColumns">{{ column ? column + ' '+
                     String(getOption('unit.column')).toUpperCase() : '' }}
                 </div>
                 <div v-if="getOption('fields.append')" class="p-0 pr-2 text-center" v-for="item in getOption('fields.append')"
-                     :class="item.style" v-text="item.title"></div>
+                     :class="item.style" v-text="item.title || item.attrs.placeholder"></div>
             </div>
             <div class="d-flex" v-for="(row, index) in getRows">
                 <div class="my-auto" :class="getStyle('row_table', 'col-2 col-lg-1')">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :

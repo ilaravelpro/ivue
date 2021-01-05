@@ -15,7 +15,7 @@
                 <div class="card-header" :id="'heading_' + id + '_' +index">
                     <div class="card-title d-block collapsed" data-toggle="collapse" :data-target="'#collapse_' + id + '_' +index"
                          aria-expanded="false" :aria-controls="'collapse_' + id + '_' +index">
-                        <div v-if="typeof(header) === 'function'" v-html="header(row, index, prefixTitle)"></div>
+                        <div v-if="typeof(header) === 'function'" class="cursor-pointer" v-html="header(row, index, prefixTitle)"></div>
                         <slot v-else-if="$scopedSlots['row.title']" name="row.title" v-bind:row="row" v-bind:index="index" v-bind:prefix="prefixTitle"></slot>
                         <span v-else class="cursor-pointer">{{ prefixTitle }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
                         <a @click="removeRow(index)" v-if="getOption('delBtn') !== false"

@@ -13,13 +13,13 @@
             <slot slot="prepend" name="prepend"/>
             <slot slot="append" name="append"/>
             <template slot="input-group">
-                <div v-if="type !== 'single'" class="d-flex flex-wrap my-2">
+                <div v-if="type !== 'single' && model && model.length > 0" class="d-flex flex-wrap my-2 hidden-mobile">
                     <template v-if="typeof(body) === 'function'">
                         <template v-for="comp in body({}, -1, getContext)">
                             <div v-if="comp.component === 'i-form-fields'" :class="comp.attrs.class">
-                                <div v-for="child in comp.attrs.items" :class="child.attrs.class">{{ child.attrs.placeholder }}</div>
+                                <div v-for="child in comp.attrs.items" :class="child.attrs.class" class="px-0">{{ child.attrs.placeholder }}</div>
                             </div>
-                            <div v-else :class="comp.attrs.class">{{ comp.attrs.placeholder }}</div>
+                            <div v-else :class="comp.attrs.class" class="px-0">{{ comp.attrs.placeholder }}</div>
                         </template>
                     </template>
                 </div>
