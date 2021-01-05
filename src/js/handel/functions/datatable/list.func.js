@@ -159,7 +159,7 @@ const DataTableList = {
                     this.$router.push(action.action);
                     break;
                 case 'func':
-                    action.action(item)
+                    action.action(item, this)
                     break
             }
         },

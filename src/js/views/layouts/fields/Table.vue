@@ -5,8 +5,8 @@
         <div class="overflow-x-auto w-fit-content w-md-100" v-if="viewTable">
             <component v-if="getSlots('columns')" :is="getSlots('columns')"
                        :store-namespace="storeNamespace"></component>
-            <div v-else-if="columns" class="d-flex">
-                <div class="col-2 col-lg-1"></div>
+            <div v-else class="d-flex">
+                <div :class="getStyle('row_table', 'col-2 col-lg-1')"></div>
                 <div v-if="getOption('fields.prepend')" class="p-0 pr-2 text-center" v-for="item in getOption('fields.prepend')"
                      :class="item.style" v-text="item.title"></div>
                 <div class="pr-4 text-center" :class="getStyle('column')" v-for="column in getColumns">{{ column ? column + ' '+
