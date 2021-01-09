@@ -20,6 +20,7 @@ window.num_format = function num_format(Number) {
     return y + z;
 }
 window.roundLikePHP = function (num, dec = 0) {
+    if (num === 'NIL') return num;
     var num_sign = num >= 0 ? 1 : -1;
     return parseFloat((Math.round((num * Math.pow(10, dec)) + (num_sign * 0.0001)) / Math.pow(10, dec)).toFixed(dec));
 }
