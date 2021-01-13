@@ -1,5 +1,5 @@
 <template>
-    <div :class="_style">
+    <div class="i-from-tabs" :class="_style">
         <ul class="nav" :class="_style_nav" role="tablist"
             :aria-orientation="_orientation">
             <li v-for="(tab, index) in Object.values(getTabs)" class="nav-item">
