@@ -28,7 +28,7 @@ const OpenLayers = {
     },
     initMap(target) {
         OpenLayersLayers.init(target, iPath.get(this.maps, target + '.callbacks.onLayers'))
-        iPath.set(this.maps, target + '.map', new Map({
+        var $map = new Map({
             target: target,
             layers: arrayColumn(Object.values(iPath.get(OpenLayersLayers.layers, target, {})), 'group'),
             view: new View(iPath.get(this.maps, target + '.params.view', {
@@ -36,7 +36,8 @@ const OpenLayers = {
                 zoom: 5,
                 minZoom: 3,
             }))
-        }));
+        });
+        iPath.set(this.maps, target + '.map', $map);
     },
     initClick(target) {
         var $this = this;
