@@ -81,13 +81,13 @@ const StoreDataSingle = {
         delByKey({commit, state, dispatch}, key) {
             return commit('delState', 'item.' + key)
         },
-        storeData({commit, state, dispatch, getters}, [url, redirect]) {
+        storeData({commit, state, dispatch, getters}, [url, redirect, method = null]) {
             commit('setLoading', true)
             return new Promise((resolve, reject) => {
                 if (getters.iErrorsHandel.status) {
                     url = url || state.url || state.resource;
                     url = url.replace('{id}', state.item.id)
-                    let params = iData.handel(state.item, state.options.typeForm, (state.item.id ? 'put' : null), state.options.excepts)
+                    let params = iData.handel(state.item, state.options.typeForm, (method || (state.item.id ? 'put' : null)), state.options.excepts)
                     if (state.item.id && state.options.useId) url += '/' + state.item.id;
                     if (state.functions['onChangeUrl']) url = state.functions['onChangeUrl'](url, state, dispatch, commit)
                     ApiService.post(url, params, true).then(response => {

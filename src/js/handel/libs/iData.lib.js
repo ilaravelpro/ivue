@@ -1,3 +1,4 @@
+const fs = require('fs');
 
 const iData = {
     handel(item, temp = null, method = null, except = []) {
@@ -17,7 +18,7 @@ const iData = {
     toFormData(params, data, name, except = []) {
         var $this = this;
         name = name || '';
-        if (!fs.statSync(data).isFile() && typeof data === 'object' && except.indexOf(name) === -1) {
+        if (typeof data === 'object' && except.indexOf(name) === -1 && !iPath.get(data, 'lastModified')) {
             $.each(data, function (index, value) {
                 if (name === '') {
                     $this.toFormData(params, value, index, except);

@@ -7,7 +7,9 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.fs = fs;
     require('bootstrap').default;
-} catch (e) {}
+} catch (e) {
+    console.log(e)
+}
 window.purify = o => JSON.parse(JSON.stringify(o))
 Vue.prototype.$eventHub = new Vue();
 

@@ -57,7 +57,8 @@
             resource: String,
             url: String,
             typeForm: String,
-            css: [Object, Function]
+            css: [Object, Function],
+            method: String
         },
         data() {
             return {
@@ -92,7 +93,7 @@
         methods: {
             ...LoadSingleData.methods(),
             submit() {
-                this.$store.dispatch(this.storeNamespace + '/storeData', [])
+                this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
             }
         },
         watch: {
