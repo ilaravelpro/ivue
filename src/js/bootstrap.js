@@ -5,9 +5,7 @@ try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
     require('bootstrap').default;
-} catch (e) {
-    console.log(e)
-}
+} catch (e) {}
 window.purify = o => JSON.parse(JSON.stringify(o))
 Vue.prototype.$eventHub = new Vue();
 
