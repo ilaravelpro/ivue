@@ -67,6 +67,9 @@ const LoadSingleData = {
                 var mask = this.findMask(this.getIndex('mask'));
                 return this.mask || mask;
             },
+            getOptions() {
+                return  typeof(this.options) === 'function' ? this.options(this) : this.options;
+            },
         }
     },
     methods() {
@@ -80,7 +83,7 @@ const LoadSingleData = {
             getOption(key, $default = null) {
                 var $ioption = iPath.get(this.iOptionAll, this.getIndex('option'));
                 $ioption = iPath.get($ioption, key);
-                var $option = iPath.get(typeof(this.options) === 'function' ? this.options(this) : this.options, key);
+                var $option = iPath.get(this.getOptions, key);
                 $option = $ioption || $option;
                 return $option === false ? false : ($option || $default);
             },

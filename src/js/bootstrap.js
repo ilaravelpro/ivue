@@ -1,7 +1,7 @@
 window._ = require('lodash');
 window.Vue = require('vue');
 window.Vuex = require('vuex');
-import fs from "fs-extra";
+import fs from "fs";
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');

@@ -169,3 +169,12 @@ ul li {
 @import "reboots/widths";
 @import "reboots/heights";
 @import "reboots/header";
+
+.readonly, .readonly * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    background-color: #e9ecef !important;
+}

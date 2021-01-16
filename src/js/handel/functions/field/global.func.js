@@ -14,6 +14,7 @@ const GlobalField = {
                 if (this._icon && this._icon.append) $style += ' border-right-0 border-left-radius-4px';
                 if (this.error && typeof (this.error.status) !== 'undefined') $style += ' is-' + this.error.status;
                 if (this.getStyle('field')) $style += ' ' + this.getStyle('field');
+                if (this.getOption('readonly')) $style += ' readonly';
                 return $style;
             },
         }

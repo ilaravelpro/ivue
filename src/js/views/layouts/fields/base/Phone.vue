@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-wrap input-group">
-        <i-base-autocomplete class="col-4" placeholder="Enter Country" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}"/>
-        <i-base-input class="col-8" v-model="model.number" placeholder="Enter Mobile"/>
+        <i-base-autocomplete class="col-4" placeholder="Enter Country" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
+        <i-base-input class="col-8" v-model="model.number" :options="getOptions" placeholder="Enter Mobile"/>
     </div>
 </template>
 

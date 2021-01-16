@@ -2,7 +2,7 @@
     <div ref="select" class="i-autocomplete" :class="styleForField">
         <div class="select-title select-search cursor-pointer">
             <div class="input-group">
-                <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto"  :class="{'text-primary font-weight-bold': searchText === selectText}"
+                <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto" :class="{'text-primary font-weight-bold': searchText === selectText}"
                        @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusout">
             </div>
         </div>
