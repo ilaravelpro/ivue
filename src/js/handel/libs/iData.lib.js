@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const iData = {
     handel(item, temp = null, method = null, except = []) {
         switch (temp) {
