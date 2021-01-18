@@ -8,6 +8,7 @@ import {fromLonLat, toLonLat} from "ol/proj";
 import OpenLayersLayers from "./ol/layers.ol.plugin";
 import Overlay from "ol/Overlay";
 import LayerSwitcher from "ol-layerswitcher";
+import {FullScreen, defaults as defaultControls} from 'ol/control';
 
 const OpenLayers = {
     maps: {},
@@ -30,6 +31,7 @@ const OpenLayers = {
         OpenLayersLayers.init(target, iPath.get(this.maps, target + '.callbacks.onLayers'))
         var $map = new Map({
             target: target,
+            controls: defaultControls().extend([new FullScreen()]),
             layers: arrayColumn(Object.values(iPath.get(OpenLayersLayers.layers, target, {})), 'group'),
             view: new View(iPath.get(this.maps, target + '.params.view', {
                 center: fromLonLat(this.params.center),
