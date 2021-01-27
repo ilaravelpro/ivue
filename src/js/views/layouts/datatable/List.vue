@@ -40,7 +40,7 @@
                         <td v-for="column in columns">
                             <slot v-if="$scopedSlots['item.'+column.name]" :name="'item.'+column.name" v-bind:column="column" v-bind:item="item"></slot>
                             <template v-else>
-                                {{item[column.name]}}
+                                {{iPath.get(item, column.name)}}
                             </template>
                         </td>
                         <td v-if="action">
@@ -122,6 +122,7 @@
         },
         data() {
             return {
+                iPath: window.iPath,
                 filterData: {
                     type: {},
                     operator: {},

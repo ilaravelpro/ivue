@@ -48,7 +48,7 @@ const SelectField = {
             return typeof (this.query) === 'function' ? this.query(this) : this.query;
         },
         getType() {
-            return this.url ? 'array' : this.type;
+            return this.type;
         },
         getUseFirst() {
             return this._value ? false : this.useFirst
