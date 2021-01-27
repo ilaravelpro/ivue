@@ -86,7 +86,7 @@
                 });
             }else
                 $(this.$refs.input).on('change', function (ev) {
-                    $this.changeValue((ev.target.value).replace(/_/gi,''));
+                    $this.changeValue($this.getMask ? (ev.target.value).replace(/_/gi,'') : ev.target.value);
                 });
         },
         computed: {

@@ -63,6 +63,7 @@
                 type: [Object, Array],
                 default: () => []
             },
+            firstSelect: Boolean,
             options: {
                 type: [Object, Array, Function],
                 default: () => []

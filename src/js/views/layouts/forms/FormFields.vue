@@ -1,6 +1,6 @@
 <template>
     <div :class="style">
-        <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
+        <h5 v-if="title" class="mb-1 col-12 p-1">{{ getTitle }}</h5>
         <template v-for="item in getItems">
             <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if(getContext) : true" :storeNamespace="storeNamespace" >
                 <template v-if="item.text">{{ item.text }}</template>
@@ -16,7 +16,7 @@
         name: "i-form-fields",
         props: {
             items: [Object, Array, Function],
-            title: String,
+            title: [String, Function],
             css: String,
             storeNamespace: {
                 type: String,
@@ -25,6 +25,9 @@
         },
         computed: {
             ...GlobalField.computed(),
+            getTitle: function (){
+                return typeof(this.title) == 'function' ? this.title(this) : this.title;
+            },
             getItems() {
                 return typeof(this.items) == 'function' ? this.items(this) : this.items;
             },

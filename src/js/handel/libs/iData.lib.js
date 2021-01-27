@@ -16,7 +16,7 @@ const iData = {
     toFormData(params, data, name, except = []) {
         var $this = this;
         name = name || '';
-        if (typeof data === 'object' && except.indexOf(name) === -1 && !iPath.get(data, 'lastModified')) {
+        if (typeof(data) === 'object' && except.indexOf(name) === -1 && !(data instanceof Blob)) {
             $.each(data, function (index, value) {
                 if (name === '') {
                     $this.toFormData(params, value, index, except);

@@ -1,6 +1,6 @@
 import ApiService from "./api.service";
 
-const ID_TOKEN_KEY = "id_token";
+const ID_TOKEN_KEY = window.ID_TOKEN_KEY_NAME || "id_token";
 
 export const getToken = () => {
     return window.localStorage.getItem(ID_TOKEN_KEY);
