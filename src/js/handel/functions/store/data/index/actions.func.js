@@ -20,6 +20,15 @@ const StoreDataIndexActions = {
         })
 
     },
+    fetchStatus({commit, state, dispatch}, url = null) {
+        return new Promise((resolve, reject) => {
+            ApiService.get(url ? url : 'data/statuses/' + state.resource)
+                .then(response => {
+                    commit('setState', ['statuses', response.handel.data])
+                    resolve(response.handel)
+                })
+        })
+    },
     destroyData({commit, state, dispatch}, id) {
         return new Promise((resolve, reject) => {
             ApiService.delete((state.url ? state.url : state.resource)+ '/' + id)

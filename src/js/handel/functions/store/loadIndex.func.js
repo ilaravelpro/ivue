@@ -4,6 +4,9 @@ const LoadIndexData = {
             iRecords() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iRecords']
             },
+            iStatuses() {
+                return this.$store.getters[this.storeNamespace + '/' + 'iStatuses']
+            },
             iTotal() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iTotal']
             },
@@ -32,13 +35,16 @@ const LoadIndexData = {
             fetchData() {
                 return this.$store.dispatch(this.storeNamespace + '/fetchData');
             },
+            fetchStatus() {
+                return this.$store.dispatch(this.storeNamespace + '/fetchStatus', this.status_url);
+            },
             deleteItem(item) {
                 if (confirm('Are you sure you want to delete this Item?'))
                     this.destroyData(item.id)
             },
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
-            }
+            },
         }
     },
     watch() {

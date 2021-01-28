@@ -88,6 +88,7 @@ const DataTableList = {
                 operator: $value || !this.baseFilter.operator? this.filterData.operator.value : this.baseFilter.operator,
                 value: $value || !this.baseFilter.value? $value : this.baseFilter.value,
             };
+            query['status'] = this.filterStatus || 'active';
             return query;
         },
         renderStyle() {
@@ -116,6 +117,7 @@ const DataTableList = {
                 $this.setState('query', $this.query());
                 $this.fetchData().then(resp => {
                     $this.$forceUpdate()
+                    $this.filterStatus = iPath.get($this.iMeta, 'filters.current.status')
                 });
             }, 500)
         },
@@ -145,6 +147,7 @@ const DataTableList = {
             this.columns.forEach((column) => {
                 this.sortOrders[column.name] = -1;
             });
+            this.filterStatus = 'active';
             this.pagination.current = 1;
         },
         resetPagination() {
@@ -166,6 +169,10 @@ const DataTableList = {
         actionCheck(item, action, index) {
             if (!item.actions) return true;
             return iPath.get(item.actions, index, true);
+        },
+        changeStatus(status) {
+            this.filterStatus = status;
+            if (this.server) this.paginateServer();
         }
     },
     watch: {

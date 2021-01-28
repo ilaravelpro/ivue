@@ -31,6 +31,40 @@ const AutoCompleteField = {
             },
             deep:true
         },
+        itemsByFiltered: {
+            handler: function (newValue) {
+                var $this = this;
+                if (!this.useModel){
+
+                    var item = this.itemsByFiltered.filter(item => {
+                        return item.value === $this._value
+                    })
+                    if(item.length) {
+                        this.searchText = item[0].text;
+                        this.selectText = item[0].text;
+                    }
+                    this.useModel = true;
+                }
+                this.checkItems();
+            },
+            deep: true
+        },
+        searchText: {
+            handler: function (newValue, oldValue) {
+                if (newValue !== this.selectText){
+                    this.model = null;
+                    this.selectText = '';
+                }
+                if (this.url && newValue !== oldValue && (!this._value || this.useModel)){
+                    this.serverItems = [];
+                    this.serverQuery.q = newValue;
+                    this.serverQuery.page = 0;
+                    this.serverQuery.pages = 1;
+                    this.moreLoad()
+                }
+            },
+            deep:true
+        }
     }
 };
 

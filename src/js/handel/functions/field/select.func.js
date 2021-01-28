@@ -24,6 +24,8 @@ const SelectField = {
             var $this = this;
             var $items = this.releaseItems([...this.firstItems, ...(this.getUrl ? this.serverItems : this.getItems)]);
             var $uniq = [];
+            if (this._value)
+                $items = [...this.releaseItems(this.multiple ? this._value : [this._value]), ...$items]
             $items = $items.filter(item => {
                 if ($uniq.indexOf(item.value) !== -1) return false;
                 $uniq.push(item.value)
@@ -267,7 +269,7 @@ const SelectField = {
                     (!this.iRecordValue || newValue !== oldValue))
                     this.updateValue(this.getIndex('update'), this.model);
                 this.checkItems();
-                if (!$this.useModel)
+                if (!$this.search)
                     this.moreLoad()
             },
             deep: true

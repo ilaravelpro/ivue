@@ -1,6 +1,6 @@
 <template>
     <label class="switch" :class="styleForField">
-        <input type="checkbox" :checked="checked" :class="{ 'checked': model ? true :false}" @change="changeValue()">
+        <input type="checkbox" :checked="getCheck" :class="{'checked': getCheck}" @click="changeValue()">
         <span class="slider" :class="styleForSlider"></span>
     </label>
 </template>

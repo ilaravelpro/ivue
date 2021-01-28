@@ -6,6 +6,7 @@ const StoreDataIndexState = () => {
         meta: {},
         query: {},
         configs: {},
+        statuses: {},
         loading: false,
     }
 };
