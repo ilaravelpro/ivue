@@ -1,27 +1,31 @@
 <template>
     <div class="data-table" :id="id">
-        <div v-if="filter" class="row px-3 mt-3 mx-0">
-            <div class="col-lg-6 col-xl-5 col-12">
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <i-base-select :items="getFilters" firstSelect type="array"
-                                    v-model="filterData.type"/>
+        <div v-if="filter" class="row px-lg-3 mx-0">
+            <div class="col-lg-6 col-xl-5 col-12 px-0">
+                <div class="d-flex flex-wrap">
+                    <div class="col-md-6 my-2 align-self-center">
+                        <div class="input-group">
+                            <i-base-select :items="getFilters" firstSelect type="array"
+                                           v-model="filterData.type"/>
+                        </div>
                     </div>
-                    <div class="col-md-6 align-self-center">
-                        <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" type="array"
-                                    :items="filterData.type.items"
-                                    v-model="filterData.value"/>
+                    <div class="col-md-6 my-2 align-self-center">
+                        <div class="input-group">
+                            <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" type="array"
+                                            :items="filterData.type.items"
+                                            v-model="filterData.value"/>
+                        </div>
                         <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value"  placeholder="Search..." :options="{icon: {append: {class: 'fa fa-search'}}}" />
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xl-5 col-12 align-self-center">
+            <div class="col-lg-6 col-xl-5 col-12 my-2 align-self-center">
                 <button v-if="server" class="btn btn-primary px-6 font-weight-bold" @click="paginateServer()">Search</button>
                 <button href="#" class="btn btn-warning px-6 font-weight-bold" @click="resetQuery()">Reset</button>
             </div>
         </div>
 
-        <div v-if="status" class="d-flex flex-wrap mx-4 mt-3 mx-0">
+        <div v-if="status" class="d-flex flex-wrap mx-2 mx-lg-4 mt-2">
             <button v-for="status in iStatuses" class="btn mx-2 px-6 font-weight-bold" :class="filterStatus === status ? 'bg-green color-white' : 'bg-white color-primary'" @click="changeStatus(status)">{{ status.charAt(0).toUpperCase() + status.slice(1) }}</button>
         </div>
 

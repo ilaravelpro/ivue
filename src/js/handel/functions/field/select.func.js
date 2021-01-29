@@ -24,7 +24,7 @@ const SelectField = {
             var $this = this;
             var $items = this.releaseItems([...this.firstItems, ...(this.getUrl ? this.serverItems : this.getItems)]);
             var $uniq = [];
-            if (this._value)
+            if (this._value && this.type === 'array')
                 $items = [...this.releaseItems(this.multiple ? this._value : [this._value]), ...$items]
             $items = $items.filter(item => {
                 if ($uniq.indexOf(item.value) !== -1) return false;

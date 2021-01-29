@@ -7,12 +7,12 @@
             </ul>
         </div>
         <div class="d-flex flex-wrap" ref="forms">
-            <div v-for="(row , index) in rows" :class="row.class" class="my-2">
+            <div v-for="(row , index) in rows" :class="row.class" class="my-2 px-0 px-md-1 px-lg-3">
                 <div class="card">
                     <div v-if="$scopedSlots[`row.${row.name}.header`]" class="card-header">
                         <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                     </div>
-                    <div class="card-body" :class="getStyle('card.body')">
+                    <div class="card-body p-1" :class="getStyle('card.body')">
                         <loading v-if="row.loading !== false" :status="!loading"/>
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                         <i-form v-else ref="form" class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
