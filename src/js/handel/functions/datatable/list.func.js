@@ -149,6 +149,7 @@ const DataTableList = {
             });
             this.filterStatus = 'active';
             this.pagination.current = 1;
+            this.paginateServer()
         },
         resetPagination() {
             this.pagination.current = 1;
