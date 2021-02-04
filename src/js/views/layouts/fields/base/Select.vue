@@ -114,7 +114,7 @@
         },
         created() {
             LoadSingleData.setValueOnCreate(this)
-            if (this.url && !this.search)this.moreLoad()
+            if (this.url)this.moreLoad()
         },
         computed: {
             ...GlobalField.computed(),

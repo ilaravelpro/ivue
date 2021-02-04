@@ -69,6 +69,10 @@
                 type: [Object, Array, Function],
                 default: () => []
             },
+            query: {
+                type: [Object, Array, Function],
+                default: () =>  {}
+            },
             css: {
                 type: [Object, Array],
                 default: () => []

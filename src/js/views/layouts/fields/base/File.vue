@@ -106,15 +106,15 @@
                 var $this = this;
                 var $files = $event.target.files || $event.dataTransfer.files;
                 $this.model = $this.multiple && $this.model === null ? [] : $this.model;
-                this.readURL($files);
                 $.each($files, function (i, file) {
                     if ($this.multiple)
                         $this.model.push(file)
                     else{
                         $this.model = file
                     }
-
+                    console.log(file)
                 })
+                this.readURL($files);
             },
             readURL(files = []) {
                 var $this = this;

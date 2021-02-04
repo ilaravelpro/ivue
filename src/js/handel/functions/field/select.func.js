@@ -214,8 +214,8 @@ const SelectField = {
         moreLoad() {
             var $this = this;
             this.loading = true;
-            if ($this.getUrl)
-                if (/*!$this.useModel && $this.model || */$this.serverQuery.page < $this.serverQuery.pages) {
+            iProcessing.init($this.getIndex('store')+ 'moreLoad',$this,  function ($this) {
+                if ($this.getUrl && $this.serverQuery.page < $this.serverQuery.pages) {
                     /*if ($this.useModel) $this.serverQuery.page++;
                     if (!$this.useModel) {
                         $this.serverQuery.q = $this.model
@@ -233,6 +233,7 @@ const SelectField = {
                         }, 100)*/
                     })
                 }
+            }, 1000)
         }
     },
     watch: {

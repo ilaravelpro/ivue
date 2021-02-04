@@ -39,7 +39,7 @@ const AutoCompleteField = {
                     var item = this.itemsByFiltered.filter(item => {
                         return item.value === $this._value
                     })
-                    if(item.length) {
+                    if(item.length && iPath.get(item, '0.text')) {
                         this.searchText = item[0].text;
                         this.selectText = item[0].text;
                     }
