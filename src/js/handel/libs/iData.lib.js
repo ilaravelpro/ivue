@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/22/21, 7:51 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const iData = {
     handel(item, temp = null, method = null, except = []) {
         switch (temp) {

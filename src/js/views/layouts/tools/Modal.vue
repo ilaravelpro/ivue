@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 7/28/20, 12:02 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="modal fade" :id="$attrs.id" tabindex="-1" role="dialog" :aria-labelledby="`${$attrs.id}Label`"
          aria-hidden="true">

@@ -1,7 +1,7 @@
 /*
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 10/6/20, 5:59 AM
- * Copyright (c) 2020. Powered by iamir.net
+ * Last modified: 10/8/20, 7:13 AM
+ * Copyright (c) 2021. Powered by iamir.net
  */
 const prefix = 'iauth/session/';
 

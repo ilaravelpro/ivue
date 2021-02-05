@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/13/20, 11:36 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const BaseField = {
     computed: {
         styleForSection() {

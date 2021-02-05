@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/9/21, 5:13 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 window.arrayColumn = function (array, columnName) {
     return array.map(function (value, index) {
         return value[columnName];

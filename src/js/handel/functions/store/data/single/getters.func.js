@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 7/31/20, 6:37 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const StoreDataSingleGetters = {
     iRecord: state => state.item,
     iParent: state => state.parent,

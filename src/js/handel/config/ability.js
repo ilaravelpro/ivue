@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 7/29/20, 5:38 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import { AbilityBuilder } from '@casl/ability'
 
 /**

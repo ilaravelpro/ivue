@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/16/21, 1:34 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="d-flex flex-wrap input-group">
         <i-base-autocomplete class="col-4" placeholder="Enter Country" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>

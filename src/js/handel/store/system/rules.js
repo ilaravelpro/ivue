@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/24/20, 4:14 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 function initialState() {
     return {
         rules: null,

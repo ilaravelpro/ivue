@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 2/2/21, 11:54 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="w-100" :class="{'i-file': !getOption('just-input')}">
         <input v-if="getOption('just-input')" type="file" :class="styleForField" @change="handleFileChange" :multiple="multiple"/>

@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 2/2/21, 7:45 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div ref="select" class="i-select" :class="styleForField">
         <div class="select-title cursor-pointer text-no-wrap w-90" @click="onShow">

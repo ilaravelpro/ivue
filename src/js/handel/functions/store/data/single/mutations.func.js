@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 7/31/20, 6:50 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import StoreDataSingleState from "./state.func";
 
 const StoreDataSingleMutations ={

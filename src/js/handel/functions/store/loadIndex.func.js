@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/28/21, 12:05 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const LoadIndexData = {
     computed() {
         return {

@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 2/1/21, 2:47 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import LoadIndexData from "../store/loadIndex.func";
 
 const DataTableList = {

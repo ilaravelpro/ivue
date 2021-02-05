@@ -1,3 +1,9 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/9/20, 5:30 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 @each $name, $height in $heights {
     $name : str-replace(($height),'%','');
     .h-#{$name} {

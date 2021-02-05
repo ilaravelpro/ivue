@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/8/20, 6:32 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import StoreDataIndex from "../../functions/store/data/index.func";
 
 function initialState() {

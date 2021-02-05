@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/13/21, 2:15 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const iProcessing = {
     timeouts: {},
     init(name, context, callback, time = 2000){

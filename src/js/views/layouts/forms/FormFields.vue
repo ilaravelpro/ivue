@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/23/21, 3:59 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div :class="style">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ getTitle }}</h5>

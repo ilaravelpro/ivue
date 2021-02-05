@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/12/20, 7:19 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import TokenService from "./token.service";
 const $axios = require("./axios.service").default;
 

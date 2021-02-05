@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/4/20, 5:18 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import StoreDataIndexState from "./state.func";
 
 const StoreDataIndexMutations ={

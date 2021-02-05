@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/24/21, 2:50 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import ApiService from "./api.service";
 
 const ID_TOKEN_KEY = window.ID_TOKEN_KEY_NAME || "id_token";

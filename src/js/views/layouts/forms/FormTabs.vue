@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/13/21, 9:58 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="i-from-tabs" :class="_style">
         <ul class="nav" :class="_style_nav" role="tablist"

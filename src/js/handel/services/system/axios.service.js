@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/4/20, 3:58 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import Axios from "axios";
 import iRequest from "../../libs/iRequest.lib";
 

@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 7/31/20, 6:39 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const StoreDataSingleActions = {
     updateByKey({commit, state, dispatch}, [key, value]) {
         return commit('setState', {key: "item."+key, value: value})

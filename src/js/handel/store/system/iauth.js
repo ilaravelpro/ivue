@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/8/20, 7:13 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import Notify from "../../plugins/notify.plugin";
 import iAuthService from "../../services/system/iauth.service";
 

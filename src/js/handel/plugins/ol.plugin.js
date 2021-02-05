@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/18/21, 3:36 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import "ol/ol.css";
 import "../../../sass/skins/ol/init.scss";
 import "ol-layerswitcher/src/ol-layerswitcher.css";

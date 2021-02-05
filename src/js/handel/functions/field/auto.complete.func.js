@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 2/3/21, 7:27 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const AutoCompleteField = {
     methods: {
         onSelect(item, index) {

@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 11/4/20, 10:55 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="i-form-wizard" :class="_style">
         <h4 v-if="stepTitle">{{ tabs[current].title }}</h4>

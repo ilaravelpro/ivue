@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/13/20, 12:56 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import vueDeepSet from "vue-set-value";
 import objectPath from "object-path";
 

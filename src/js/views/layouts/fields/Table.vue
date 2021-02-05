@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/5/21, 12:07 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="i-table my-2 overflow-hidden">
         <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>

@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/16/21, 1:33 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const LoadSingleData = {
     setValueOnCreate($this) {
         var set = this._setValueOnCreate;

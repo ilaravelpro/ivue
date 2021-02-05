@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/11/20, 5:24 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 $(document).on('focus', 'input[type=number]', function (e) {
     $(this).on('wheel.disableScroll', function (e) {
         e.preventDefault()

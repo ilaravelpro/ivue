@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/25/20, 7:32 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const BaseRepeater = {
     computed: {
     },

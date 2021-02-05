@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/29/21, 6:19 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div>
         <div v-if="errorAll.errors && errorAll.errors.length" class="alert alert-danger" role="alert">

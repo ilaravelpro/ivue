@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/5/21, 12:04 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="i-repeater-accordion">
         <h5 v-if="title" v-text="title"></h5>

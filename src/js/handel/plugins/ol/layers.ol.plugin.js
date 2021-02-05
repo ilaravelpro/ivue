@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/12/20, 12:42 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import GroupLayer from "ol/layer/Group";
 import {Tile as TileLayer} from "ol/layer";
 import {OSM} from "ol/source";

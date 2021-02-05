@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 10/10/20, 7:16 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <label
         class="i-checkbox mb-0" :class="styleForLabel" data-toggle="tooltip" data-placement="top" :title="label">

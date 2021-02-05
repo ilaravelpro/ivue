@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/28/21, 11:23 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <label class="switch" :class="styleForField">
         <input type="checkbox" :checked="getCheck" :class="{'checked': getCheck}" @click="changeValue()">

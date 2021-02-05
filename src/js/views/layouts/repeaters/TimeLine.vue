@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 10/10/20, 10:36 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div class="i-repeater-time-line">
         <h5 v-if="title" v-text="typeof(title) === 'function' ? title(getContext) : title"></h5>

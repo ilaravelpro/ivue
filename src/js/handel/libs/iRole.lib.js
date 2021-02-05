@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/24/20, 6:59 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const iRole = {
     scopes: {},
     can(name) {

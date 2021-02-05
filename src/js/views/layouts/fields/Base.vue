@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 10/10/20, 8:22 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div :class="styleForSection">
         <label v-if="label" :class="styleForLabel">

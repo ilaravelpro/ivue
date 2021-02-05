@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 12/28/20, 11:27 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <i-form-fields :items="getItems" :storeNamespace="storeNamespace" />
 </template>

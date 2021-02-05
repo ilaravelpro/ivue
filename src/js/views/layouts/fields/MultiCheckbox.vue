@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 11/1/20, 8:43 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">

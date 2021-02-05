@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/16/21, 5:34 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 window._ = require('lodash');
 window.Vue = require('vue');
 window.Vuex = require('vuex');

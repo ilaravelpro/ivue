@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/28/21, 11:38 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const StoreDataIndexActions = {
     fetchData({commit, state, dispatch}, page = 1) {
         commit('setLoading', true)

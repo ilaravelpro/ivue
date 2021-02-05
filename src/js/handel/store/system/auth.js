@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/26/20, 11:10 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import Notify from "../../plugins/notify.plugin";
 
 const state = {

@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 9/4/20, 9:27 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <ul class="pagination">
         <li class="page-item" @click="previous()">

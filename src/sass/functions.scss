@@ -1,3 +1,9 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/29/20, 12:15 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 @function str-replace($string, $search, $replace: '') {
     $string: inspect($string);
     $index: str-index($string, $search);

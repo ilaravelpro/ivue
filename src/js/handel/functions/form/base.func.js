@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/7/20, 8:36 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const BaseForm = {
     methods: {
         fields(name = null) {

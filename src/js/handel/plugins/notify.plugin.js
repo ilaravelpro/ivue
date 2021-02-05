@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/9/20, 10:09 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const Notify = (content, options) => {
     switch (options['type']) {
         case 's':

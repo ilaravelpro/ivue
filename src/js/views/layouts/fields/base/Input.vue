@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 1/24/21, 2:13 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model"
               :class="styleForTextArea" @focusin="focusin"

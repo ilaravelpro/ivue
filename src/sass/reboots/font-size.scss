@@ -1,3 +1,9 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 8/8/20, 3:00 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 @for $i from 0 through 50 {
     $name : str-replace(($i/10),'.','-');
     .font-size-#{$name} {

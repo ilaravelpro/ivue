@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/26/20, 3:19 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const CheckboxField = {
     computed: {
         getCheck() {

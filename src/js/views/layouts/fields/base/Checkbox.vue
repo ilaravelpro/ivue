@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 10/10/20, 6:52 AM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <input type="checkbox"
            :checked="getCheck"

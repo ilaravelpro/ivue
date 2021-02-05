@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 1/16/21, 1:52 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import LoadSingleData from "../store/loadSingle.func";
 
 const GlobalField = {

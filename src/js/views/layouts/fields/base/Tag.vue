@@ -1,3 +1,9 @@
+<!--
+  - Author: Amir Hossein Jahani | iAmir.net
+  - Last modified: 11/20/20, 3:03 PM
+  - Copyright (c) 2021. Powered by iamir.net
+  -->
+
 <template>
     <input ref="tags" class="form-control" :id="id? id+'_input' : ''" data-role="tagsinput"/>
 </template>

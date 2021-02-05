@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 2/3/21, 11:02 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 import StoreDataSingleState from "./single/state.func";
 import iData from "../../../libs/iData.lib";
 import Notify from "../../../plugins/notify.plugin";
