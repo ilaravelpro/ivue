@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-md-6 my-2 align-self-center">
                         <div class="input-group">
-                            <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" type="array"
+                            <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" :multiple="filterData.type.multiple" type="array"
                                             :items="filterData.type.items"
                                             v-model="filterData.value"/>
                         </div>

@@ -10,7 +10,9 @@ const DataTableList = {
     computed: {
         ...LoadIndexData.computed(),
         getFilters() {
-            return this.server ? this.iFilterAll : [
+            return this.server ? Array.from(this.iFilterAll).filter(function ($filter) {
+                return $filter.type === 'hidden';
+            }) : [
                 {
                     name: "all",
                     title: "all",
