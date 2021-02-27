@@ -6,16 +6,16 @@
 
 <template>
     <div class="data-table" :id="id">
-        <div v-if="filter" class="row px-lg-3 mx-0">
+        <div v-if="filter" class="row mx-0" :class="{'px-lg-3': !child}">
             <div class="col-lg-6 col-xl-5 col-12 px-0">
                 <div class="d-flex flex-wrap">
-                    <div class="col-md-6 my-2 align-self-center">
+                    <div class="col-md-6 my-2 align-self-center" :class="{'p-0': child}">
                         <div class="input-group">
                             <i-base-select :items="getFilters" firstSelect type="array"
                                            v-model="filterData.type"/>
                         </div>
                     </div>
-                    <div class="col-md-6 my-2 align-self-center">
+                    <div class="col-md-6 my-2 align-self-center" :class="{'p-0 px-lg-3': child}">
                         <div class="input-group">
                             <i-base-select  v-if="filterData.type && filterData.type.type === 'select'" :multiple="filterData.type.multiple" type="array"
                                             :items="filterData.type.items"
@@ -25,17 +25,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xl-5 col-12 my-2 align-self-center">
+            <div class="col-lg-6 col-xl-5 col-12 my-2 align-self-center" :class="{'p-0': child}">
                 <button v-if="server" class="btn btn-primary px-6 font-weight-bold" @click="paginateServer()">Search</button>
                 <button href="#" class="btn btn-warning px-6 font-weight-bold" @click="resetQuery()">Reset</button>
             </div>
         </div>
 
-        <div v-if="status" class="d-flex flex-wrap mx-2 mx-lg-4 mt-2">
-            <button v-for="status in iStatuses" class="btn mx-2 px-6 font-weight-bold" :class="filterStatus === status ? 'bg-green color-white' : 'bg-white color-primary'" @click="changeStatus(status)">{{ status.charAt(0).toUpperCase() + status.slice(1) }}</button>
+        <div v-if="status" class="d-flex flex-wrap mt-2" :class="{'mx-0 p-0 mb-2': child, 'mx-2 mx-lg-4' : !child }">
+            <button v-for="(status, index) in iStatuses" class="btn px-6 font-weight-bold" :class="{'mx-2' : (!child ? true : index),'bg-green color-white':filterStatus === status, 'bg-white color-primary': !child && filterStatus !== status, 'bg-primary color-white': child && filterStatus !== status }" @click="changeStatus(status)">{{ status.charAt(0).toUpperCase() + status.slice(1) }}</button>
         </div>
 
-        <div class="container-table">
+        <div class="container-table" :class="{'p-0': child}">
             <div class="wrap-table position-relative">
                 <loading :status="!iLoading"/>
                 <table>
@@ -133,11 +133,9 @@
                 default: true
             },
             actions: [Object, Function],
-            baseFilter: {
-                type: [Array, Object, Function],
-                default : () => {return {}}
-            },
+            baseFilter: [Array, Object, Function],
             newAction: Object,
+            child: Boolean,
         },
         data() {
             return {

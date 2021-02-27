@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: 'i-input',
+        name: 'i-phone',
         model: {
             event: 'change'
         },

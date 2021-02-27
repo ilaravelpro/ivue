@@ -11,7 +11,7 @@ const DataTableList = {
         ...LoadIndexData.computed(),
         getFilters() {
             return this.server ? Array.from(this.iFilterAll).filter(function ($filter) {
-                return $filter.type === 'hidden';
+                return $filter.type !== 'hidden';
             }) : [
                 {
                     name: "all",
@@ -79,6 +79,9 @@ const DataTableList = {
                 $actions =  {update: $edit, ...$actions};
 
             return $actions;
+        },
+        filterStatusOther: function () {
+            return
         }
     },
     methods: {
@@ -91,11 +94,17 @@ const DataTableList = {
             query['order'] = this.sortKey;
             query['sort'] = this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc';
             var $value = (this.filterData.type.type === 'select' ? this.filterData.value.value : this.filterData.value);
-            query['filter'] = {
-                type: $value || !this.baseFilter.type? this.filterData.type.value : this.baseFilter.type,
-                operator: $value || !this.baseFilter.operator? this.filterData.operator.value : this.baseFilter.operator,
-                value: $value || !this.baseFilter.value? $value : this.baseFilter.value,
-            };
+            var $filters = [];
+            if (this.baseFilter)
+                $filters.push(...this.baseFilter);
+            if ($value) {
+                $filters.push({
+                    type: this.filterData.type.value,
+                    operator: this.filterData.operator.value,
+                    value: $value,
+                });
+            }
+            query['filters'] = $filters;
             query['status'] = this.filterStatus || 'active';
             return query;
         },

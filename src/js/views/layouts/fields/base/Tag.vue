@@ -174,15 +174,17 @@
                         var options = this.options;
                         var model = this.model;
                         $(this.$refs.tags).tagsinput('destroy');
-                        options.typeaheadjs.source = function(query, syncResults){
-                            var $items = newValue.filter(item => {
-                                return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
-                            });
-                            if (!$items.length && model && Object.values(model).length)
-                                $items = model.filter(item => {
+                        if(options.typeaheadjs){
+                            options.typeaheadjs.source = function(query, syncResults){
+                                var $items = newValue.filter(item => {
                                     return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
                                 });
-                            syncResults($items);
+                                if (!$items.length && model && Object.values(model).length)
+                                    $items = model.filter(item => {
+                                        return String(iPath.get(item, iPath.get(options, 'itemText'))).toUpperCase().indexOf(String(query).toUpperCase()) > -1;
+                                    });
+                                syncResults($items);
+                            }
                         }
                         $(this.$refs.tags).tagsinput(options);
                         this.changeValue(model);
