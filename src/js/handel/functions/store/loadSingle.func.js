@@ -100,8 +100,8 @@ const LoadSingleData = {
                 return $style || $istyles || $default;
             },
             getValue(key, $default) {
-                var $value = iPath.get(this.iRecord, key);
-                return typeof($value) !== "undefined" ? $value : $default
+                var $value = iPath.get(this.iRecord, key , $default);
+                return $value
             },
             getParentValue(key) {
                 return iPath.get(this.iParent, key)
@@ -184,7 +184,7 @@ const LoadSingleData = {
                 deep: true
             },
             model: {
-                handler: function (newValue) {
+                handler: function (newValue, oldValue) {
                     if (!(this.getIndex('update') &&
                         this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);

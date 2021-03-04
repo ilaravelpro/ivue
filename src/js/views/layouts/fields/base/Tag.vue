@@ -156,7 +156,7 @@
                     if (!(this.getIndex('update') &&
                         this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);
-                    if (this.setEnter === false && newValue && Object.keys(Array.from(newValue)).length > 1) this.changeValue(newValue);
+                    if (this.setEnter === false && newValue && Object.keys(Array.from(newValue)).length > 0) this.changeValue(newValue);
                     this.setEnter = true;
                 },
                 deep: true

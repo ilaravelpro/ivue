@@ -105,7 +105,8 @@
         watch: {
             '$route.params.id': {
                 handler: function (newValue) {
-                    if (newValue !== 'undefined' && this.fetch !== false)
+                    this.$store.dispatch(this.storeNamespace + '/resetState')
+                    if (newValue && newValue !== 'undefined' && this.fetch !== false)
                         this.$store.dispatch(this.storeNamespace + '/fetchData', [this.$route.params.id, null])
                 },
                 deep: true

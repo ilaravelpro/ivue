@@ -118,7 +118,6 @@
                     else{
                         $this.model = file
                     }
-                    console.log(file)
                 })
                 this.readURL($files);
             },

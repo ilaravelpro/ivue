@@ -205,6 +205,12 @@ const DataTableList = {
                 if (this.server) this.paginateServer();
             },
             deep: true
+        },
+        baseFilter: {
+            handler: function (newValue) {
+                if (this.server) this.paginateServer();
+            },
+            deep: true
         }
     },
 };

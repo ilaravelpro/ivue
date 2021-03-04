@@ -37,12 +37,25 @@ const SelectField = {
                 $uniq.push(item.value)
                 var $diff = true;
                 var diff = this.getIndex('diff') !== this.getIndex('store') ? this.getValue(this.getIndex('diff')) : $this.diff;
-                if (diff && typeof (diff) === 'object') {
+                if (diff && diff instanceof Array) {
                     $.each(diff, function (i, v) {
                         if ($diff) $diff = v.value ? v.value !== item.value : v !== item.value;
                     })
-                } else
+                } else {
+                    diff = (diff instanceof Object ? diff.value : diff);
                     $diff = diff !== item.value;
+                    var baseid = this.getValue('id');
+                    if ($diff){
+                        var parent = this.getValue('parent_id');
+                        parent = (parent instanceof Object ? parent.value : parent);
+                        $diff = parent !== item.id && baseid !== item.parent_id;
+                    }
+                    if ($diff){
+                        var grandpa = this.getValue('grandpa_id');
+                        grandpa = (grandpa instanceof Object ? grandpa.value : grandpa);
+                        $diff = grandpa !== item.id && baseid !== item.grandpa_id;
+                    }
+                }
                 var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
                 return $diff ? $search : false;
             });
