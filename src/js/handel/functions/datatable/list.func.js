@@ -82,6 +82,9 @@ const DataTableList = {
         },
         filterStatusOther: function () {
             return
+        },
+        getBaseFilter: function () {
+            return this.baseFilter instanceof Function ? this.baseFilter(this) : this.baseFilter;
         }
     },
     methods: {
@@ -95,8 +98,8 @@ const DataTableList = {
             query['sort'] = this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc';
             var $value = (this.filterData.type.type === 'select' ? this.filterData.value.value : this.filterData.value);
             var $filters = [];
-            if (this.baseFilter)
-                $filters.push(...this.baseFilter);
+            if (this.getBaseFilter)
+                $filters.push(...this.getBaseFilter);
             if ($value) {
                 $filters.push({
                     type: this.filterData.type.value,
@@ -206,7 +209,7 @@ const DataTableList = {
             },
             deep: true
         },
-        baseFilter: {
+        getBaseFilter: {
             handler: function (newValue) {
                 if (this.server) this.paginateServer();
             },

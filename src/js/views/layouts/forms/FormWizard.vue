@@ -23,7 +23,7 @@
                 <div v-for="(tab, index) in tabs" class="tab-pane fade show" :class="_style_content(index)"
                      :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
                     <template v-if="tab.items" v-for="item in tab.items">
-                        <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace"/>
+                        <component :is="item.component" v-bind="item.attrs" :storeNamespace="item.attrs.storeNamespace || storeNamespace"/>
                     </template>
                 </div>
             </div>
