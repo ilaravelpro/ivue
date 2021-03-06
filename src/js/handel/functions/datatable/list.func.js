@@ -210,8 +210,8 @@ const DataTableList = {
             deep: true
         },
         getBaseFilter: {
-            handler: function (newValue) {
-                if (this.server) this.paginateServer();
+            handler: function (newValue, oldValue) {
+                if (this.server && newValue !== oldValue) this.paginateServer();
             },
             deep: true
         }

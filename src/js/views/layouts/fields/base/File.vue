@@ -25,9 +25,9 @@
             <hr v-if="multiple && Object.keys(getUrls).length" class="border-primary m-0">
             <div v-if="getUrls && multiple" class="items flex flex-warp">
                 <div v-for="(ur,  index) in getUrls" class="item m-2">
-                    <div v-bind:style="{backgroundImage: 'url(' + ur + ')'}"
+                    <div v-bind:style="{backgroundImage: 'url(' + ur.url + ')'}"
                          class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
-                    <span class="btn-cancel bg-white border border-primary btn btn-xs btn-icon d-flex" @click="delFile(index)">
+                    <span class="btn-cancel bg-white border border-primary btn btn-xs btn-icon fas fa-trash-alt d-flex" @click="delFile(index)">
                     <i class="trh-icon-cancel"></i>
                 </span>
                 </div>
@@ -79,7 +79,9 @@
         data() {
             return {
                 model: null,
-                url: null
+                url: null,
+                deletes: [],
+                files: [],
             }
         },
         created() {
@@ -88,24 +90,41 @@
         computed: {
             ...GlobalField.computed(storeNamespace),
             getUrls() {
+                var $this = this;
                 var files = this.multiple ? [] : null;
-                if (this.getIndex('get') && this.getOption('store.get', true)) {
+                if (this.getIndex('get') && this.getOption('get', true)) {
                     var list = this.getValue(this.getIndex('get'));
                     if (this.multiple && list)
                         list.forEach(function (value, index, array) {
-                            files.push(value['150x'].slug);
+                            if ($this.deletes.indexOf(value['150x'].attachment) === -1)
+                                files.push({
+                                    id: value['150x'].attachment,
+                                    url: value['150x'].slug
+                                });
                         })
                     else if (list && list['150x'])
                         files = list ? list['150x'].slug : null;
                 }
-                return this.url || files;
+                this.files = files;
+                if (this.multiple && this.url)
+                    files.push(...this.url)
+                return this.multiple ? files : (this.url || files);
             }
         },
         methods: {
             ...GlobalField.methods(storeNamespace),
             delFile(index) {
-                iPath.del(this.url, index);
-                this.model.splice(index,1);
+                var $urls = this.getUrls
+                if ($urls[index] && $urls[index].id && this.getIndex('delete') && this.getOption('delete', true)) {
+                    var $deletes = this.getValue(this.getIndex('delete'), []);
+                    $deletes.push($urls[index].id);
+                    this.updateValue(this.getIndex('delete'), $deletes)
+                    this.deletes = $deletes
+                }else{
+                    var $index = index - Object.values(this.files).length;
+                    iPath.del(this.url, $index);
+                    this.model.splice($index,1);
+                }
                 this.$forceUpdate();
             },
             handleFileChange($event) {
@@ -128,7 +147,9 @@
                     var reader = new FileReader();
                     reader.onload = e => {
                         if ($this.multiple)
-                            $this.url.push(e.target.result)
+                            $this.url.push({
+                                url: e.target.result
+                            })
                         else
                             $this.url = e.target.result
                         $this.$forceUpdate();
