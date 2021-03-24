@@ -18,6 +18,7 @@ import {FullScreen, defaults as defaultControls} from 'ol/control';
 
 const OpenLayers = {
     maps: {},
+    inits: {},
     params: {
         attributions: '<a href="https://vue.iamir.net/packages/ivue" target="_blank">&copy; iVue</a> ',
         center: [58.79793706596032, 30.77233020730077]
@@ -27,6 +28,7 @@ const OpenLayers = {
         if (iPath.get($this.maps, target + '.callbacks.onStart')) iPath.get($this.maps, target + '.callbacks.onStart')($this, target, inits, callbacks, params)
         iPath.set(this.maps, target + '.callbacks', callbacks)
         iPath.set(this.maps, target + '.params', params)
+        iPath.set(this.maps, target + '.inits', inits)
         this.initMap(target);
         if (iPath.get(inits,  'initClick.status') !== false) this.initClick(target)
         if (iPath.get(inits,  'initMoveEnd.status') !== false) this.initMoveEnd(target)
@@ -118,7 +120,7 @@ const OpenLayers = {
         LayerSwitcher.renderPanel(iPath.get($this.maps, target + '.map'), toc);
         LayerSwitcher.forEachRecursive(iPath.get($this.maps, target + '.map'), (layer) => {
             layer.on('change:visible', (e) => {
-                if (iPath.get($this.maps, target + '.callbacks.onLayerSwitcher')) iPath.get($this.maps, target + '.callbacks.onLayerSwitcher')(e, $this)
+                if (iPath.get($this.maps, target + '.callbacks.onLayerSwitcher')) iPath.get($this.maps, target + '.callbacks.onLayerSwitcher')(e, $this, iPath.get($this.maps, target + '.map'), target)
             });
         });
     },

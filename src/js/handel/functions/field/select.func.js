@@ -239,7 +239,7 @@ const SelectField = {
                     if (!$this.useModel) {
                         $this.serverQuery.q = $this.model
                     }*/
-                    ApiService.get($this.getUrl, {...$this.serverQuery, ...$this.getQuery}).then(response => {
+                    ApiService.get($this.getUrl, {...$this.serverQuery, ...$this.getQuery}, {}, false, {useCancelToken: false}).then(response => {
                         if ($this.serverQuery.page > 1) $this.serverItems.push(...response.handel.data);
                         else $this.serverItems = response.handel.data;
                         $this.serverQuery.pages = response.handel.meta.last_page;

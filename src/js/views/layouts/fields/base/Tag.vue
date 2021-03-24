@@ -137,12 +137,9 @@
                 $elm.val(event);
                 var $timeout = 1000;
                 $.each(event, function (i, v) {
-                    setTimeout(function () {
-                        $elm.tagsinput('add', v);
-                        if (Object.keys(event).length - 1 === i)
-                            $this.setAll = true;
-                    }, $timeout)
-                    $timeout += 500;
+                    $elm.tagsinput('add', v);
+                    if (Object.keys(event).length - 1 === i)
+                        $this.setAll = true;
                 })
                 setTimeout(function () {
                     $this.setAll = true;
@@ -153,11 +150,9 @@
             ...GlobalField.watch(),
             model: {
                 handler: function (newValue, oldValue) {
-                    if (!(this.getIndex('update') &&
-                        this.getOption('store.update', true)) && newValue !== this.value)
+                    if (!(this.getIndex('update') && this.getOption('store.update', true)) && newValue !== this.value)
                         this.$emit('change', newValue);
-                    if (this.setEnter === false && newValue && Object.keys(Array.from(newValue)).length > 0) this.changeValue(newValue);
-                    this.setEnter = true;
+                    this.changeValue(newValue);
                 },
                 deep: true
             },

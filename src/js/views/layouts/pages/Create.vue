@@ -24,7 +24,7 @@
                         <i-form v-else ref="form" class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
                     <div v-if="row.btn !== false" class="card-footer">
-                        <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
+                        <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:submit="submit" v-bind:namespace="storeNamespace"></slot>
                         <button v-else type="submit" class="btn btn-primary" @click="submit">Submit</button>
                     </div>
                 </div>

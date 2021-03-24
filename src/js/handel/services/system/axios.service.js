@@ -6,7 +6,7 @@
 
 import Axios from "axios";
 import iRequest from "../../libs/iRequest.lib";
-
+import iPath from "../../libs/iPath.lib";
 const instance = Axios.create();
 instance.interceptors.request.use(config => {
     return config
@@ -15,6 +15,7 @@ instance.interceptors.response.use(response => {
     return response
 })
 const AxiosService = {
+    requests: {},
     setBaseURL(url) {
         instance.defaults.baseURL = url;
     },
@@ -24,6 +25,15 @@ const AxiosService = {
     },
 
     query(options, notify = false) {
+        if (typeof(options.cancelToken) === 'undefined' && options.useCancelToken !== false){
+            var $request = iPath.get(this.requests, options.url)
+            if($request)
+                $request.cancel();
+            const cancelTokenSource = Axios.CancelToken.source();
+            options.cancelToken = cancelTokenSource.token
+            iPath.set(this.requests, options.url, cancelTokenSource)
+        }
+        iPath.del(options, 'useCancelToken');
         return new Promise((resolve, reject) => {
             try {
                 instance(options)
@@ -39,41 +49,45 @@ const AxiosService = {
         })
     },
 
-    get(resource, params = {}, headers = {}, notify = false) {
+    get(resource, params = {}, headers = {}, notify = false, options = {}) {
         return this.query({
             method: 'get',
             url: resource,
             params : params,
             headers : headers,
+            ...options
         }, notify)
     },
 
-    post(resource, data = {}, notify = false, headers = {}, params = {}) {
+    post(resource, data = {}, notify = false, headers = {}, params = {}, options = {}) {
         return this.query({
             method: 'post',
             url: resource,
             data : data,
             headers : headers,
             params : params,
+            ...options
         }, notify)
     },
 
-    put(resource, data = {}, notify = false, headers = {}, params = {}) {
+    put(resource, data = {}, notify = false, headers = {}, params = {}, options = {}) {
         return this.query({
             method: 'put',
             url: resource,
             data : data,
             headers : headers,
             params : params,
+            ...options
         }, notify)
     },
 
-    delete(resource, notify = true, params = {}, headers = {}) {
+    delete(resource, notify = true, params = {}, headers = {}, options = {}) {
         return this.query({
             method: 'delete',
             url: resource,
             params : params,
             headers : headers,
+            ...options
         }, notify)
     }
 };

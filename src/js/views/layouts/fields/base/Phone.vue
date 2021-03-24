@@ -14,7 +14,6 @@
 
 <script>
     import GlobalField from "../../../../handel/functions/field/global.func";
-    import 'vue-phone-number-input/dist/vue-phone-number-input.css';
     import LoadSingleData from "../../../../handel/functions/store/loadSingle.func";
     import Countries from "../../../../handel/data/countries";
 
