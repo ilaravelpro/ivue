@@ -6,6 +6,9 @@
 
 const LoadSingleData = {
     setValueOnCreate($this) {
+        if (!($this.getIndex('update') &&
+            $this.getOption('store.update', true)))
+            $this.model = $this.value
         var set = this._setValueOnCreate;
         if ($this.getIndex('store') && $this.getOption('store.get', true) && typeof ($this.getValue($this.getIndex('store'))) !== "undefined" && $this.getValue($this.getIndex('store')) !== null)
             if ($this.iFetched)
@@ -112,6 +115,9 @@ const LoadSingleData = {
             updateValue(key, value) {
                 this.$store.dispatch(this.storeNamespace + '/updateByKey', [key, value]);
             },
+            updateValueMain: function($key, $value) {
+                this.$store.commit(this.storeNamespace  + '/setStateMain', {key: 'item.' + $key, value: $value});
+            },
             updateDataValue(key, value) {
                 this.$store.commit(this.storeNamespace + '/setState', {key: 'data.' + key, value: value});
             },
@@ -149,6 +155,9 @@ const LoadSingleData = {
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
             },
+            submit() {
+                this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+            }
         }
     },
     watch() {

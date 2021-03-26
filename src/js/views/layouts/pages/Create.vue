@@ -97,10 +97,7 @@
             });
         },
         methods: {
-            ...LoadSingleData.methods(),
-            submit() {
-                this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
-            }
+            ...LoadSingleData.methods()
         },
         watch: {
             '$route.params.id': {

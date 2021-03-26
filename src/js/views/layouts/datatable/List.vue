@@ -134,6 +134,7 @@
             },
             actions: [Object, Function],
             baseFilter: [Array, Object, Function],
+            baseQuery: [Array, Object, Function],
             newAction: Object,
             child: Boolean,
         },
@@ -160,7 +161,6 @@
         },
         computed: {
             ...DataTableList.computed,
-
         },
         created() {
             var $this = this;

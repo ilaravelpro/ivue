@@ -72,7 +72,6 @@ const actions = {
                 .catch(response => {
                     context.commit('setError', response.handel.errors);
                     context.commit('logOut');
-                    reject(response);
                 });
         } else {
             Notify({message: 'Your validation key has expired. Please log in again.'}, {type: 'd'})

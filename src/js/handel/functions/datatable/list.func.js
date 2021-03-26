@@ -85,7 +85,7 @@ const DataTableList = {
         },
         getBaseFilter: function () {
             return this.baseFilter instanceof Function ? this.baseFilter(this) : this.baseFilter;
-        }
+        },
     },
     methods: {
         ...LoadIndexData.methods(),
@@ -109,6 +109,8 @@ const DataTableList = {
             }
             query['filters'] = $filters;
             query['status'] = this.filterStatus || 'active';
+            if (this.baseQuery)
+                query = {...query, ...(this.baseQuery instanceof Function ? this.baseQuery(this) : this.baseQuery)};
             return query;
         },
         renderStyle() {
@@ -194,6 +196,14 @@ const DataTableList = {
         changeStatus(status) {
             this.filterStatus = status;
             if (this.server) this.paginateServer();
+        },
+        previous:function () {
+            this.pagination.current--;
+            this.paginateServer();
+        },
+        next:function () {
+            this.pagination.current++;
+            this.paginateServer();
         }
     },
     watch: {
