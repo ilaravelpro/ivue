@@ -65,11 +65,12 @@ const actions = {
     },
     verify(context) {
         if (TokenService.getToken()) {
-            ApiService.get("me")
+            ApiService.get("me", {}, {}, false, {useCancelToken: false})
                 .then(response => {
                     context.commit('setUser', response.handel);
                 })
                 .catch(response => {
+                    console.log(response)
                     context.commit('setError', response.handel.errors);
                     context.commit('logOut');
                 });
