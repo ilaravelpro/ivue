@@ -20,12 +20,12 @@
                     <component v-if="getSlots('prepend')" :is="getSlots('prepend')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="prepend"></slot>
                 </template>
-                <span v-if="_icon && _icon.prepend" @click="_icon.prepend.action ? _icon.prepend.action() : ()=> []" slot="prepend" ref="icon_prepend" class="input-group-text bg-white border-right-0">
+                <span v-if="_icon && _icon.prepend" @click="_icon.prepend.action ? _icon.prepend.action(getContext) : ()=> []" slot="prepend" ref="icon_prepend" class="input-group-text bg-white border-right-0">
                     <i :class="_icon.prepend.class" aria-hidden="true"></i>
                 </span>
                 <component v-if="getSlots('body')" :is="getSlots('body')"></component>
                 <slot v-else name="body"></slot>
-                <span v-if="_icon && _icon.append" @click="_icon.append.action ? _icon.append.action() : ()=> []" slot="append" ref="icon_append" class="input-group-text bg-white border-left-0">
+                <span v-if="_icon && _icon.append" @click="_icon.append.action ? _icon.append.action(getContext) : ()=> []" slot="append" ref="icon_append" class="input-group-text bg-white border-left-0">
                     <i :class="_icon.append.class" aria-hidden="true"></i>
                 </span>
                 <template class="input-group-append">
