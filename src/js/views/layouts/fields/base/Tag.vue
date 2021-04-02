@@ -68,6 +68,11 @@
             ...GlobalField.computed(),
             getItems() {
                 return typeof (this.items) === 'function' ? this.items(this.getContext) : this.items;
+            },
+            getUrl: function () {
+                if (this.url.indexOf('http') !== -1)
+                    return this.url;
+                return window.SERVER_URL ? window.SERVER_URL + this.url : this.url;
             }
         },
         created() {
@@ -81,7 +86,7 @@
                     datumTokenizer: datum => Bloodhound.tokenizers.whitespace(datum.value),
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     remote: {
-                        url: this.url,
+                        url: this.getUrl,
                         prepare: function (query, settings) {
                             settings.url = settings.url + '?q=' + query
                             settings.headers = {

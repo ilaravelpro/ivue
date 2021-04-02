@@ -137,6 +137,7 @@
             baseQuery: [Array, Object, Function],
             newAction: Object,
             child: Boolean,
+            actionIf: Function,
         },
         data() {
             return {

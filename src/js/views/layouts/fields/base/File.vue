@@ -99,11 +99,11 @@
                             if ($this.deletes.indexOf(value['150x'].attachment) === -1)
                                 files.push({
                                     id: value['150x'].attachment,
-                                    url: value['150x'].slug
+                                    url: value['150x'].url
                                 });
                         })
                     else if (list && list['150x'])
-                        files = list ? list['150x'].slug : null;
+                        files = list ? list['150x'].url : null;
                 }
                 this.files = files;
                 if (this.multiple && this.url)

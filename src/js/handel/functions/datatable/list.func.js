@@ -190,6 +190,7 @@ const DataTableList = {
             }
         },
         actionCheck(item, action, index) {
+            if (this.actionIf) return this.actionIf(item, action, index);
             if (!item.actions) return true;
             return iPath.get(item.actions, index, true);
         },
