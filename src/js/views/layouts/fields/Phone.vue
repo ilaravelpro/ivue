@@ -49,6 +49,10 @@
                 type: String,
                 default: 'text'
             },
+            prefix: {
+                type: Boolean,
+                default: true
+            },
             options: {
                 type: [Object, Array, Function],
                 default: () => []

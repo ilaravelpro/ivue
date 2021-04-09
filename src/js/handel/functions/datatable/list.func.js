@@ -117,13 +117,13 @@ const DataTableList = {
             var style = '@media screen and (max-width: 992px) {';
             this.columns.forEach((column, index) => {
                 style += `
-                    table tbody tr td:nth-child(${index + 1}):before {
+                    .data-table table tbody tr td:nth-child(${index + 1}):before {
                         content: "${column.label}"
                     }
                   `;
             });
             style += `
-                    table tbody tr td:last-child:before {
+                    .data-table table tbody tr td:last-child:before {
                         content: "Action"
                     }`
             style += '}'

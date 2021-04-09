@@ -46,8 +46,8 @@ const Notify = (content, options) => {
             align: 'right'
         },
         offset: {
-            x: 30,
-            y: 30
+            x: 20,
+            y: 50
         },
         delay: 1000,
         z_index: 10000,
