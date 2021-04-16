@@ -30,8 +30,8 @@ const AutoCompleteField = {
                     return item.value === newValue
                 }) : [newValue]
                 if(item.length) {
-                    this.searchText = item[0].text;
-                    this.selectText = item[0].text;
+                    this.searchText = item[0] ? item[0].text : item[0];
+                    this.selectText = item[0] ? item[0].text : item[0];
                 }
                 this.checkItems();
             },

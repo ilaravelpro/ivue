@@ -25,7 +25,7 @@ const getters = {
 
 const actions = {
     login(context, credentials) {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             ApiService.post(context.state.prefix + "/login", credentials, true)
                 .then(response => {
                     context.commit('setUser', response.handel);
@@ -70,9 +70,9 @@ const actions = {
                     context.commit('setUser', response.handel);
                 })
                 .catch(response => {
-                    console.log(response)
                     context.commit('setError', response.handel.errors);
-                    context.commit('logOut');
+                    if (iPath.get(response, 'root.response.status') === 401)
+                        context.commit('logOut');
                 });
         } else {
             Notify({message: 'Your validation key has expired. Please log in again.'}, {type: 'd'})

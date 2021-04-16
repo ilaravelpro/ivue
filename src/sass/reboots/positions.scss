@@ -1,0 +1,29 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/16/21, 8:47 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+$positions: (absolute, unset, static, sticky, fixed);
+@include media-breakpoint-up(sm)  {
+    @each $position in $positions {
+        .position-md-#{$position} {
+            position: $position !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $position in $positions {
+        .position-lg-#{$position} {
+            position: $position !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $position in $positions {
+        .position-xl-#{$position} {
+            position: $position !important;
+        }
+    }
+}

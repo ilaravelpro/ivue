@@ -34,6 +34,7 @@ const AxiosService = {
             iPath.set(this.requests, options.url, cancelTokenSource)
         }
         iPath.del(options, 'useCancelToken');
+
         return new Promise((resolve, reject) => {
             try {
                 instance(options)
@@ -44,7 +45,7 @@ const AxiosService = {
                         reject({handel: iRequest.catch(error), root: error})
                     })
             }catch (e) {
-                console.log(e)
+                reject(e)
             }
         })
     },

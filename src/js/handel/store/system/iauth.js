@@ -52,6 +52,8 @@ const actions = {
                 })
                 .catch(response => {
                     context.commit('setError', response.handel.errors);
+                    if (iPath.get(response, 'root.response.status') === 401)
+                        context.commit('logOut');
                 });
         } else {
             Notify({message: 'Your validation key has expired. Please log in again.'}, {type: 'd'})

@@ -156,7 +156,9 @@ const LoadSingleData = {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
             },
             submit() {
-                this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                return new Promise((resolve, reject) => {
+                    this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                });
             }
         }
     },
@@ -194,8 +196,8 @@ const LoadSingleData = {
             },
             model: {
                 handler: function (newValue, oldValue) {
-                    if (!(this.getIndex('update') &&
-                        this.getOption('store.update', true)) && newValue !== this.value)
+                    if (this.getOption('actions.emit') || (!(this.getIndex('update') &&
+                        this.getOption('store.update', true)) && newValue !== this.value))
                         this.$emit('change', newValue);
                 },
                 deep: true

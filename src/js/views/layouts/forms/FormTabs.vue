@@ -8,11 +8,15 @@
     <div class="i-from-tabs" :class="_style" :id="id">
         <ul class="nav" :class="_style_nav" role="tablist"
             :aria-orientation="_orientation">
-            <li v-for="(tab, index) in Object.values(getTabs)" class="nav-item">
-                <a class="nav-link" :class="index === 0 && showFirst? 'active' :''" :id="`${_id(tab.name)}_tab`" data-toggle="tab"
-                   :href="`#${_id(tab.name)}`" role="tab" :aria-controls="_id(tab.name)" aria-selected="true">{{
-                    tab.title }}</a>
-            </li>
+            <template v-for="(tab, index) in Object.values(getTabs)">
+                <slot v-if="$scopedSlots[`tab.action_head.${tab.name}`]" :name="`tab.action_head.${tab.name}`" v-bind:tab="tab" v-bind:namespace="tab.storeNamespace || storeNamespace"></slot>
+                <slot v-else-if="$scopedSlots[`tab_actions_head`]" name="tab_actions_head" v-bind:tab="tab" v-bind:namespace="tab.storeNamespace || storeNamespace"></slot>
+                <component v-else-if="tab.action_head" :is="tab.action_head.component" :index="index" :tab="tab" :id="_id(tab.name)" v-bind="tab.action_head.attrs" :storeNamespace="storeNamespace"/>
+                <li v-else class="nav-item">
+                    <a class="nav-link" :class="index === 0 && showFirst? 'active' :''" :id="`${_id(tab.name)}_tab`" data-toggle="tab"
+                       :href="`#${_id(tab.name)}`" role="tab" :aria-controls="_id(tab.name)" aria-selected="true" v-html="tab.title"></a>
+                </li>
+            </template>
         </ul>
         <div class="tab-content" :class="_style_contents">
             <div v-for="(tab, index) in  Object.values(getTabs)" class="tab-pane fade show py-2" :class="index === 0 && showFirst ? 'active ' :''"
