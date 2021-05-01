@@ -157,7 +157,10 @@ const LoadSingleData = {
             },
             submit() {
                 return new Promise((resolve, reject) => {
-                    this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                    if (this.externalSubmit) {
+                        this.externalSubmit(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                    }else
+                        this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
                 });
             }
         }

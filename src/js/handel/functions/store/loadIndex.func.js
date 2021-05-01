@@ -38,8 +38,8 @@ const LoadIndexData = {
             destroyData(key) {
                 return this.$store.dispatch(this.storeNamespace + '/destroyData', key);
             },
-            fetchData() {
-                return this.$store.dispatch(this.storeNamespace + '/fetchData');
+            fetchData(page = 1) {
+                return this.$store.dispatch(this.storeNamespace + '/fetchData', page);
             },
             fetchStatus() {
                 return this.$store.dispatch(this.storeNamespace + '/fetchStatus', this.status_url);

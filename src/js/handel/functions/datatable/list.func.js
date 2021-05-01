@@ -132,12 +132,12 @@ const DataTableList = {
             this.styleTag.appendChild(document.createTextNode(style));
             document.head.appendChild(this.styleTag);
         },
-        paginateServer() {
+        paginateServer(page = 1) {
             iProcessing.init(this.resource + '.paginate_server', this, ($this) => {
                 $this.setState('resource', $this.resource);
                 $this.setState('url', $this.url);
                 $this.setState('query', $this.query());
-                $this.fetchData().then(resp => {
+                $this.fetchData(page).then(resp => {
                     $this.$forceUpdate()
                     $this.filterStatus = iPath.get($this.iMeta, 'filters.current.status')
                 });

@@ -56,6 +56,7 @@
                 type: Boolean,
                 default: false
             },
+            externalSubmit: Function,
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'

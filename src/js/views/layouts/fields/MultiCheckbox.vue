@@ -7,14 +7,14 @@
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
-            <label class="i-checkbox text-no-wrap">{{ item.title }}
-                <input type="checkbox" @change="checking(item,null ,item.children)"
-                       :checked="checked(item.id)" :value="item.id">
+            <label class="i-checkbox text-no-wrap">{{ item.text || item.title }}
+                <input type="checkbox" @change="checking(item,null ,item.kids)"
+                       :checked="checked(item.value|| item.id)" :value="item.value|| item.id">
                 <span class="checkmark fa color-blue"></span>
             </label>
-            <label v-for="(child, cindex) in item.children" class="i-checkbox text-no-wrap ml-3">{{ child.title }}
-                <input type="checkbox" @change="checking(item, child ,item.children)" :checked="checked(child.id)"
-                       :value="child.id">
+            <label v-for="(child, cindex) in item.kids" class="i-checkbox text-no-wrap ml-3">{{ child.text || child.title }}
+                <input type="checkbox" @change="checking(item, child ,item.kids)" :checked="checked(child.value|| child.id)"
+                       :value="child.value|| child.id">
                 <span class="checkmark fa color-blue"></span>
             </label>
         </div>
@@ -37,25 +37,25 @@
         computed: {
             filteredAndSorted() {
                 function compare(a, b) {
-                    if (a.name < b.name) return -1;
-                    if (a.name > b.name) return 1;
+                    if (a.text < b.text) return -1;
+                    if (a.text > b.text) return 1;
                     return 0;
                 }
 
                 return this.items.filter(item => {
                     var $has = item[this.search_attr].toLowerCase().includes(this.search.toLowerCase());
-                    if (!$has && item.children && Object.keys(item.children).length > 0) {
-                        var children = item.children.filter(child => {
+                    if (!$has && item.kids && Object.keys(item.kids).length > 0) {
+                        var kids = item.kids.filter(child => {
                             return child[this.search_attr].toLowerCase().includes(this.search.toLowerCase())
                         }).sort(compare);
-                        $has = Object.keys(children).length > 0;
+                        $has = Object.keys(kids).length > 0;
                     }
                     return $has;
                 }).sort(compare)
             }
         },
         methods: {
-            checking(item, child = null, children = null) {
+            checking(item, child = null, kids = null) {
                 var $item = this.selected.findIndex(function(sub) {
                     return sub.id === item.id;
                 });
@@ -71,7 +71,7 @@
                         else
                             this.selected.push(child);
                     }else{
-                        $.each(children, function (i,v) {
+                        $.each(kids, function (i,v) {
                             var $child2 = $this.selected.findIndex(function(sub) {
                                 return sub.id === v.id;
                             });
@@ -86,8 +86,8 @@
                         else
                             this.selected.push(child);
                     }else {
-                        this.selected.push({id: item.id, title: item.title});
-                        $.each(item.children, function (i,v) {
+                        this.selected.push({id: item.id, text: item.text});
+                        $.each(item.kids, function (i,v) {
                             var $child2 = $this.selected.findIndex(function(sub) {
                                 return sub.id === v.id;
                             });
