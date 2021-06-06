@@ -12,7 +12,7 @@ const SelectField = {
         getSelects() {
             var $this = this;
             if (this.multiple) {
-                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " Selected" : this.placeholder;
+                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " " + this.placeholderSelected : this.placeholder;
             } else {
                 var $select = this._value;
                 if (this.getType === 'single') {

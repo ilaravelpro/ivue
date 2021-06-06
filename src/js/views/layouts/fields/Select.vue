@@ -37,6 +37,10 @@
                 type: String,
                 default: 'Please Select...'
             },
+            placeholderSelected: {
+                type: String,
+                default: 'Selected'
+            },
             desc: [String, Number, Object, Array],
             storeNamespace: {
                 type: [String, Object],
