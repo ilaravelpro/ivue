@@ -6,7 +6,7 @@
 
 <template>
     <div class="i-repeater-time-line">
-        <h5 v-if="title" v-text="typeof(title) === 'function' ? title(getContext) : title"></h5>
+        <h5 v-if="title" v-html="typeof(title) === 'function' ? title(getContext) : title"></h5>
         <div v-if="getErrorStatus(getIndex('error'))" :class="`alert alert-${getErrorStatus(getIndex('error')) === 'valid' ? 'success' : 'danger'}`" role="alert">{{ getError(getIndex('error') + '.text') }}</div>
         <div class="row mb-3" v-if="getOption('addBtn') !== false">
             <div class="col-lg-4">

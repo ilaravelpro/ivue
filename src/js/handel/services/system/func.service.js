@@ -48,3 +48,8 @@ window.date2str = function (x, y) {
         return x.getFullYear().toString().slice(-v.length)
     });
 }
+
+
+window.capitalizeFirstLetter = function (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

@@ -78,9 +78,10 @@ const StoreDataSingle = {
     actions: {
         updateByKey({commit, state, dispatch}, [key, value]) {
             var old = iPath.get(state, "item." + key)
+            var oldState = state
             var $commit = commit('setState', {key: "item." + key, value: value})
             if (typeof(state.functions['afterUpdateByKey']) === 'function') setTimeout(function () {
-                state.functions['afterUpdateByKey'](key, state, dispatch, commit, old)
+                state.functions['afterUpdateByKey'](key, state, dispatch, commit, old, oldState)
             }, 15)
             return $commit;
         },

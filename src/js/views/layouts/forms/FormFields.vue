@@ -6,9 +6,9 @@
 
 <template>
     <div :class="style">
-        <h5 v-if="title" class="mb-1 col-12 p-1">{{ getTitle }}</h5>
+        <h5 v-if="title" class="mb-1 col-12 p-1" v-html="getTitle"></h5>
         <template v-for="item in getItems">
-            <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if(getContext) : true" :storeNamespace="item.attrs.storeNamespace || storeNamespace" >
+            <component :is="item.component" v-bind="item.attrs" v-if="item && typeof(item.if) === 'function'? item.if(getContext) : item" :storeNamespace="item.attrs.storeNamespace || storeNamespace" >
                 <template v-if="item.text">{{ item.text }}</template>
             </component>
         </template>

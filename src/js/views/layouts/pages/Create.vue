@@ -14,7 +14,7 @@
         </div>
         <div class="d-flex flex-wrap" ref="forms">
             <div v-for="(row , index) in rows" :class="row.class" class="my-2 px-0 px-md-1 px-lg-3">
-                <div class="card">
+                <div class="card" :class="getStyle('card.main')">
                     <div v-if="$scopedSlots[`row.${row.name}.header`]" class="card-header">
                         <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                     </div>
@@ -97,7 +97,7 @@
             });
         },
         methods: {
-            ...LoadSingleData.methods()
+            ...LoadSingleData.methods(),
         },
         watch: {
             '$route.params.id': {

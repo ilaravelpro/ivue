@@ -102,12 +102,12 @@ const LoadSingleData = {
                 var $style = iPath.get(this.css, key);
                 return $style || $istyles || $default;
             },
-            getValue(key, $default) {
+            getValue(key, $default = null) {
                 var $value = iPath.get(this.iRecord, key , $default);
                 return $value
             },
-            getParentValue(key) {
-                return iPath.get(this.iParent, key)
+            getParentValue(key, $default = null) {
+                return iPath.get(this.iParent, key, $default)
             },
             getDataValue(key, none = null) {
                 return iPath.get(this.iData, key, none)
@@ -159,8 +159,13 @@ const LoadSingleData = {
                 return new Promise((resolve, reject) => {
                     if (this.externalSubmit) {
                         this.externalSubmit(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                        resolve(this.iRecord)
                     }else
-                        this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method])
+                        this.$store.dispatch(this.storeNamespace + '/storeData', [undefined, undefined, this.method]).then(response => {
+                            resolve(response)
+                        }).catch(response => {
+                            reject(response)
+                        })
                 });
             }
         }
