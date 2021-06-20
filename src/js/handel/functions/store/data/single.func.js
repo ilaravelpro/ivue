@@ -99,7 +99,7 @@ const StoreDataSingle = {
                     if (state.functions['onChangeUrl']) url = state.functions['onChangeUrl'](url, state, dispatch, commit)
                     ApiService.post(url, params, true).then(response => {
                         commit('setStateMain', {key: 'errors.system', value: {}})
-                        if (redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
+                        if (response.handel.data && redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
                             commit('setState', {key: 'item', value: response.handel.data})
                             appRouter.push({name: state.resource + '.edit', params: {id: response.handel.data.id}})
                         }

@@ -7,10 +7,10 @@
 <template>
     <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model"
               :class="styleForTextArea" @focusin="focusin"
-              @focusout="focusout" :id="getIndex('datepicker') + '_input'"></textarea>
+              @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''"></textarea>
     <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
            :value="model" :class="styleForField"
-           @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') + '_input'">
+           @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''">
 </template>
 
 

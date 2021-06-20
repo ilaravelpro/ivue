@@ -17,6 +17,7 @@
         :slots="slots"
         v-on:update:focusin="focusin = $event"
         v-on:update:focusout="focusout = $event"
+        class="i-input"
     >
         <slot slot="label-append" name="label-append"/>
         <slot slot="label-prepend" name="label-prepend"/>

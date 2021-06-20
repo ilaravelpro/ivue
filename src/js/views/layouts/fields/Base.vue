@@ -15,7 +15,7 @@
         </label>
         <div :class="styleForGroup">
             <slot v-if="$scopedSlots['input-group']" name="input-group"></slot>
-            <div v-else class="input-group">
+            <div v-else class="input-group" :class="getStyle('input-group')">
                 <template class="input-group-prepend">
                     <component v-if="getSlots('prepend')" :is="getSlots('prepend')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="prepend"></slot>

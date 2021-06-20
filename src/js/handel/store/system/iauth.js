@@ -28,9 +28,9 @@ const actions = {
     create(context, [type, data]) {
         return iAuthService.create(type, data);
     },
-    auth(context, pin) {
+    auth(context, [session, pin, type, data = {}]) {
         return new Promise((resolve, reject) => {
-            iAuthService.verify('auth', pin, {})
+            iAuthService.verify(session, type === 'code'? pin : '', type === 'password' ? {password: pin, ...data} : data)
                 .then(response => {
                     context.commit('setUser', response.handel);
                     resolve(response);
@@ -42,7 +42,17 @@ const actions = {
         });
     },
     logout(context) {
-        context.commit('logOut');
+        return new Promise((resolve, reject) => {
+            iAuthService.revoke('auth')
+                .then(response => {
+                    context.commit('logOut');
+                    resolve(response);
+                })
+                .catch(response => {
+                    context.commit('setError', response.handel.errors);
+                    reject(response);
+                });
+        });
     },
     verify(context) {
         if (TokenService.getToken()) {
