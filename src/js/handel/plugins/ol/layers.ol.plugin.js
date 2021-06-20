@@ -22,7 +22,7 @@ const OpenLayersLayers = {
             visible: iPath.get(OpenLayers.maps, target + '.params.layers.base.osm.status', true),
             source: new OSM({
                 attributions: $this.attributions(target),
-                url: '//basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
+                url: 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
             })
         }));
     },
