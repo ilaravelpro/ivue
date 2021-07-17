@@ -64,16 +64,17 @@
             url: String,
             typeForm: String,
             css: [Object, Function],
-            method: String
+            method: String,
         },
         data() {
             return {
-
+                errorAll: {},
+                timeErrorAll: 1300
             }
         },
         computed: {
             ...LoadSingleData.computed(),
-            errorAll() {
+            errorAllStore() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iErrorsHandel']
             },
             loading() {
@@ -105,6 +106,15 @@
                     this.$store.dispatch(this.storeNamespace + '/resetState')
                     if (newValue && newValue !== 'undefined' && this.fetch !== false)
                         this.$store.dispatch(this.storeNamespace + '/fetchData', [this.$route.params.id, null])
+                },
+                deep: true
+            },
+            'errorAllStore': {
+                handler: function (newValue) {
+                    iProcessing.init(this.storeNamespace + '_errorAllStore', this, function ($this) {
+                        $this.errorAll = $this.errorAllStore
+                        $this.timeErrorAll = 0;
+                    }, this.timeErrorAll)
                 },
                 deep: true
             }

@@ -16,6 +16,14 @@ const AutoCompleteField = {
             this.model = this.getType === 'single' ? item.value : item;
             this.searchText = item.text;
             this.selectText = item.text;
+        },
+        focusoutInternal(...args) {
+            var $value = this._value && this.type === 'array' ? this.releaseItem(this._value) : null;
+            if (this.type === 'array' && !$value && this.itemsByFiltered.length === 1 && this.itemsByFiltered[0]) {
+                this.onSelect(this.itemsByFiltered[0], 0)
+            }
+            if (this.focusout)
+                this.focusout(...args)
         }
     },
     watch: {
@@ -41,7 +49,6 @@ const AutoCompleteField = {
             handler: function (newValue) {
                 var $this = this;
                 if (!this.useModel){
-
                     var item = this.itemsByFiltered.filter(item => {
                         return item.value === $this._value
                     })
@@ -52,6 +59,7 @@ const AutoCompleteField = {
                     this.useModel = true;
                 }
                 this.checkItems();
+                this.focusoutInternal();
             },
             deep: true
         },

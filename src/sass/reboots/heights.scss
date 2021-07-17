@@ -5,7 +5,6 @@
  */
 
 @each $name, $height in $heights {
-    $name : str-replace(($height),'%','');
     .h-#{$name} {
         height: $height !important;
     }
@@ -15,7 +14,6 @@ $heights: map-merge($default-widths-heights, $heights);
 
 @include media-breakpoint-down(sm)  {
     @each $name, $height in $heights {
-        $name : str-replace(($height),'%','');
         .h-sm-#{$name} {
             height: $height !important;
         }
@@ -24,7 +22,6 @@ $heights: map-merge($default-widths-heights, $heights);
 
 @include media-breakpoint-up(sm)  {
     @each $name, $height in $heights {
-        $name : str-replace(($height),'%','');
         .h-md-#{$name} {
             height: $height !important;
         }
@@ -33,7 +30,6 @@ $heights: map-merge($default-widths-heights, $heights);
 
 @include media-breakpoint-up(lg)  {
     @each $name, $height in $heights {
-        $name : str-replace(($height),'%','');
         .h-lg-#{$name} {
             height: $height !important;
         }
@@ -42,7 +38,6 @@ $heights: map-merge($default-widths-heights, $heights);
 
 @include media-breakpoint-up(xl) {
     @each $name, $height in $heights {
-        $name : str-replace(($height),'%','');
         .h-xl-#{$name} {
             height: $height !important;
         }

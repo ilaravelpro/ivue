@@ -24,7 +24,7 @@ const LoadSingleData = {
     computed() {
         return {
             iRecord() {
-                return this.$store.getters[this.storeNamespace + '/' + 'iRecord']
+                return this.$store ? this.$store.getters[this.storeNamespace + '/' + 'iRecord'] : {}
             },
             iParent() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iParent']

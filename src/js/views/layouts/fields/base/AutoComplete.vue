@@ -9,7 +9,7 @@
         <div class="select-title select-search cursor-pointer">
             <div class="input-group">
                 <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto" :class="{'text-primary font-weight-bold': searchText === selectText}"
-                       @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusout">
+                       @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusoutInternal">
             </div>
         </div>
         <ul class="select-items w-sm-250px p-0">
@@ -121,6 +121,7 @@
             ...GlobalField.methods(storeNamespace),
             ...SelectField.methods,
             ...AutoCompleteField.methods,
+
         },
         watch: {
             ...GlobalField.watch(storeNamespace),

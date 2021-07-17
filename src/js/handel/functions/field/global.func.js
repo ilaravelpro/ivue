@@ -15,7 +15,7 @@ const GlobalField = {
             },
             styleForField() {
                 var $style = '';
-                if (this.getOption('field.control_field') !== false) $style += 'form-control';
+                if (this.getOption('field.control_field') !== false) $style += 'form-control text-left';
                 if (this._icon && this._icon.prepend) $style += ' border-left-0 border-right-radius-4px';
                 if (this._icon && this._icon.append) $style += ' border-right-0 border-left-radius-4px';
                 if (this.error && typeof (this.error.status) !== 'undefined') $style += ' is-' + this.error.status;

@@ -39,7 +39,6 @@ const OpenLayers = {
         OpenLayersLayers.init(target, iPath.get(this.maps, target + '.callbacks.onLayers'))
         var $map = new Map({
             target: target,
-            controls: defaultControls().extend([new FullScreen()]),
             layers: arrayColumn(Object.values(iPath.get(OpenLayersLayers.layers, target, {})), 'group'),
             view: new View(iPath.get(this.maps, target + '.params.view', {
                 center: fromLonLat(this.params.center),
@@ -47,6 +46,11 @@ const OpenLayers = {
                 minZoom: 3,
             }))
         });
+
+        $map.addControl(new FullScreen({
+            source: 'fullscreen',
+        }));
+
         iPath.set(this.maps, target + '.map', $map);
     },
     initClick(target) {
@@ -124,7 +128,12 @@ const OpenLayers = {
             });
         });
     },
-
+    isFullScreenSupported() {
+        var body = document.body;
+        return !!(body.webkitRequestFullscreen ||
+            (body.msRequestFullscreen && document.msFullscreenEnabled) ||
+            (body.requestFullscreen && document.fullscreenEnabled));
+    }
 }
 
 export default OpenLayers;

@@ -94,22 +94,24 @@ const StoreDataSingle = {
                 if (getters.iErrorsHandel.status) {
                     url = url || state.url || state.resource;
                     url = url.replace('{id}', state.item.id)
-                    let params = iData.handel(state.item, state.options.typeForm, (method || (typeof(state.item.id) !== "undefined"? 'put' : null)), state.options.excepts)
                     if (state.item.id && state.options.useId) url += '/' + state.item.id;
                     if (state.functions['onChangeUrl']) url = state.functions['onChangeUrl'](url, state, dispatch, commit)
-                    ApiService.post(url, params, true).then(response => {
-                        commit('setStateMain', {key: 'errors.system', value: {}})
-                        if (response.handel.data && redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
-                            commit('setState', {key: 'item', value: response.handel.data})
-                            appRouter.push({name: state.resource + '.edit', params: {id: response.handel.data.id}})
-                        }
-                        resolve(response)
-                    }).catch(error => {
-                        commit('setStateMain', {key: 'errors.system', value: error.handel})
-                        reject(error)
-                    }).finally(() => {
-                        commit('setLoading', false)
-                    });
+                    setTimeout(function () {
+                        let params = iData.handel(state.item, state.options.typeForm, (method || (typeof(state.item.id) !== "undefined"? 'put' : null)), state.options.excepts)
+                        ApiService.post(url, params, true).then(response => {
+                            commit('setStateMain', {key: 'errors.system', value: {}})
+                            if (response.handel.data && redirect !== false && appRouter.currentRoute.name === state.resource + '.create'){
+                                commit('setState', {key: 'item', value: response.handel.data})
+                                appRouter.push({name: state.resource + '.edit', params: {id: response.handel.data.id}})
+                            }
+                            resolve(response)
+                        }).catch(error => {
+                            commit('setStateMain', {key: 'errors.system', value: error.handel})
+                            reject(error)
+                        }).finally(() => {
+                            commit('setLoading', false)
+                        });
+                    }, 500)
                 } else {
                     Notify({message: 'Please fix the errors!!!'}, {type: 'd'})
                     reject()
@@ -117,12 +119,12 @@ const StoreDataSingle = {
                 }
             })
         },
-        fetchData({state, commit, dispatch}, [id, url]) {
+        fetchData({state, commit, dispatch}, [id, url, params = {}]) {
             url = url || state.url || state.resource;
             url = String(url).replace('{id}', id)
             if (id && state.options.useId) url += '/' + id;
             if (state.functions['onFetchUrl']) url = state.functions['onFetchUrl'](url, state, dispatch, commit)
-            return dispatch('fetchDataBy', {url: url, resource: 'item', parent: true, func: 'afterFetch'})
+            return dispatch('fetchDataBy', {url: url, resource: 'item',  params: params, parent: true, func: 'afterFetch'})
         },
         fetchDataBy({commit, state, dispatch}, {url, resource, params, parent, func}) {
             commit('setLoading', true)

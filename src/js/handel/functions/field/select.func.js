@@ -30,11 +30,12 @@ const SelectField = {
             var $this = this;
             var $items = this.releaseItems([...this.firstItems, ...(this.getUrl ? this.serverItems : this.getItems)]);
             var $uniq = [];
-            if (this._value && this.type === 'array')
-                $items = [...this.releaseItems(this.multiple ? this._value : [this._value]), ...$items]
+            var $value = this._value && this.type === 'array' && Object.keys(this._value).length ? this.releaseItems(this.multiple ? this._value : [this._value]) : null;
+            var $has = false;
             $items = $items.filter(item => {
                 if ($uniq.indexOf(item.value) !== -1) return false;
                 $uniq.push(item.value)
+                if ($value && $value[0] && $value[0].value === item.value) $has = true;
                 var $diff = true;
                 var diff = this.getIndex('diff') !== this.getIndex('store') ? this.getValue(this.getIndex('diff')) : $this.diff;
                 if (diff && diff instanceof Array) {
@@ -59,6 +60,8 @@ const SelectField = {
                 var $search = String(item.text).toUpperCase().indexOf(String($this.searchText).toUpperCase()) > -1;
                 return $diff ? $search : false;
             });
+            if ($value && $value[0] && !$has)
+                $items = [...$value, ...$items];
 
             return $items;
         },
