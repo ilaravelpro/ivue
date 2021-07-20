@@ -174,7 +174,7 @@ const LoadSingleData = {
         return {
             iRecordValue: {
                 handler: function (newValue, oldValue) {
-                    if (this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined" && !_.isEqual(newValue, oldValue)) {
+                    if (this.fieldIndex && this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined" && !_.isEqual(newValue, oldValue)) {
                         var $this = this;
                         if (this.iFetched)
                             LoadSingleData._setValueOnCreate($this)
@@ -186,7 +186,7 @@ const LoadSingleData = {
             },
             _value: {
                 handler: function (newValue, oldValue) {
-                    if (this.getIndex('update') &&
+                    if (this.fieldIndex && this.getIndex('update') &&
                         this.getOption('store.update', true) &&
                         typeof (newValue) !== 'undefined' &&
                         (!this.iRecordValue || newValue !== oldValue))

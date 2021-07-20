@@ -10,7 +10,7 @@
               @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''"></textarea>
     <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
            :value="model" :class="styleForField"
-           @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''">
+           @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : false">
 </template>
 
 

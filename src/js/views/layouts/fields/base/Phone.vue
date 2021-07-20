@@ -5,8 +5,8 @@
   -->
 
 <template>
-    <div class="d-flex flex-wrap input-group p-0 dir-ltr">
-        <i-base-autocomplete class="col-3" placeholder="Enter Country" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
+    <div class="d-flex flex-wrap input-group p-0 dir-ltr" :class="getStyle('input-group')">
+        <i-base-autocomplete class="col-3" placeholder="+1" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
         <i-base-input v-if="prefix" class="col-3" v-model="model.prefix" :options="getOptions"/>
         <i-base-input :class="{'col-6': prefix, 'col-9': !prefix}" v-model="model.number" :options="getOptions"/>
     </div>
@@ -62,7 +62,7 @@
             return {
                 countries: Countries,
                 model: {
-                    country: '98',
+                    country: '',
                     number: ''
                 },
                 defCountry: 98,

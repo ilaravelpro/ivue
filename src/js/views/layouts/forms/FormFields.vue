@@ -24,6 +24,7 @@
             items: [Object, Array, Function],
             title: [String, Function],
             css: String,
+            externalSubmit: Function,
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
@@ -35,7 +36,14 @@
                 return typeof(this.title) == 'function' ? this.title(this) : this.title;
             },
             getItems() {
-                return typeof(this.items) == 'function' ? this.items(this) : this.items;
+                var $this = this;
+                var $items = typeof(this.items) == 'function' ? this.items(this) : this.items;
+                $items = Array.from($items).map(function (v) {
+                    if(v.useESubmit)
+                        v.attrs.externalSubmit = $this.externalSubmit
+                    return v;
+                })
+                return $items
             },
             style() {
                 return this.css || null;

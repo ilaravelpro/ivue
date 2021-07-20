@@ -21,7 +21,7 @@
         <slot slot="label-prepend" name="label-prepend"/>
         <slot slot="prepend" name="prepend"/>
         <slot slot="append" name="append"/>
-        <template slot="body">
+        <template slot="input-group">
             <i-base-phone v-bind="$props" @change="$emit('change', $event )"></i-base-phone>
         </template>
     </i-base>

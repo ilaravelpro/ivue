@@ -17,7 +17,7 @@
         }
     }
     ul {
-        width: calc(100% - 30px);
+        width: calc(100% + 50px);
         display: none;
         list-style-type: none;
         background-color: #fff;
@@ -25,7 +25,7 @@
         border: 1px solid #add8e6;
         border-top: none;
         max-height: 180px;
-        margin: 7px 0 0;
+        margin: 7px 0 0 -12px;
         overflow-y: scroll;
         overflow-x: hidden;
         position: absolute;

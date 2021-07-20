@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <i-form-fields :items="getItems" :storeNamespace="storeNamespace" />
+    <i-form-fields :items="getItems" :storeNamespace="storeNamespace" :externalSubmit="externalSubmit" />
 </template>
 
 <script>
@@ -19,6 +19,7 @@
             url: String,
             typeForm: String,
             name: String,
+            externalSubmit: Function,
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
