@@ -39,7 +39,7 @@
                 var $this = this;
                 var $items = typeof(this.items) == 'function' ? this.items(this) : this.items;
                 $items = Array.from($items).map(function (v) {
-                    if(v.useESubmit)
+                    if(v && v.useESubmit)
                         v.attrs.externalSubmit = $this.externalSubmit
                     return v;
                 })
