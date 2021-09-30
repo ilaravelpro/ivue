@@ -19,12 +19,12 @@
             </template>
         </ul>
         <div class="tab-content" :class="_style_contents">
-            <div v-for="(tab, index) in  Object.values(getTabs)" class="tab-pane fade show py-2" :class="index === 0 && showFirst ? 'active ' :''"
+            <div v-for="(tab, index) in  Object.values(getTabs)" class="tab-pane fade show py-2" :class="{'active': index === 0 && showFirst, ...(tab.contentClass || {})}"
                  :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
                 <button v-if="isBtnView(tab)" class="btn btn-warning" @click="setView(tab)">Load Tab</button>
                 <slot v-if="$scopedSlots[`tab.${tab.name}`]" :name="`tab.${tab.name}`" v-bind:tab="tab" v-bind:namespace="tab.storeNamespace || storeNamespace"></slot>
                 <slot v-else-if="$scopedSlots[`tab_body`]" name="tab_body" v-bind:tab="tab" v-bind:namespace="tab.storeNamespace || storeNamespace"></slot>
-                <template v-else-if="tab.items" v-for="item in tab.items" v-if="isView(tab)">
+                <template v-else-if="tab.items" v-for="item in getItems(tab.items)" v-if="isView(tab)">
                     <component :is="item.component" v-bind="item.attrs" v-if="item.if ? item.if() : true" :storeNamespace="item.attrs.storeNamespace || storeNamespace"/>
                 </template>
             </div>
@@ -106,6 +106,9 @@
                 this.viewComp[tab.name] = !this.viewComp[tab.name];
                 this.$forceUpdate()
             },
+            getItems(items) {
+                return typeof(items) == 'function' ? items(this) : items;
+            }
         }
     }
 </script>
