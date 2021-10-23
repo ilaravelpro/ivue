@@ -21,6 +21,7 @@ Vue.component('i-form-tabs', require('../../../views/layouts/forms/FormTabs').de
 Vue.component('i-form-wizard', require('../../../views/layouts/forms/FormWizard').default);
 
 Vue.component('i-base', require('../../../views/layouts/fields/Base').default);
+Vue.component('i-text', require('../../../views/layouts/fields/Text').default);
 Vue.component('i-multi', require('../../../views/layouts/fields/Multi').default);
 Vue.component('i-base-input', require('../../../views/layouts/fields/base/Input').default);
 Vue.component('i-base-text-area', require('../../../views/layouts/fields/base/TextArea').default);

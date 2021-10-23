@@ -33,7 +33,7 @@ const LoadSingleData = {
                 return this.$store.getters[this.storeNamespace + '/' + 'iData']
             },
             iRecordValue() {
-                return iPath.get(this.$store.getters[this.storeNamespace + '/' + 'iRecord'], this.getIndex('get'))
+                return iPath.get(this.$store.getters[this.storeNamespace + '/' + (this.useParent ? 'iParent' : 'iRecord')], this.getIndex('get'))
             },
             iMaskAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iMaskAll']
