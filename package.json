@@ -1,0 +1,19 @@
+{
+  "name": "ilaravel-ivue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilaravelpro/ivue.git"
+  },
+  "author": "“jahani” <“jahani1379@gmail.com”> (“https://iamir.net”)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilaravelpro/ivue/issues"
+  },
+  "homepage": "https://github.com/ilaravelpro/ivue#readme"
+}
