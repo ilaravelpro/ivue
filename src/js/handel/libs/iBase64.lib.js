@@ -1,3 +1,9 @@
+/*
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 10/31/21, 10:46 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
 const iBase64 = {
     path: null,
     filename: null,

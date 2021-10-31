@@ -11,13 +11,13 @@
                 <span class="title">{{ item.title }}</span>
                 <input type="radio" @change="checking(item)"
                        :checked="checked(item)" :value="item.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span class="checkmark color-blue"></span>
             </label>
             <label v-for="(child, cindex) in item.children" class="i-radio text-no-wrap ml-3">
                 <span class="title">{{ child.title }}</span>
                 <input type="radio" @change="checking(child)" :checked="checked(child)"
                        :value="child.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span class="checkmark color-blue"></span>
             </label>
         </div>
     </div>

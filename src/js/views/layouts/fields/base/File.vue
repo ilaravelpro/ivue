@@ -28,7 +28,6 @@
                     <div v-bind:style="{backgroundImage: 'url(' + ur.url + ')'}"
                          class="w-72px h-72px w-md-100px h-md-100px w-lg-150px h-lg-150px bg-no-repeat bg-position-center bg-size-cover"></div>
                     <span class="btn-cancel bg-white border border-primary btn btn-xs btn-icon fas fa-trash-alt d-flex" @click="delFile(index)">
-                    <i class="trh-icon-cancel"></i>
                 </span>
                 </div>
             </div>
