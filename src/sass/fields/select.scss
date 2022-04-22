@@ -5,12 +5,6 @@
  */
 
 .i-select {
-    &:after {
-        content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
-        width: 9px;
-        height: 26px;
-        float: right;
-    }
     .select-title {
         .unselect {
             background-color: #f4030e;
@@ -19,6 +13,13 @@
             border-radius: 5px;
             font-size: 12px;
             margin-top: 3px;
+        }
+        &:after {
+            content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+            width: 9px;
+            height: 26px;
+            float: right;
+            cursor: pointer;
         }
     }
     ul {
