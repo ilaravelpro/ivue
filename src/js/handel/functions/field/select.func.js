@@ -243,6 +243,7 @@ const SelectField = {
                 if ($this.firstSelect && (!$this.url || ($this.url && $this.loading)))
                     if ($this.itemsByFiltered.length && $this.$options.name !== 'i-base-autocomplete' && !$this.multiple && $this._value && !$this._value.length && !$this.useFirst) {
                         $this.setSelect(null, 0)
+                        $this.useFirst = true;
                     }
 
             }, 200)
