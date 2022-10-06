@@ -67,7 +67,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="w-100 d-md-flex mt-2">
+            <div class="w-100 d-md-flex mt-2" v-if="pagination_status">
                 <div class="col-md-9 col-12 d-md-flex px-0">
                     <div class="col-md-2 px-0 my-2 mr-md-2">
                         <select v-model="pagination.length" class="form-control cursor-pointer" id="rawsPerPage" @change="resetPagination()"
@@ -129,6 +129,10 @@
                 default: true
             },
             status: {
+                type: Boolean,
+                default: true
+            },
+            pagination_status: {
                 type: Boolean,
                 default: true
             },
