@@ -34,7 +34,7 @@ const AxiosService = {
             iPath.set(this.requests, options.url, cancelTokenSource)
         }
         iPath.del(options, 'useCancelToken');
-
+        options.params.app_version = window.app_version || (new Date().getTime());
         return new Promise((resolve, reject) => {
             try {
                 instance(options)

@@ -50,7 +50,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="item in paginatedItems" :key="item.id">
+                    <tr v-for="item in paginatedItems" :key="item.id" :class="item.status ? `status-${resource} status-${item.status}` : ''">
                         <td v-for="column in columns">
                             <slot v-if="$scopedSlots['item.'+column.name]" :name="'item.'+column.name" v-bind:column="column" v-bind:item="item"></slot>
                             <template v-else>
@@ -170,6 +170,7 @@
                 this.fetchStatus()
             }
             if (this.server) this.paginateServer();
+            this.$emit('methods.paginateServer', this.paginateServer)
             this.columns.forEach((column) => {
                 $this.sortOrders[column.name] = -1;
             });

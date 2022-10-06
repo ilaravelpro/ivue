@@ -10,19 +10,22 @@ const BaseRepeater = {
     methods: {
         addRow: function() {
             var add = null;
+            console.log(5645454)
             if (this.type === 'single')
                 add = null;
             else {
                 add = {};
-                $.each(this.items, function (i, item) {
-                    add[item.name] = null;
-                });
+                if (this.items)
+                    $.each(this.items, function (i, item) {
+                        add[item.name] = null;
+                    });
             }
             if (this.getValue(this.getIndex('get'))){
                 this.updateValue(this.getIndex('update') + '.' + Number(Object.keys(this.getValue(this.getIndex('get'))).length), add)
             }
             else {
                 this.updateValue(this.getIndex('update') , [add])
+                this.model = [add];
             }
             this.$forceUpdate()
         },

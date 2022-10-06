@@ -62,7 +62,13 @@ const SelectField = {
             });
             if ($value && $value[0] && !$has)
                 $items = [...$value, ...$items];
-
+            $items = Array.from($items).map(function($item) {
+                try {
+                    if ($item.text)
+                        $item.text = capitalizeFirstLetter($item.text);
+                }catch {}
+                return $item;
+            })
             return $items;
         },
         getUrl() {
@@ -97,11 +103,14 @@ const SelectField = {
                 $(this.$refs.items).removeClass('d-block');
             else {
                 $('.i-select').find('ul').removeClass('d-block');
-                $(this.$refs.items).addClass('d-block');
+                setTimeout(() => {$(this.$refs.items).addClass('d-block')}, 100)
             }
         },
         onSelect(item, index) {
             this._onSelect(item, index)
+        },
+        isSingle(item){
+            return this.getType === 'single' && typeof (item) !== 'undefined' && item.value;
         },
         _onSelect(item, index) {
             if (!item) item = this.itemsByFiltered[index];
@@ -109,18 +118,25 @@ const SelectField = {
             var container = $(this.$refs.select);
             var $elm = container.find("ul li[data-value='" + item.value + "']");
             if (this.multiple) {
-                if ($elm.hasClass("selected")) {
-                    $elm.removeClass("selected");
-                    this.model = this.model.filter(function (v, i) {
-                        return ($this.getType === 'single' && typeof (v) == 'object' ? v.value : v) !== ($this.getType === 'single' && typeof (item) === 'object' ? item.value : item);
+                var modelItems = $this.getType === 'single' ? this.model : arrayColumn(this.model||[], 'value');
+                var isSingle = $this.isSingle(item);
+                var itemValue = item.value || item;
+                if (modelItems && modelItems.indexOf(itemValue) != -1) {
+                    this.model = Array.from(this.model).filter(function (v, i) {
+                        return (v.value || v) !== itemValue;
                     })
-                    this.model = this.model.map(function (item, index, array) {
-                        return $this.getType === 'single' && typeof (item) === 'object' ? item.value : item;
+                    $elm.removeClass("selected");
+                    this.model = this.model.map(function (v, index, array) {
+                        return $this.isSingle(v) ? v.value : v;
                     })
                 } else {
                     $elm.addClass("selected");
                     if (!this.model) this.model = [];
                     this.model.push($this.getType === 'single' && typeof (item) === 'object' ? item.value : item);
+                    var modelItems = $this.getType === 'single' ? this.model : arrayColumn(this.model||[], 'value');
+                    this.model = this.model.filter(function (v, index, array) {
+                        return modelItems.indexOf($this.isSingle(v)) ? v : v.value == index;
+                    })
                 }
             } else {
                 if ($elm.hasClass("selected")) {
@@ -217,12 +233,10 @@ const SelectField = {
                 var container = $($this.$refs.select);
                 container.find("ul li").removeClass("selected");
                 if ($.isArray($this._value) && $this.multiple) {
-                    setTimeout(function () {
-                        $.each($this._value, function (i, v) {
-                            if (container.find("ul li[data-value='" + ($this.getType === 'single' && !$.isArray(v) ? v : v.value) + "']").length)
-                                container.find("ul li[data-value='" + ($this.getType === 'single' && !$.isArray(v) ? v : v.value) + "']").addClass("selected");
-                        })
-                    }, 500)
+                    $.each($this._value, function (i, v) {
+                        if (container.find("ul li[data-value='" + ($this.getType === 'single' && !$.isArray(v) ? v : v.value) + "']").length)
+                            container.find("ul li[data-value='" + ($this.getType === 'single' && !$.isArray(v) ? v : v.value) + "']").addClass("selected");
+                    })
                 } else if ($this._value) {
                     container.find("ul li[data-value='" + ($this.getType === 'single' && !$.isArray($this._value) ? $this._value : $this._value.value) + "']").addClass("selected");
                 }
@@ -231,7 +245,7 @@ const SelectField = {
                         $this.setSelect(null, 0)
                     }
 
-            }, 1000)
+            }, 200)
         },
         moreLoad() {
             var $this = this;
